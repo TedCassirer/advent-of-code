@@ -3,10 +3,11 @@ def getExpenses(data):
 
 
 def findPairSum(expenses, target):
-    expenses = set(expenses)
+    seen = set()
     for e in expenses:
-        if target - e in expenses:
+        if target - e in seen:
             return e, target - e
+        seen.add(e)
 
 
 def part1(data):
@@ -15,10 +16,10 @@ def part1(data):
 
 
 def part2(data):
-    expenses = set(getExpenses(data))
-    for e1 in expenses:
+    expenses = getExpenses(data)
+    for i, e1 in enumerate(expenses):
         target = 2020 - e1
-        res = findPairSum(expenses - {e1}, target)
+        res = findPairSum(expenses[i + 1 :], target)
         if res:
             e2, e3 = res
             return e1 * e2 * e3
