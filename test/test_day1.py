@@ -1,10 +1,18 @@
 import aoc
 
+testData1 = """
+    1721
+    979
+    366
+    299
+    675
+    1456
+"""
+
 
 def testPart1():
-    testData = """test data
-    test data
-    """
+    assert aoc.part1(1, 2020, testData1) == 514579
 
-    res = aoc.part1(1, 2020, testData)
-    assert res
+
+def testPart2():
+    assert aoc.part2(1, 2020, testData1) == 241861950

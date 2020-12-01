@@ -10,7 +10,7 @@ solvers = {
 
 
 def solve(day, year, data):
-    return (part1(year, day, data), part2(year, day, data))
+    return (part1(day, year, data), part2(day, year, data))
 
 
 def part1(day, year, data):
