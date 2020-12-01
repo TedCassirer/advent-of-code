@@ -5,8 +5,8 @@ setup(
     version="0.1",
     description="Ted's solutions for https://adventofcode.com/",
     url="https://github.com/TedCassirer/advent-of-code-2020",
-    author="My Username",
-    author_email="myusername@example.com",
+    author="Ted Cassirer",
+    author_email="ted.cassirer@gmail.com",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     classifiers=[
@@ -21,6 +21,7 @@ setup(
     ],
     packages=find_packages(),
     entry_points={
-        "adventofcode.user": ["TedCassirer = aoc:solve"],
+        "adventofcode.user": ["cas = aoc_cas:solve"],
+        "console_scripts": ["aoccas = aoc_cas.cli:main"],
     },
 )

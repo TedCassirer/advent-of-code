@@ -1,6 +1,3 @@
-from aocd import get_data
-
-
 def getExpenses(data):
     return [int(e.strip()) for e in data.strip().split("\n")]
 
@@ -25,9 +22,3 @@ def part2(data):
         if res:
             e2, e3 = res
             return e1 * e2 * e3
-
-
-if __name__ == "__main__":
-    data = get_data(day=1, year=2020)
-    print(part1(data))
-    print(part2(data))
