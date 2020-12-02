@@ -37,9 +37,7 @@ def get_visible_asteroids(asteroids):
             angle = get_angle(a1, a2)
             already_visible_asteroid = visible.get(angle)
             if already_visible_asteroid:
-                visible[angle] = min(
-                    already_visible_asteroid, a2, key=lambda a: distance(a1, a)
-                )
+                visible[angle] = min(already_visible_asteroid, a2, key=lambda a: distance(a1, a))
             else:
                 visible[angle] = a2
     return all_visible

@@ -55,9 +55,7 @@ def estimateCost(k1, remaining):
     pos = keyLocations[k1]
     if len(remaining) == 1:
         return manhattanDistance(pos, keyLocations[next(iter(remaining))])
-    left, right = min(map(keyLocations.get, remaining)), max(
-        map(keyLocations.get, remaining)
-    )
+    left, right = min(map(keyLocations.get, remaining)), max(map(keyLocations.get, remaining))
     firstRoute = min(manhattanDistance(pos, left), manhattanDistance(pos, right))
     secondRoute = manhattanDistance(left, right)
     return firstRoute + secondRoute
@@ -85,9 +83,7 @@ def aStar(maze, start):
 
             newKeys |= keys
             estimatedCost = estimateCost(k2, newKeys)
-            heapq.heappush(
-                stuff, (currentCost + estimatedCost, currentCost, k2, newKeys, toVisit)
-            )
+            heapq.heappush(stuff, (currentCost + estimatedCost, currentCost, k2, newKeys, toVisit))
 
 
 class Maze:
@@ -152,20 +148,10 @@ class Maze:
                 yield p
 
     def __getKeyLocations(self):
-        return {
-            c: (y, x)
-            for y, row in enumerate(self.__maze)
-            for x, c in enumerate(row)
-            if c.islower()
-        }
+        return {c: (y, x) for y, row in enumerate(self.__maze) for x, c in enumerate(row) if c.islower()}
 
     def __getStartPositions(self):
-        return [
-            (y, x)
-            for y, row in enumerate(self.__maze)
-            for x, c in enumerate(row)
-            if c == "@"
-        ]
+        return [(y, x) for y, row in enumerate(self.__maze) for x, c in enumerate(row) if c == "@"]
 
 
 @dataclass(frozen=True, eq=True, repr=True, order=True)
@@ -189,15 +175,9 @@ class AStarNode1:
         if not self.remaining:
             return 0
         if len(self.remaining) == 1:
-            return manhattanDistance(
-                self.pos, maze.keyLocations[next(iter(self.remaining))]
-            )
-        left, right = min(map(maze.keyLocations.get, self.remaining)), max(
-            map(maze.keyLocations.get, self.remaining)
-        )
-        firstRoute = min(
-            manhattanDistance(self.pos, left), manhattanDistance(self.pos, right)
-        )
+            return manhattanDistance(self.pos, maze.keyLocations[next(iter(self.remaining))])
+        left, right = min(map(maze.keyLocations.get, self.remaining)), max(map(maze.keyLocations.get, self.remaining))
+        firstRoute = min(manhattanDistance(self.pos, left), manhattanDistance(self.pos, right))
         secondRoute = manhattanDistance(left, right)
         return firstRoute + secondRoute
 

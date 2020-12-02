@@ -25,9 +25,9 @@ class GameState:
 
     def get_input(self):
         while True:
-            yield 0 if self.ball_pos[1] == self.paddle_pos[1] else abs(
+            yield 0 if self.ball_pos[1] == self.paddle_pos[1] else abs(self.ball_pos[1] - self.paddle_pos[1]) // (
                 self.ball_pos[1] - self.paddle_pos[1]
-            ) // (self.ball_pos[1] - self.paddle_pos[1])
+            )
 
 
 def read_program(data):

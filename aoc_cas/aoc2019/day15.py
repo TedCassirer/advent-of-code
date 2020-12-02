@@ -116,10 +116,7 @@ class RoboBoy:
         next_tiles = set()
         for tile in tiles:
             for dir, tile_connection in tile.connections.items():
-                if (
-                    tile_connection.type == TileType.WALL
-                    or tile_connection.type == TileType.OXYGEN_TANK
-                ):
+                if tile_connection.type == TileType.WALL or tile_connection.type == TileType.OXYGEN_TANK:
                     continue
                 tile_connection.type = TileType.OXYGEN_TANK
                 next_tiles.add(tile_connection)
@@ -176,9 +173,7 @@ def part1(data):
         boy.gogo_robo_boy()
     except:
         pass
-    return len(
-        boy.bff_search_for_tile((0, 0), lambda tile: tile.type == TileType.OXYGEN_TANK)
-    )
+    return len(boy.bff_search_for_tile((0, 0), lambda tile: tile.type == TileType.OXYGEN_TANK))
 
 
 def part2(data):

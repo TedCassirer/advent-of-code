@@ -19,12 +19,7 @@ def get_input(data):
     recipes = {}
     for line in data.strip().split("\n"):
         chem_in, chem_out = line.split(" => ")
-        chems_in = Counter(
-            {
-                name: int(quantity)
-                for quantity, name in [c.split(" ") for c in chem_in.split(", ")]
-            }
-        )
+        chems_in = Counter({name: int(quantity) for quantity, name in [c.split(" ") for c in chem_in.split(", ")]})
         chem_out_quantity = int(chem_out.split(" ")[0])
         chem_out_name = chem_out.split(" ")[1].strip()
         recipe = Recipe(chem_out_name, chem_out_quantity, chems_in)
@@ -48,9 +43,7 @@ def get_ores_required_for(recipes, required):
             batches = ceil(quantity_required / recipe.quantity)
             leftover_quantity = recipe.quantity - quantity_required % recipe.quantity
             leftover[chem] += batches * recipe.quantity - quantity_required
-            required.update(
-                {name: q * batches for name, q in recipe.required_chemicals.items()}
-            )
+            required.update({name: q * batches for name, q in recipe.required_chemicals.items()})
     return ores_required
 
 
