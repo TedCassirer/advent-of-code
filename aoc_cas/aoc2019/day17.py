@@ -1,7 +1,7 @@
 from .IntCodeComputer import IntCodeComputerVM, manual_input, read_program
 from itertools import chain
 
-animate = 0
+animate = False
 
 
 def ascii_input():
@@ -57,11 +57,11 @@ def part2(data):
     C: L,12,L,10,L,8
     """
 
-    main = map(ord, "A,B,A,C,A,B,C,C,A,B")
-    A = map(ord, "R,8,L,10,R,8")
-    B = map(ord, "R,12,R,8,L,8,L,12")
-    C = map(ord, "L,12,L,10,L,8")
-    videoFeed = map(ord, "1")
+    main = map(ord, "A,B,A,C,A,B,C,C,A,B\n")
+    A = map(ord, "R,8,L,10,R,8\n")
+    B = map(ord, "R,12,R,8,L,8,L,12\n")
+    C = map(ord, "L,12,L,10,L,8\n")
+    videoFeed = map(ord, str(int(animate)) + "\n")
 
     solutionInput = chain(main, A, B, C, videoFeed)
     program = read_program(data)
