@@ -1,4 +1,4 @@
-from .IntCodeComputer import IntCodeComputerVM
+from aoc_cas.aoc2019.IntCodeComputer import IntCodeComputerVM
 from collections import defaultdict
 
 BLACK = 0
@@ -84,3 +84,10 @@ def part2(data):
     image = encode_image(run_mr_roboto(robo_brain))
     print(image)
     return "EFCKUEGC"
+
+
+if __name__ == "__main__":
+    from aocd import get_data
+
+    data = get_data(year=2019, day=11)
+    print(part1(data))

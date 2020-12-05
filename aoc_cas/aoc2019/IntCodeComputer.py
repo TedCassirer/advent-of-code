@@ -91,7 +91,7 @@ class IntCodeComputerVM:
             self.__mem[i] = val
 
     def __repr__(self):
-        return str(self.phase_setting)
+        return str(self.out)
 
     def input_provided_from(self, int_supplier):
         self.__input = chain(self.__input, int_supplier)
