@@ -2,7 +2,7 @@ from functools import lru_cache
 import heapq
 from dataclasses import dataclass, replace
 from typing import Set, Tuple
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 def getMaze(data):
@@ -42,7 +42,10 @@ class AStarNode1:
 
     def getNeighbours(self, maze):
         for p2 in sorted(self.remaining):
-            stepsToKey, requiredKeys = maze.calculateCost(self.pos, p2)
+            res = maze.calculateCost(self.pos, p2)
+            if not res:
+                continue
+            stepsToKey, requiredKeys = res
             if not self.remaining.isdisjoint(requiredKeys):
                 continue
             yield stepsToKey, AStarNode1(p2, self.remaining - {p2})
@@ -95,16 +98,24 @@ class Maze:
     class MazeNode:
         __slots__ = "pos", "target"
         pos: Coordinate
-        target: Coordinate
 
+        @lru_cache(None)
         def getNeighbours(self, maze):
-            for p2 in self.pos.connected():
-                if maze.getTile(p2) == "#":
-                    continue
-                yield 1, replace(self, pos=p2)
-
-        def estimateCost(self, maze):
-            return self.pos.manhattanDistance(self.target)
+            visited = {self.pos}
+            queue = deque([(0, self.pos)])
+            neighbours = []
+            while queue:
+                steps, p1 = queue.popleft()
+                for p2 in p1.connected():
+                    tile = maze.getTile(p2)
+                    if p2 in visited or tile == "#":
+                        continue
+                    visited.add(p2)
+                    if tile.isalpha():
+                        neighbours.append((steps + 1, replace(self, pos=p2)))
+                        continue
+                    queue.append((steps + 1, p2))
+            return neighbours
 
     def __init__(self, maze):
         self.maze = maze
@@ -114,10 +125,8 @@ class Maze:
 
     @lru_cache(None)
     def calculateCost(self, p1, p2):
-        if p2 < p1:
-            return self.calculateCost(p2, p1)
-        start = Maze.MazeNode(p1, p2)
-        res = aStarSolve(self, start, path=True)
+        start = Maze.MazeNode(p1)
+        res = aStarSolve(self, start, path=True, estimateCost=lambda n: n.pos.manhattanDistance(p2))
         if res:
             end, steps, path = res
             requiredKeys = {
@@ -135,14 +144,20 @@ class Maze:
         return [Coordinate(y=y, x=x) for y, row in enumerate(self.maze) for x, c in enumerate(row) if c == "@"]
 
 
-def aStarSolve(maze, start, path=False):
+# @lru_cache(None)
+def getNeighbours(maze, node):
+    return tuple(node.getNeighbours(maze))
+
+
+def aStarSolve(maze, start, estimateCost, path=False):
     stuff = [(0, 0, start, [])]
     seen = dict()
     while stuff:
         _, cost, n1, p = heapq.heappop(stuff)
-        for costToMove, n2 in n1.getNeighbours(maze):
+        for costToMove, n2 in getNeighbours(maze, n1):
             totalCost = cost + costToMove
-            if n2.estimateCost(maze) == 0:
+            estimatedCost = estimateCost(n2)
+            if estimatedCost == 0:
                 if path:
                     return n2, totalCost, p
                 else:
@@ -150,7 +165,6 @@ def aStarSolve(maze, start, path=False):
             if n2 in seen and seen[n2] <= totalCost:
                 continue
             seen[n2] = totalCost
-            estimatedCost = n2.estimateCost(maze)
             if path:
                 np = p + [n2]
                 heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, p + [n2]))
@@ -163,7 +177,7 @@ def part1(data):
     assert len(maze.startPositions) == 1
     startPos = maze.startPositions[0]
     node = AStarNode1(startPos, frozenset(maze.keyLocations.values()))
-    return aStarSolve(maze, node)[1]
+    return aStarSolve(maze, node, estimateCost=lambda n: n.estimateCost(maze))[1]
 
 
 def part2(data):
@@ -177,7 +191,7 @@ def part2(data):
         maze = Maze(mazeRows)
     assert len(maze.startPositions) == 4
     node = AStarNode2(maze.startPositions, frozenset(maze.keyLocations.values()))
-    return aStarSolve(maze, node)[1]
+    return aStarSolve(maze, node, estimateCost=lambda n: n.estimateCost(maze))[1]
 
 
 if __name__ == "__main__":
