@@ -1,5 +1,5 @@
-# Advent of code 2020
-Solutions for advent of code 2020
+# Advent of code
+Solutions for advent of code
 
 You can run this project with: [Advent of code Data](https://github.com/wimglenn/advent-of-code-data)
 
