@@ -13,13 +13,9 @@ def part2(data):
     adapters = tuple(sorted(map(int, data.splitlines())))
 
     @lru_cache
-    def inner(currJolt, startIndex):
-        if len(adapters) == startIndex:
+    def inner(currJolt, adapters):
+        if not adapters:
             return 1
-        return sum(
-            inner(adapters[i], i + 1)
-            for i in range(startIndex, startIndex + 3)
-            if i < len(adapters) and adapters[i] <= currJolt + 3
-        )
+        return sum(inner(j, adapters[i + 1 :]) for i, j in enumerate(adapters) if j <= currJolt + 3)
 
-    return inner(0, 0)
+    return inner(0, adapters)
