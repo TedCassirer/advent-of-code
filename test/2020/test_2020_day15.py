@@ -8,7 +8,7 @@ def testPart1():
         assert aoc.part1(d) == e
 
 
-@pytest.mark.skip(reason="Too slow to run every time")
+# @pytest.mark.skip(reason="Too slow to run every time")
 def testPart2():
     data = [
         ("0,3,6", 175594),

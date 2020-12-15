@@ -1,29 +1,23 @@
 from itertools import islice
 
 
-def memoryGame(startingNumbers):
-    seen = {}
-    turn = 0
-    for nextNumber in startingNumbers:
-        yield nextNumber
-        turn += 1
-        seen[nextNumber] = turn
+def memoryGame(startingNumbers, n):
+    seen = [0] * n
+    for turn, nextNumber in enumerate(startingNumbers):
+        seen[nextNumber] = turn + 1
     previousNumber = nextNumber
-    while True:
-        nextNumber = turn - seen.get(previousNumber, turn)
-        yield nextNumber
+    for turn in range(turn + 1, n):
+        nextNumber = turn - (seen[previousNumber] or turn)
         seen[previousNumber] = turn
         previousNumber = nextNumber
-        turn += 1
+    return nextNumber
 
 
 def part1(data):
     numbers = [int(n) for n in data.split(",")]
-    muhNumbers = memoryGame(numbers)
-    return next(islice(muhNumbers, 2019, None))
+    return memoryGame(numbers, 2020)
 
 
 def part2(data):
     numbers = [int(n) for n in data.split(",")]
-    muhNumbers = memoryGame(numbers)
-    return next(islice(muhNumbers, 29999999, None))
+    return memoryGame(numbers, 30000000)
