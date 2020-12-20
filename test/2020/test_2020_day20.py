@@ -6,7 +6,7 @@ def testPart1():
 
 
 def testPart2():
-    pass
+    assert aoc.part2(data) == 273
 
 
 data = """
