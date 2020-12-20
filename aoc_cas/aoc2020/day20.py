@@ -1,12 +1,7 @@
 from functools import cached_property
 from dataclasses import dataclass
-from typing import Tuple, List
-
-seamonster = """
-                  # 
-#    ##    ##    ###
- #  #  #  #  #  #   
-"""
+from typing import Tuple
+from collections import defaultdict
 
 
 @dataclass(frozen=True, eq=True)
@@ -85,30 +80,30 @@ class Tile:
             output = [r[::-1] for r in output]
         return output
 
-    def __repr__(self):
-        return f"{self.id}"
-
-    def __str__(self):
-        return "\n".join(self.tile)
-
 
 def tileItUp(tiles):
     N = int(len(tiles) ** 0.5)
     assert N ** 2 == len(tiles)
 
-    def findRows(row, remainingTiles):
+    allTiles = frozenset(tileVariation for tile in tiles for tileVariation in tile.variations)
+    tileIndex = defaultdict(list)
+    for tile in allTiles:
+        tileIndex[tile.left].append(tile)
+
+    def findRows(row, blackList=frozenset()):
         if len(row) == N:
             yield row
-        left = row[-1] if row else None
-        for t in remainingTiles:
-            for tile in t.variations:
-                if not left or left.right == tile.left:
-                    yield from findRows(row + (tile,), remainingTiles - {t})
+            return
+        candidates = tileIndex[row[-1].right] if row else allTiles
+        for nextTile in candidates:
+            if nextTile.id in blackList:
+                continue
+            yield from findRows(row + (nextTile,), blackList | {nextTile.id})
 
     def stackRows(stack, remainingRows):
         if len(stack) == N:
             yield stack
-        prevRow = stack[-1] if stack else set()
+        prevRow = stack[-1] if stack else frozenset()
         seenIds = {t.id for row in stack for t in row}
         for row in remainingRows:
             if not seenIds.isdisjoint({t.id for t in row}):
@@ -116,8 +111,7 @@ def tileItUp(tiles):
             if all(aboveTile.down == rowTile.up for aboveTile, rowTile in zip(prevRow, row)):
                 yield from stackRows(stack + (row,), remainingRows - {row})
 
-    allTiles = frozenset(tiles)
-    rows = frozenset(findRows(tuple(), allTiles))
+    rows = frozenset(findRows(tuple(), frozenset()))
     grids = stackRows(tuple(), rows)
     return grids
 
@@ -159,6 +153,11 @@ def part1(data):
 
 
 def part2(data):
+    seamonster = """
+                      # 
+    #    ##    ##    ###
+     #  #  #  #  #  #   
+    """
     tiles = getTiles(data)
     for grid in tileItUp(tiles):
         image = mergeTiles(grid)
