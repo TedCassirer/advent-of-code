@@ -1,7 +1,6 @@
-from functools import lru_cache
+from functools import cached_property
 from dataclasses import dataclass
 from typing import Tuple, List
-import re
 
 seamonster = """
                   # 
@@ -13,7 +12,7 @@ seamonster = """
 @dataclass(frozen=True, eq=True)
 class Tile:
     id: int
-    tileString: Tuple[str]
+    tileString: Tuple[Tuple[str]]
     up: Tuple[str]
     down: Tuple[str]
     left: Tuple[str]
@@ -25,15 +24,22 @@ class Tile:
     def createFromData(tileData):
         tileId, *tileString = tileData.splitlines()
         tileId = int(tileId.split()[-1][:-1])
-        up = "".join(tileString[0])
-        down = "".join(tileString[-1])
-        left = "".join(row[0] for row in tileString)
-        right = "".join(row[-1] for row in tileString)
+        up = tuple(tileString[0])
+        down = tuple(tileString[-1])
+        left = tuple(row[0] for row in tileString)
+        right = tuple(row[-1] for row in tileString)
         return Tile(
-            tileId, tileString=tuple(tileString), up=up, right=right, down=down, left=left, rotations=0, flipped=False
+            tileId,
+            tileString=tuple(map(tuple, tileString)),
+            up=up,
+            right=right,
+            down=down,
+            left=left,
+            rotations=0,
+            flipped=False,
         )
 
-    @lru_cache(1)
+    @cached_property
     def rotate(self):
         return Tile(
             self.id,
@@ -46,7 +52,7 @@ class Tile:
             flipped=self.flipped,
         )
 
-    @lru_cache(1)
+    @cached_property
     def flip(self):
         return Tile(
             self.id,
@@ -59,20 +65,22 @@ class Tile:
             flipped=not self.flipped,
         )
 
+    @cached_property
     def variations(self):
+        variations = []
         tile = self
-        yield tile
-        yield tile.flip()
+        variations.append(tile)
+        variations.append(tile.flip)
         for _ in range(3):
-            tile = tile.rotate()
-            yield tile
-            yield tile.flip()
+            tile = tile.rotate
+            variations.append(tile)
+            variations.append(tile.flip)
+        return variations
 
-    @property
     def tileData(self):
         output = [r[1:-1] for r in self.tileString[1:-1]]
         for _ in range(self.rotations):
-            output = ["".join(r) for r in zip(*output[::-1])]
+            output = list(zip(*output[::-1]))
         if self.flipped:
             output = [r[::-1] for r in output]
         return output
@@ -90,18 +98,15 @@ def tileItUp(tiles):
 
     def findRows(row, remainingTiles):
         if len(row) == N:
-            assert all(t1.right == t2.left for t1, t2 in zip(row, row[1:]))
             yield row
         left = row[-1] if row else None
         for t in remainingTiles:
-            for tile in t.variations():
+            for tile in t.variations:
                 if not left or left.right == tile.left:
                     yield from findRows(row + (tile,), remainingTiles - {t})
 
     def stackRows(stack, remainingRows):
         if len(stack) == N:
-            ids = {t.id for r in stack for t in r}
-            assert(len(ids) == N**2)
             yield stack
         prevRow = stack[-1] if stack else set()
         seenIds = {t.id for row in stack for t in row}
@@ -117,24 +122,27 @@ def tileItUp(tiles):
     return grids
 
 
-def constructImage(grid):
+def mergeTiles(grid):
     image = []
     for row in grid:
-        image.extend("".join(rowString) for rowString in zip(*map(lambda t: t.tileData, row)))
-    return "\n".join(image)
+        lines = zip(*(t.tileData() for t in row))
+        lines = tuple(tuple(l for subline in line for l in subline) for line in lines)
+        image.extend(lines)
+    return image
 
 
-def findSeamonsters3(image):
-    lines = image.splitlines()
-    N = len(lines)
-
+def countSeaMonsters(image):
     tops = [18]
     mids = [0, 5, 6, 11, 12, 17, 18, 19]
     bots = [1, 4, 7, 10, 13, 16]
     monsters = 0
-    for r1, r2, r3 in zip(lines, lines[1:], lines[2:]):
-        for i in range(len(r2)-20):
-            if all(r1[i+t] == '#' for t in tops) and all(r2[i+m] == '#' for m in mids) and all(r3[i+b] == '#' for b in bots):
+    for r1, r2, r3 in zip(image, image[1:], image[2:]):
+        for i in range(len(r2) - 20):
+            if (
+                all(r1[i + t] == "#" for t in tops)
+                and all(r2[i + m] == "#" for m in mids)
+                and all(r3[i + b] == "#" for b in bots)
+            ):
                 monsters += 1
     return monsters
 
@@ -153,16 +161,15 @@ def part1(data):
 def part2(data):
     tiles = getTiles(data)
     for grid in tileItUp(tiles):
-        image = constructImage(grid)
-        monsters = findSeamonsters3(image)
+        image = mergeTiles(grid)
+        monsters = countSeaMonsters(image)
         if monsters:
-            return image.count("#") - seamonster.count("#") * monsters
+            return sum(l.count("#") for l in image) - seamonster.count("#") * monsters
 
 
 if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2020, day=20)
-    # print(part1(data))
-
+    print(part1(data))
     print(part2(data))
