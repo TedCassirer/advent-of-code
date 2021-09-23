@@ -1,0 +1,47 @@
+import re
+
+regex = re.compile(r"(.+) (\d{1,3},\d{1,3}) through (\d{1,3},\d{1,3})")
+
+
+def parseLine(line):
+    action, start, end = regex.match(line).groups()
+    y1, x1 = map(int, start.split(","))
+    y2, x2 = map(int, end.split(","))
+    lights = ((y, x) for y in range(y1, y2 + 1) for x in range(x1, x2 + 1))
+    return action, lights
+
+
+def part1(data):
+    lights = [[0] * 1000 for _ in range(1000)]
+    for action, affectedLights in map(parseLine, data.splitlines()):
+        if action == "turn on":
+            op = lambda n: 1
+        elif action == "turn off":
+            op = lambda n: 0
+        else:
+            op = lambda n: n ^ 1
+        for y, x in affectedLights:
+            lights[y][x] = op(lights[y][x])
+    return sum((sum(row) for row in lights))
+
+
+def part2(data):
+    lights = [[0] * 1000 for _ in range(1000)]
+    for action, affectedLights in map(parseLine, data.splitlines()):
+        if action == "turn on":
+            op = lambda n: n + 1
+        elif action == "turn off":
+            op = lambda n: max(0, n - 1)
+        else:
+            op = lambda n: n + 2
+        for y, x in affectedLights:
+            lights[y][x] = op(lights[y][x])
+    return sum((sum(row) for row in lights))
+
+
+if __name__ == "__main__":
+    from aocd import get_data
+
+    data = get_data(year=2015, day=6)
+    print(part1(data))
+    print(part2(data))
