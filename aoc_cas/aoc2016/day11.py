@@ -50,7 +50,12 @@ class State:
                     chipsToMove = set(chipsToMove)
                     chips[self.elevator] -= chipsToMove
                     chips[floor] |= chipsToMove
-                    state = State(elevator=floor, chips=tuple(chips), generators=self.generators, steps=self.steps + 1)
+                    state = State(
+                        elevator=floor,
+                        chips=tuple(chips),
+                        generators=self.generators,
+                        steps=self.steps + 1,
+                    )
                     if state.isValid():
                         yield state
                 for generatorsToMove in combinations(self.generators[self.elevator], c):
@@ -58,7 +63,12 @@ class State:
                     generatorsToMove = set(generatorsToMove)
                     generators[self.elevator] -= generatorsToMove
                     generators[floor] |= generatorsToMove
-                    state = State(elevator=floor, chips=self.chips, generators=tuple(generators), steps=self.steps + 1)
+                    state = State(
+                        elevator=floor,
+                        chips=self.chips,
+                        generators=tuple(generators),
+                        steps=self.steps + 1,
+                    )
                     if state.isValid():
                         yield state
 
@@ -69,7 +79,12 @@ class State:
                 chips = list(self.chips)
                 chips[self.elevator] -= {chipToMove}
                 chips[floor] |= {chipToMove}
-                state = State(elevator=floor, chips=tuple(chips), generators=tuple(generators), steps=self.steps + 1)
+                state = State(
+                    elevator=floor,
+                    chips=tuple(chips),
+                    generators=tuple(generators),
+                    steps=self.steps + 1,
+                )
                 if state.isValid():
                     yield state
 
@@ -95,7 +110,10 @@ class State:
 
     @lru_cache(None)
     def est(self):
-        return estimate(self.elevator, tuple(len(self.chips[i]) + len(self.generators[i]) for i in range(4)))
+        return estimate(
+            self.elevator,
+            tuple(len(self.chips[i]) + len(self.generators[i]) for i in range(4)),
+        )
 
     def __hash__(self):
         return hash((self.elevator, self.chips, self.generators))
