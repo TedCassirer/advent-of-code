@@ -96,7 +96,7 @@ class Game:
     player: Player
     boss: Boss
     playersTurn: bool
-    events: tuple[str] = tuple()
+    events: tuple = tuple()
 
     def startTurn(self):
         boss = self.boss.onTurnStart()
