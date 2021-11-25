@@ -44,7 +44,7 @@ def part1(data):
 
 def part2(data):
     comp = Computer()
-    comp.memory['c'] = 1
+    comp.memory["c"] = 1
     return comp.run(data.splitlines())
 
 
