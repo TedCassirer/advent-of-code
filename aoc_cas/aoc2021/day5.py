@@ -1,7 +1,7 @@
 from collections import Counter
 
 
-def getLines(data, gaysAllowed=False):
+def getLines(data, includeDiagonals=False):
     out = []
     for line in data.splitlines():
         p1, p2 = line.split(" -> ")
@@ -16,7 +16,7 @@ def getLines(data, gaysAllowed=False):
             n1, n3 = sorted([n1, n3])
             for n in range(n1, n3 + 1):
                 group.add((n, n2))
-        elif gaysAllowed:
+        elif includeDiagonals:
             d1 = 1 if n1 < n3 else -1
             d2 = 1 if n2 < n4 else -1
             while (n3, n4) not in group:
@@ -36,7 +36,7 @@ def part1(data):
 
 
 def part2(data):
-    lines = getLines(data, gaysAllowed=True)
+    lines = getLines(data, includeDiagonals=True)
     pointCount = Counter()
     for points in lines:
         pointCount.update(Counter(points))
