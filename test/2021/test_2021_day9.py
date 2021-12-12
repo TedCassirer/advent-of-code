@@ -15,6 +15,3 @@ def testPart1():
 
 def testPart2():
     assert aoc.part2(testData) == 1134
-
-
-testPart2()
