@@ -5,7 +5,7 @@ from aocd import get_data
 
 
 parser = argparse.ArgumentParser(description="Process some integers.")
-parser.add_argument("--year", "-y", type=int, default=2020)
+parser.add_argument("--year", "-y", type=int, default=2021)
 parser.add_argument("--day", "-d", type=int)
 parser.add_argument("--file", "-f", type=argparse.FileType("r"))
 

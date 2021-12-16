@@ -52,7 +52,7 @@ def part2(data):
         index = int(index)
         paper = fold(axis, index, paper)
     printable = printablePaper(paper)
-    print(printable)
+    print("\n" + printable)
     expected = (
         """
 ###   ##  #  # ###  #  # #    #  # #   
