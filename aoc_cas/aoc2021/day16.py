@@ -1,5 +1,4 @@
 from collections import namedtuple
-from collections.abc import Iterable
 import math
 
 Packet = namedtuple("Packet", ("version", "typeId", "value"))
