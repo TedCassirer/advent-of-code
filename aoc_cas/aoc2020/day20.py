@@ -59,7 +59,7 @@ def rotateMatrix(matrix):
 
 def tileItUp(tiles):
     N = int(len(tiles) ** 0.5)
-    assert N ** 2 == len(tiles)
+    assert N**2 == len(tiles)
 
     allTiles = frozenset(tileVariation for tile in tiles for tileVariation in tile.variations())
     borderIndex = defaultdict(list)

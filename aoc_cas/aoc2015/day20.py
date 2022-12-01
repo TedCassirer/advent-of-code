@@ -7,7 +7,7 @@ def getPrimes(maxVal, primes=[2, 3]):
     for n in range(primes[-1] + 2, maxVal + 1, 2):
         for i in range(len(primes)):
             p = primes[i]
-            if p ** 2 > n:
+            if p**2 > n:
                 primes.append(n)
                 break
             if n % p == 0:
@@ -19,7 +19,7 @@ def getPrimes(maxVal, primes=[2, 3]):
 def getPrimeFactors(number):
     if number == 1:
         return tuple()
-    for p in getPrimes(int(number ** 0.5)):
+    for p in getPrimes(int(number**0.5)):
         if number % p == 0:
             return (p,) + getPrimeFactors(number // p)
     return (number,)

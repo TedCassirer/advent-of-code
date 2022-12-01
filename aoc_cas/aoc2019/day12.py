@@ -91,4 +91,4 @@ def part2(data):
 
     x_period, y_period, z_period = periods
     gcf = gcd(x_period, gcd(y_period, z_period))
-    return (x_period * y_period * z_period) // gcf ** 2
+    return (x_period * y_period * z_period) // gcf**2

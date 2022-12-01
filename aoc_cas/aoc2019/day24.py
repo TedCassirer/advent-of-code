@@ -39,7 +39,7 @@ class Grid:
         for y in range(len(self.board)):
             for x in range(len(self.board[y])):
                 if self.get(y, x) == "#":
-                    points += 2 ** index
+                    points += 2**index
                 index += 1
 
         return points
