@@ -15,5 +15,5 @@ def testPart2():
 
 
 if __name__ == "__main__":
-    # testPart1()
+    testPart1()
     testPart2()

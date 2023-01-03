@@ -1,79 +1,73 @@
 def buildGrid(data):
-    grid = set()
+    walls = set()
 
     for path in data.splitlines():
         points = []
-        for p in path.split(' -> '):
-            point = tuple(map(int, p.split(',')))
+        for p in path.split(" -> "):
+            point = tuple(map(int, p.split(",")))
             points.append(point)
         for (x1, y1), (x2, y2) in zip(points, points[1:]):
             if x1 == x2:
                 y1, y2 = sorted((y1, y2))
-                for y in range(y1, y2+1):
-                    grid.add((y, x1))
+                for y in range(y1, y2 + 1):
+                    walls.add((y, x1))
             else:
                 x1, x2 = sorted((x1, x2))
-                for x in range(x1, x2+1):
-                    grid.add((y1, x))
-    
-    return grid
+                for x in range(x1, x2 + 1):
+                    walls.add((y1, x))
 
+    minY = min(walls)[0]
+    maxY = max(walls)[0]
+    minX = min(p[1] for p in walls) - maxY
+    maxX = max(p[1] for p in walls) + maxY
 
-def printGrid(grid):
-    minY = min(grid)[0]
-    maxY = max(grid)[0]
-    minX = min(p[1] for p in grid)
-    maxX = max(p[1] for p in grid)
+    grid = [["."] * (maxX - minX) for _ in range(maxY + 3)]
+    for y, x in walls:
+        grid[y][x - minX] = "#"
+    return grid, minY, minX, maxY, maxX
 
-    display = [["."]*(maxX-minX+3) for _ in range(maxY - minY+3)]
-    for y, x in grid:
-        display[y-minY+1][x-minX+1] = '#'
-
-    for row in display:
-        print(''.join(row))
-    
-    print()
 
 def dropSand(grid, row, col, floor=-1):
-    ground = min((p[0] for p in grid if p[1] == col and p[0] > row), default=floor)
-    if ground == -1:
-        return True
+    ground = row
+    while ground != floor and grid[ground][col] == ".":
+        ground += 1
+        if ground == len(grid):
+            # Fell to the abyss
+            return 0, True
+    sand = 0
     while ground > row:
         if ground == floor:
-            grid.add((ground-1, col))
+            grid[ground - 1][col] = "o"
+            sand += 1
             ground -= 1
-        elif (ground, col-1) not in grid:
-            if dropSand(grid, ground, col-1, floor):
-                return True
-        elif (ground, col+1) not in grid:
-            if dropSand(grid, ground, col+1, floor):
-                return True
+        elif grid[ground][col - 1] == ".":
+            newSand, abyss = dropSand(grid, ground, col - 1, floor)
+            sand += newSand
+            if abyss:
+                return sand, True
+        elif grid[ground][col + 1] == ".":
+            newSand, abyss = dropSand(grid, ground, col + 1, floor)
+            sand += newSand
+            if abyss:
+                return sand, True
         else:
-            grid.add((ground-1, col))
+            grid[ground - 1][col] = "o"
             ground -= 1
-    return False
-
-
-
-
+            sand += 1
+    return sand, False
 
 
 def part1(data):
-    grid = buildGrid(data)
-
-    floors = len(grid)
-    dropSand(grid, 0, 500)
-    sand = len(grid) - floors
+    grid, minY, minX, maxY, maxX = buildGrid(data)
+    sand, _ = dropSand(grid, 0, 500 - minX)
     return sand
 
 
-
 def part2(data):
-    grid = buildGrid(data)
-    floorLevel = max(p[0] for p in grid) + 2
-    floors = len(grid)
-    dropSand(grid, 0, 500, floor=floorLevel)
-    sand = len(grid) - floors
+    grid, minY, minX, maxY, maxX = buildGrid(data)
+
+    floorLevel = maxY + 2
+    sand, _ = dropSand(grid, 0, 500 - minX, floor=floorLevel)
     return sand
 
 
