@@ -50,16 +50,16 @@ def estimate(flowRates, time, toVisit):
 
 
 def search(graph, flowRates, time, toVisit):
-    seen = defaultdict(int)
+    seen = set()
     toSearch = [(-1, 0, time, "AA", toVisit)]
     maxPressureLost = 0
     while toSearch:
         e, pressureLost, time, cur, toVisit = heapq.heappop(toSearch)
         maxPressureLost = max(maxPressureLost, -pressureLost)
         key = (cur, toVisit)
-        if seen[key] >= -e:
+        if key in seen:
             continue
-        seen[key] = -e
+        seen.add(key)
         for p2 in toVisit:
             steps = graph[cur][p2]
             if steps >= time:
@@ -79,13 +79,13 @@ def part1(data):
 def part2(data):
     graph, flowRates = buildGraph(data)
     maxFlowLost = 0
-    for groupSize in range(len(flowRates) // 2 - 1, len(flowRates) // 2 + 1):
-        for g1 in combinations(flowRates, groupSize):
-            g1 = frozenset(g1)
-            g2 = frozenset(flowRates.keys() - g1)
-            pl1 = search(graph, flowRates, 26, g1)
-            pl2 = search(graph, flowRates, 26, g2)
-            maxFlowLost = max(maxFlowLost, pl1 + pl2)
+    groupSize = len(flowRates) // 2
+    for g1 in combinations(flowRates, groupSize):
+        g1 = frozenset(g1)
+        g2 = frozenset(flowRates.keys() - g1)
+        pl1 = search(graph, flowRates, 26, g1)
+        pl2 = search(graph, flowRates, 26, g2)
+        maxFlowLost = max(maxFlowLost, pl1 + pl2)
     return maxFlowLost
 
 
