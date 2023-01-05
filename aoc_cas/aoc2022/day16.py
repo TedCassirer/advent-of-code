@@ -77,7 +77,6 @@ def part1(data):
 
 
 def part2(data):
-
     graph, flowRates = buildGraph(data)
     maxFlowLost = 0
     for groupSize in range(len(flowRates) // 2 - 1, len(flowRates) // 2 + 1):

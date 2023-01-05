@@ -15,7 +15,7 @@ setup(
     ],
     install_requires=[
         "advent-of-code-data >= 0.8.0",
-        "black >= 20.8b1",
+        "black >= 23.1a1",
         "numpy >= 1.19.4",
         "pytest >= 6.1.2",
     ],
