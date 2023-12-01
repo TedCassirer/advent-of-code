@@ -27,7 +27,7 @@ jobs:
       run: poetry install
     - name: Black code style check
       run: |
-        poetry run black --check -l 120 .
+        poetry run black --check .
     - name: Test with pytest
       run: |
         poetry run pytest

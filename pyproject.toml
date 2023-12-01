@@ -4,18 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Ted Cassirer <ted.cassirer@gmail.com>"]
 readme = "README.md"
-
-packages = [
-    {include = "aoc2015", from = "src/"},
-    {include = "aoc2016", from = "src/"},
-    {include = "aoc2019", from = "src/"},
-    {include = "aoc2020", from = "src/"},
-    {include = "aoc2021", from = "src/"},
-    {include = "aoc2022", from = "src/"},
-    {include = "scripts", from = "src/"},
-]
-
-
+packages = [{include = "aoc_cas"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -26,17 +15,18 @@ pytest = "^7.4.3"
 poetry = "^1.7.1"
 click = "^8.1.7"
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-#
-#[tool.poetry.scripts]
-#aoccas = "scripts.cli:main"
-#bsamseth = "aoc_runner:plugin"
 
-[tool.poetry.plugins."cli"]
-foo = "cli"
+[tool.black]
+line-length = 120
+
+[tool.poetry.scripts]
+aoccas = "aoc_cas.cli:run_one"
+
+[tool.poetry.plugins."adventofcode.user"]
+aoccas = "aoc_cas:plugin"
 
 [tool.pytest.ini_options]
 testpaths = "tests/"

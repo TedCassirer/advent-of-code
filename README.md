@@ -6,32 +6,37 @@ You can run this project with: [Advent of code Data](https://github.com/wimglenn
 
 ## Setup
 
-`
-pip install -e .
-`
+```sh
+poetry install
+````
 
 
 
 
 
 ## Run tests
-```pytest```
+```sh
+poetry run pytest
+```
 
 
 
 
 
-## Run specific day
-```aoccas -y 2021 -d 1 -f inputData```
+## Run
+```sh
+poetry run aoccas -y 2021 -d 5 --submit
+```
 
-The file argument is optional if you set up set the env variable `AOC_SESSION`. It will then instead use your account's generated input for that problem
+To submit the results you can add the `-s` flag
 
-Instructions: [How to find the session id](https://github.com/wimglenn/advent-of-code-wim/issues/1) 
+Set the environment variable `AOC_SESSION` to use your personal input.
+
+Instructions: [How to find the session id](https://github.com/wimglenn/advent-of-code-wim/issues/1)
 
 
+To run it using the aocd plugin you can run:
 
-
-## Submit results
- [You can submit your results directly by setting up your  `~/config/aocd/tokens.json`](https://github.com/wimglenn/advent-of-code-data#verify-your-code-against-multiple-different-inputs)
-
-Then run: `aoc -y 2021 -d 1`
+```sh
+poetry run aoc -y 2021 -d 1
+```
