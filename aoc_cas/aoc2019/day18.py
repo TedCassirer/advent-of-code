@@ -172,7 +172,7 @@ def aStarSolve(maze, start, estimateCost, path=False):
                 heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, p))
 
 
-def part1(data):
+def part_a(data):
     maze = getMaze(data)
     assert len(maze.startPositions) == 1
     startPos = maze.startPositions[0]
@@ -180,7 +180,7 @@ def part1(data):
     return aStarSolve(maze, node, estimateCost=lambda n: n.estimateCost(maze))[1]
 
 
-def part2(data):
+def part_b(data):
     maze = getMaze(data)
     if len(maze.startPositions) == 1:
         y, x = maze.startPositions[0].y, maze.startPositions[0].x
@@ -198,5 +198,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(day=18, year=2019)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

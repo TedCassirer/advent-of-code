@@ -48,10 +48,10 @@ validPassports = """
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 2
+def testPartA():
+    assert aoc.part_a(testData) == 2
 
 
-def testPart2():
-    assert aoc.part2(invalidPassports) == 0
-    assert aoc.part2(validPassports) == 4
+def testPartB():
+    assert aoc.part_b(invalidPassports) == 0
+    assert aoc.part_b(validPassports) == 4

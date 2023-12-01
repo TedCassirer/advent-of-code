@@ -22,7 +22,7 @@ def gogoSpringyBoi(program, inputs):
             row = ""
 
 
-def part1(data):
+def part_a(data):
     program = read_program(data)
     inputs = instructions(
         "OR A T",
@@ -35,7 +35,7 @@ def part1(data):
     return gogoSpringyBoi(program, inputs)
 
 
-def part2(data):
+def part_b(data):
     program = read_program(data)
     inputs = instructions(
         # Only jump if there's a hole in the next 3 steps and D is ground
@@ -62,5 +62,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2019, day=21)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

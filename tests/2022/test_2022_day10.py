@@ -150,9 +150,9 @@ noop
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 13140
+def testPartA():
+    assert aoc.part_a(testData) == 13140
 
 
-def testPart2():
-    aoc.part2(testData)
+def testPartB():
+    aoc.part_b(testData)

@@ -1,7 +1,7 @@
 from aoc_cas.aoc2019 import day22 as aoc
 
 
-def testPart1():
+def testPartA():
     data = """deal with increment 7
 deal into new stack
 deal into new stack"""

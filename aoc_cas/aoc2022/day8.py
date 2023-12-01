@@ -24,7 +24,7 @@ def buildVisibilityMapsFromOutside(heights):
     return left, top, right, bot
 
 
-def part1(data):
+def part_a(data):
     heights = [[int(c) for c in row] for row in data.splitlines()]
     visibilities = buildVisibilityMapsFromOutside(heights)
     visible = 0
@@ -34,7 +34,7 @@ def part1(data):
     return visible
 
 
-def part2(data):
+def part_b(data):
     heights = [[int(c) for c in row] for row in data.splitlines()]
     M, N = len(heights), len(heights[0])
 
@@ -73,5 +73,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=8)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

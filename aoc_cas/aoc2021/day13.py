@@ -25,7 +25,7 @@ def fold(axis, index, paper):
     return folded
 
 
-def part1(data):
+def part_a(data):
     dots, folds = data.split("\n\n")
     paper = set()
     for line in dots.splitlines():
@@ -39,7 +39,7 @@ def part1(data):
     return len(paper)
 
 
-def part2(data):
+def part_b(data):
     dots, folds = data.split("\n\n")
     paper = set()
     for line in dots.splitlines():
@@ -76,5 +76,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=13)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

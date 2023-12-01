@@ -34,13 +34,13 @@ def read_program(data):
     return [int(n) for n in data.split(",")]
 
 
-def part1(data):
+def part_a(data):
     computer = IntCodeComputerVM(read_program(data))
     output = list(computer.run())
     return sum(1 for i in range(2, len(output), 3) if output[i] == BLOCK)
 
 
-def part2(data):
+def part_b(data):
     program = read_program(data)
     program[0] = 2
     computer = IntCodeComputerVM(program, 4)

@@ -25,7 +25,7 @@ def step(grid):
     return len(allFlashes)
 
 
-def part1(data):
+def part_a(data):
     grid = [[int(n) for n in row] for row in data.splitlines()]
     flashes = 0
     for t in range(100):
@@ -33,7 +33,7 @@ def part1(data):
     return flashes
 
 
-def part2(data):
+def part_b(data):
     grid = [[int(n) for n in row] for row in data.splitlines()]
     tentacleBoys = len(grid) * len(grid[0])
     for t in range(1, 1 << 31):
@@ -46,5 +46,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=11)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

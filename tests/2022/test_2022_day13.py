@@ -27,14 +27,14 @@ testData = """
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 13
+def testPartA():
+    assert aoc.part_a(testData) == 13
 
 
-def testPart2():
-    assert aoc.part2(testData) == 140
+def testPartB():
+    assert aoc.part_b(testData) == 140
 
 
 if __name__ == "__main__":
-    testPart1()
-    testPart2()
+    testPartA()
+    testPartB()

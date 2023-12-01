@@ -62,11 +62,11 @@ def getBlackTiles(data):
     return black
 
 
-def part1(data):
+def part_a(data):
     return len(getBlackTiles(data))
 
 
-def part2(data):
+def part_b(data):
     black = getBlackTiles(data)
     for day in range(100):
         tilesWithAfricanAmericanBuddies = Counter()

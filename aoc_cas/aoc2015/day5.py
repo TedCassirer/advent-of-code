@@ -1,4 +1,4 @@
-def part1(data):
+def part_a(data):
     def rule1(s):
         vowels = set("aeiou")
         count = 0
@@ -22,7 +22,7 @@ def part1(data):
     return len([s for s in data.splitlines() if rule1(s) and rule2(s) and rule3(s)])
 
 
-def part2(data):
+def part_b(data):
     def rule1(s):
         pairs = [c1 + c2 for c1, c2 in zip(s, s[1:])]
         for i in range(len(pairs)):
@@ -45,5 +45,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=5)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

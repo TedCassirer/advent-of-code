@@ -17,12 +17,12 @@ def calculateEncryptionKey(publicKey, loopSize):
     return n
 
 
-def part1(data):
+def part_a(data):
     cardPublicKey, doorPublicKey = map(int, data.splitlines())
     doorLoopSize = calculateLoopSize(doorPublicKey)
     encryptionKey = calculateEncryptionKey(cardPublicKey, doorLoopSize)
     return encryptionKey
 
 
-def part2(data):
+def part_b(data):
     pass

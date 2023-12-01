@@ -55,7 +55,7 @@ def decode(signal, output):
     return out
 
 
-def part1(data):
+def part_a(data):
     out = 0
     for line in data.splitlines():
         _, digits = line.split(" | ")
@@ -64,7 +64,7 @@ def part1(data):
     return out
 
 
-def part2(data):
+def part_b(data):
     out = 0
     for line in data.splitlines():
         signal, output = line.split(" | ")
@@ -79,5 +79,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=8)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

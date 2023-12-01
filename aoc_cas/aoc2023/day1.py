@@ -1,4 +1,4 @@
-def part1(data) -> int:
+def part_a(data) -> int:
     result = 0
     for line in data.splitlines():
         digits = [int(char) for char in line if char.isdigit()]
@@ -6,7 +6,7 @@ def part1(data) -> int:
     return result
 
 
-def part2(data) -> int:
+def part_b(data) -> int:
     digits = {
         "1": 1,
         "2": 2,
@@ -36,8 +36,14 @@ def part2(data) -> int:
 
 
 if __name__ == "__main__":
-    from aocd import get_data
+    from aocd.models import Puzzle
 
-    data = get_data(year=2023, day=1)
-    print(part1(data))
-    print(part2(data))
+    puzzle = Puzzle(year=2023, day=1)
+    for example in puzzle.examples:
+        print(f"Running with example data: \n\n{example.input_data}\n")
+        if example.answer_a is not None:
+            part_a_result = part_a(example.input_data)
+            print(f"[Part A] Actual: {part_a_result} - Expected: {example.answer_a}")
+        if example.answer_b is not None:
+            part_b_result = part_b(example.input_data)
+            print(f"[Part B] Actual: {part_b_result} - Expected: {example.answer_b}\n")

@@ -14,9 +14,9 @@ gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 26
+def testPartA():
+    assert aoc.part_a(testData) == 26
 
 
-def testPart2():
-    assert aoc.part2(testData) == 61229
+def testPartB():
+    assert aoc.part_b(testData) == 61229

@@ -22,7 +22,7 @@ class Circuit:
                 yield from self.addx(int(v))
 
 
-def part1(data):
+def part_a(data):
     circuit = Circuit()
     out = 0
     for i, strength in enumerate(circuit.runInstructions(data)):
@@ -31,7 +31,7 @@ def part1(data):
     return out
 
 
-def part2(data):
+def part_b(data):
     circuit = Circuit()
     crt = [["."] * 40 for _ in range(6)]
     for i, strength in enumerate(circuit.runInstructions(data)):
@@ -63,5 +63,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=10)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

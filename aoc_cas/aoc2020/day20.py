@@ -122,14 +122,14 @@ def getTiles(data):
     return [Tile.createFromData(tileData) for tileData in data.split("\n\n")]
 
 
-def part1(data):
+def part_a(data):
     tiles = getTiles(data)
     grid = next(tileItUp(tiles))
     c1, c2, c3, c4 = grid[0][0], grid[0][-1], grid[-1][0], grid[-1][-1]
     return c1.id * c2.id * c3.id * c4.id
 
 
-def part2(data):
+def part_b(data):
     seaMonster = """
                       # 
     #    ##    ##    ###
@@ -148,5 +148,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2020, day=20)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

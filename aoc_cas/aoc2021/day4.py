@@ -40,7 +40,7 @@ def createBoards(data):
     return boards
 
 
-def part1(data):
+def part_a(data):
     boards = createBoards(data)
     for n in getNumbers(data):
         for b in boards:
@@ -49,7 +49,7 @@ def part1(data):
                 return n * sum(b.unmarkedNumbers())
 
 
-def part2(data):
+def part_b(data):
     boards = set(createBoards(data))
     for n in getNumbers(data):
         bingodBoards = set()
@@ -67,5 +67,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=4)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

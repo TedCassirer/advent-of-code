@@ -23,7 +23,7 @@ def escape(string):
     return '"' + out + '"'
 
 
-def part1(data):
+def part_a(data):
     out = 0
     for line in data.splitlines():
         cleanString = decode(line)
@@ -31,7 +31,7 @@ def part1(data):
     return out
 
 
-def part2(data):
+def part_b(data):
     out = 0
     for line in data.splitlines():
         escapedString = escape(line)
@@ -43,5 +43,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=8)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

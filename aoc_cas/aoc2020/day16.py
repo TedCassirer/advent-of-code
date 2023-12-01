@@ -13,7 +13,7 @@ def parseRules(rules):
     return allowedNumbers
 
 
-def part1(data):
+def part_a(data):
     rules, myTicket, nearbyTickets = data.split("\n\n")
     rules = parseRules(rules)
     allowedNumbers = set.union(*(r for name, r in rules))
@@ -27,7 +27,7 @@ def part1(data):
     return result
 
 
-def part2(data):
+def part_b(data):
     rules, myTicket, nearbyTickets = data.split("\n\n")
     myTicket = [int(n) for n in myTicket.split("\n")[1].split(",")]
     rules = parseRules(rules)

@@ -45,13 +45,13 @@ start-RW
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData1) == 10
-    assert aoc.part1(testData2) == 19
-    assert aoc.part1(testData3) == 226
+def testPartA():
+    assert aoc.part_a(testData1) == 10
+    assert aoc.part_a(testData2) == 19
+    assert aoc.part_a(testData3) == 226
 
 
-def testPart2():
-    assert aoc.part2(testData1) == 36
-    assert aoc.part2(testData2) == 103
-    assert aoc.part2(testData3) == 3509
+def testPartB():
+    assert aoc.part_b(testData1) == 36
+    assert aoc.part_b(testData2) == 103
+    assert aoc.part_b(testData3) == 3509

@@ -56,7 +56,7 @@ class Monkey:
         self.items.clear()
 
 
-def part1(data):
+def part_a(data):
     monkeyData = data.split("\n\n")
     monkeys = [Monkey.parseMonkey(md) for md in monkeyData]
     for round in range(20):
@@ -69,7 +69,7 @@ def part1(data):
     return m1.inspections * m2.inspections
 
 
-def part2(data):
+def part_b(data):
     monkeyData = data.split("\n\n")
     monkeys = [Monkey.parseMonkey(md) for md in monkeyData]
     modulo = reduce(lambda a, b: a * b, (m.div for m in monkeys))
@@ -87,5 +87,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=11)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

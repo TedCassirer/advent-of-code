@@ -52,7 +52,7 @@ def getOverlaps(rectangles):
 
 
 @timeIt
-def part1():
+def part_a():
     rectangles = getRectangles()
     overlaps = getOverlaps(rectangles)
     tiles = set(chain(*map(Rectangle.breakDown, overlaps)))
@@ -60,12 +60,12 @@ def part1():
 
 
 @timeIt
-def part2():
+def part_b():
     rectangles = set(getRectangles())
     overlapping = set(s for rects in getOverlappingRectangles(rectangles) for s in rects)
     return rectangles - overlapping
 
 
 if __name__ == "__main__":
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("Part A:", part_a())
+    print("Part B:", part_b())

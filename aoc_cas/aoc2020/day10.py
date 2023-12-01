@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 
-def part1(data):
+def part_a(data):
     adapters = sorted(map(int, data.splitlines()))
     adapters = [0] + adapters + [adapters[-1] + 3]
     diffs = [(n2 - n1) for n1, n2 in zip(adapters, adapters[1:])]
@@ -9,7 +9,7 @@ def part1(data):
     return oneDiffs * threeDiffs
 
 
-def part2(data):
+def part_b(data):
     adapters = tuple(sorted(map(int, data.splitlines())))
 
     @lru_cache

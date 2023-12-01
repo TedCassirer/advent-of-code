@@ -33,7 +33,7 @@ def get_pixels_matching(image, mode):
                 yield (y, x)
 
 
-def part1(data):
+def part_a(data):
     height, width = 6, 25
     fewest_blacks = min(
         get_image_data_layers(data, height, width),
@@ -44,7 +44,7 @@ def part1(data):
     return whites * transparents
 
 
-def part2(data):
+def part_b(data):
     height, width = 6, 25
     layers = get_image_data_layers(data, height, width)
     final_image = [[TRANSPARENT] * width for _ in range(height)]

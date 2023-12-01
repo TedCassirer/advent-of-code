@@ -25,12 +25,12 @@ def transform(startState, transformations):
                 yield startState[:i] + output + startState[i + len(input) :]
 
 
-def part1(data):
+def part_a(data):
     startState, transformations = createStart(data)
     return len(set(transform(startState, transformations)))
 
 
-def part2(data):
+def part_b(data):
     startState, transformations = createStart(data)
     targetState = "e"
     inverted = defaultdict(list)
@@ -55,5 +55,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=19)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

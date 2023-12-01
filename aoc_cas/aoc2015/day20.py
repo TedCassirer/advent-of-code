@@ -32,14 +32,14 @@ def factorSum(number):
     return factor_sum
 
 
-def part1(data):
+def part_a(data):
     target = int(data) // 10
     for n in range(2, target):
         if factorSum(n) >= target:
             return n
 
 
-def part2(data):
+def part_b(data):
     target = int(data)
     for n in range(2, target // 11):
         fs = factorSum(n)

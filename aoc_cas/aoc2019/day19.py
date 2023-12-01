@@ -11,13 +11,13 @@ def scanCoord(y, x, program):
     return next(tractorBeam.run())
 
 
-def part1(data):
+def part_a(data):
     X, Y = 50, 50
     program = read_file(data)
     return sum(scanCoord(y, x, program) for y in range(Y) for x in range(X))
 
 
-def part2(data):
+def part_b(data):
     size = 100 - 1
     x, y = 0, 0
 

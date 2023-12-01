@@ -6,5 +6,5 @@ data = """
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 14897079
+def testPartA():
+    assert aoc.part_a(data) == 14897079

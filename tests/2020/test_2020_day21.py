@@ -8,9 +8,9 @@ sqjhc mxmxvkd sbzzf (contains fish)
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 5
+def testPartA():
+    assert aoc.part_a(data) == 5
 
 
-def testPart2():
-    assert aoc.part2(data) == "mxmxvkd,sqjhc,fvjkl"
+def testPartB():
+    assert aoc.part_b(data) == "mxmxvkd,sqjhc,fvjkl"

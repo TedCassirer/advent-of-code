@@ -20,11 +20,11 @@ def parse(line):
     return Raindeer(words[0], int(words[3]), int(words[6]), int(words[13]))
 
 
-def part1(data):
+def part_a(data):
     return max(r.distanceFlied(2503) for r in map(parse, data.splitlines()))
 
 
-def part2(data):
+def part_b(data):
     bois = [parse(line) for line in data.splitlines()]
     score = {r.name: 0 for r in bois}
     for t in range(1, 2504):
@@ -45,5 +45,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=14)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

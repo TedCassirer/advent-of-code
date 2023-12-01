@@ -69,7 +69,7 @@ def getInstruction(line):
     return ops[op], args
 
 
-def part1(data):
+def part_a(data):
     instructions = [getInstruction(line) for line in data.splitlines()]
     state = State(0, 0, 0)
     while state.offset < len(instructions):
@@ -78,7 +78,7 @@ def part1(data):
     return state.b
 
 
-def part2(data):
+def part_b(data):
     instructions = [getInstruction(line) for line in data.splitlines()]
     state = State(1, 0, 0)
     while state.offset < len(instructions):
@@ -91,5 +91,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=23)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -31,11 +31,11 @@ def findPaths(graph, allowExtraVisit):
     return paths
 
 
-def part1(data):
+def part_a(data):
     return findPaths(getGraph(data), False)
 
 
-def part2(data):
+def part_b(data):
     return findPaths(getGraph(data), True)
 
 
@@ -44,5 +44,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=12)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -29,13 +29,13 @@ def fftOffset(numbers, offset, times):
     return [n % 10 for n in numbers]
 
 
-def part1(data):
+def part_a(data):
     numbers = np.array([int(c) for c in data.strip()])
     numbers = fft(numbers, 100)
     return "".join(map(str, numbers[:8]))
 
 
-def part2(data):
+def part_b(data):
     numbers = [int(c) for c in data.strip()] * 10000
     offset = int(data[:7])
     numbers = fftOffset(numbers, offset, 100)

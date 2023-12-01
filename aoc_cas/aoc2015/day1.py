@@ -1,8 +1,8 @@
-def part1(data):
+def part_a(data):
     return data.count("(") - data.count(")")
 
 
-def part2(data):
+def part_b(data):
     floor = 0
     for i, c in enumerate(data):
         floor += 1 if c == "(" else -1
@@ -15,5 +15,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=1)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -37,7 +37,7 @@ def cupGame(numbers, rounds):
     return cups
 
 
-def part1(data):
+def part_a(data):
     numbers = [int(n) for n in data]
     cups = cupGame(numbers, 100)
 
@@ -50,7 +50,7 @@ def part1(data):
     return result
 
 
-def part2(data):
+def part_b(data):
     numbers = [int(n) for n in data]
     numbers += list(range(max(numbers) + 1, 1000001))
     cups = cupGame(numbers, 10000000)

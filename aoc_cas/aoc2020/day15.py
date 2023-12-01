@@ -13,11 +13,11 @@ def memoryGame(startingNumbers, n):
     return nextNumber
 
 
-def part1(data):
+def part_a(data):
     numbers = [int(n) for n in data.split(",")]
     return memoryGame(numbers, 2020)
 
 
-def part2(data):
+def part_b(data):
     numbers = [int(n) for n in data.split(",")]
     return memoryGame(numbers, 30000000)

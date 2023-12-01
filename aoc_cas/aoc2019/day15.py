@@ -166,7 +166,7 @@ def read_file(data):
     return [int(n) for n in data.split(",")]
 
 
-def part1(data):
+def part_a(data):
     try:
         robo = IntCodeComputerVM(read_file(data))
         boy = RoboBoy(robo)
@@ -176,7 +176,7 @@ def part1(data):
     return len(boy.bff_search_for_tile((0, 0), lambda tile: tile.type == TileType.OXYGEN_TANK))
 
 
-def part2(data):
+def part_b(data):
     try:
         robo = IntCodeComputerVM(read_file(data))
         boy = RoboBoy(robo)

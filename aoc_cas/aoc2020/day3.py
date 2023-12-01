@@ -11,12 +11,12 @@ def traverse(forest, right, down):
     return trees
 
 
-def part1(data):
+def part_a(data):
     forest = data.split("\n")
     return traverse(forest, 3, 1)
 
 
-def part2(data):
+def part_b(data):
     forest = data.split("\n")
     slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
     return math.prod(traverse(forest, right, down) for right, down in slopes)

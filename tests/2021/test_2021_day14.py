@@ -22,9 +22,9 @@ CN -> C
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 1588
+def testPartA():
+    assert aoc.part_a(testData) == 1588
 
 
-def testPart2():
-    assert aoc.part2(testData) == 2188189693529
+def testPartB():
+    assert aoc.part_b(testData) == 2188189693529

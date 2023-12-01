@@ -67,7 +67,7 @@ def getBossStats(data):
     return Fighter(hp=stats["Hit Points"], damage=stats["Damage"], armor=stats["Armor"])
 
 
-def part1(data):
+def part_a(data):
     boss = getBossStats(data)
     for equipmentStats in loadouts:
         fighter = Fighter(playerHp, equipmentStats.damage, equipmentStats.armor)
@@ -75,7 +75,7 @@ def part1(data):
             return equipmentStats.cost
 
 
-def part2(data):
+def part_b(data):
     boss = getBossStats(data)
     for equipmentStats in loadouts[::-1]:
         fighter = Fighter(playerHp, equipmentStats.damage, equipmentStats.armor)
@@ -87,5 +87,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=21)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -17,7 +17,7 @@ def tick(grid, rule, seatsToConnected):
     return newGrid, totalSeatOccupied
 
 
-def part1(data):
+def part_a(data):
     grid = [list(row) for row in data.splitlines()]
     Y, X = len(grid), len(grid[0])
 
@@ -49,7 +49,7 @@ def part1(data):
     return occupiedSeats
 
 
-def part2(data):
+def part_b(data):
     grid = [list(row) for row in data.splitlines()]
     Y, X = len(grid), len(grid[0])
 

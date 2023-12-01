@@ -72,14 +72,14 @@ def getBots(data):
     return bots, outputs
 
 
-def part1(data):
+def part_a(data):
     bots, _ = getBots(data)
     for id, bot in bots.items():
         if bot.getLow() == 17 and bot.getHigh() == 61:
             return id
 
 
-def part2(data):
+def part_b(data):
     _, outputs = getBots(data)
     return outputs[0].get() * outputs[1].get() * outputs[2].get()
 
@@ -89,5 +89,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2016, day=10)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

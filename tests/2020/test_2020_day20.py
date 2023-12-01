@@ -1,12 +1,12 @@
 from aoc_cas.aoc2020 import day20 as aoc
 
 
-def testPart1():
-    assert aoc.part1(data) == 20899048083289
+def testPartA():
+    assert aoc.part_a(data) == 20899048083289
 
 
-def testPart2():
-    assert aoc.part2(data) == 273
+def testPartB():
+    assert aoc.part_b(data) == 273
 
 
 data = """

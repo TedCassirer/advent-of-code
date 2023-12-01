@@ -9,9 +9,9 @@ abdefghi
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 31
+def testPartA():
+    assert aoc.part_a(testData) == 31
 
 
-def testPart2():
-    assert aoc.part2(testData) == 29
+def testPartB():
+    assert aoc.part_b(testData) == 29

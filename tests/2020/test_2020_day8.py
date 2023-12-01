@@ -14,9 +14,9 @@ acc +6
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testProgram) == 5
+def testPartA():
+    assert aoc.part_a(testProgram) == 5
 
 
-def testPart2():
-    assert aoc.part2(testProgram) == 8
+def testPartB():
+    assert aoc.part_b(testProgram) == 8

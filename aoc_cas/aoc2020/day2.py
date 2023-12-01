@@ -12,11 +12,11 @@ def parseData(data):
         yield policy, pwd
 
 
-def part1(data):
+def part_a(data):
     return sum(policy.low <= pwd.count(policy.char) <= policy.high for policy, pwd in parseData(data))
 
 
-def part2(data):
+def part_b(data):
     return sum(
         (pwd[policy.low - 1] == policy.char) ^ (pwd[policy.high - 1] == policy.char) for policy, pwd, in parseData(data)
     )

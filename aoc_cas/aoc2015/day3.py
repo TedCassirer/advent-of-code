@@ -1,4 +1,4 @@
-def part1(data):
+def part_a(data):
     visited = {(0, 0)}
     x, y = 0, 0
     for c in data:
@@ -14,7 +14,7 @@ def part1(data):
     return len(visited)
 
 
-def part2(data):
+def part_b(data):
     visited = {(0, 0)}
     x, y = 0, 0
     for c in data[::2]:
@@ -46,5 +46,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=3)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

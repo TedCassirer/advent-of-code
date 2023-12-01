@@ -30,14 +30,14 @@ def createInitialState(data):
     return size, activeLights
 
 
-def part1(data):
+def part_a(data):
     size, curr = createInitialState(data)
     for _ in range(100):
         curr = gameOfLight(curr, size)
     return len(curr)
 
 
-def part2(data):
+def part_b(data):
     size, curr = createInitialState(data)
     corners = {(0, 0), (size[0] - 1, 0), (0, size[0] - 1), (size[0] - 1, size[1] - 1)}
     for _ in range(100):
@@ -52,5 +52,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=18)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

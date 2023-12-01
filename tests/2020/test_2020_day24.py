@@ -23,9 +23,9 @@ neswnwewnwnwseenwseesewsenwsweewe
 wseweeenwnesenwwwswnew""".strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 10
+def testPartA():
+    assert aoc.part_a(data) == 10
 
 
-def testPart2():
-    assert aoc.part2(data) == 2208
+def testPartB():
+    assert aoc.part_b(data) == 2208

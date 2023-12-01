@@ -16,9 +16,9 @@ testData = """
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 198
+def testPartA():
+    assert aoc.part_a(testData) == 198
 
 
-def testPart2():
-    assert aoc.part2(testData) == 230
+def testPartB():
+    assert aoc.part_b(testData) == 230

@@ -24,8 +24,8 @@ def solve(year: int, day: int, submit: bool) -> None:
     puzzle = Puzzle(year, day)
     log.info(f"--- {year} Day {day}: {puzzle.title} ---")
     part_1_result, part_2_result = plugin(year, day)
-    log.info(f"Part1: {part_1_result}")
-    log.info(f"Part2: {part_2_result}")
+    log.info(f"PartA: {part_1_result}")
+    log.info(f"PartB: {part_2_result}")
     if submit:
         puzzle.answer_a = part_1_result
         puzzle.answer_2 = part_2_result

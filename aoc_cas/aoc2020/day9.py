@@ -36,11 +36,11 @@ def findEncryptionWeakness(numbers, preamble):
             return smallest + largest
 
 
-def part1(data):
+def part_a(data):
     numbers = [int(n) for n in data.splitlines()]
     return numbers[findWeakness(numbers, 25)]
 
 
-def part2(data):
+def part_b(data):
     numbers = [int(n) for n in data.splitlines()]
     return findEncryptionWeakness(numbers, 25)

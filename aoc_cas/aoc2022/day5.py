@@ -16,7 +16,7 @@ def parseData(data):
     return stacks, instructions
 
 
-def part1(data):
+def part_a(data):
     stacks, instructions = parseData(data)
     for qnt, fromStack, toStack in instructions:
         stacks[toStack].extend(stacks[fromStack][: -qnt - 1 : -1])
@@ -24,7 +24,7 @@ def part1(data):
     return "".join(s[-1] for s in stacks)
 
 
-def part2(data):
+def part_b(data):
     stacks, instructions = parseData(data)
     for qnt, fromStack, toStack in instructions:
         stacks[toStack].extend(stacks[fromStack][-qnt:])
@@ -37,5 +37,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=5)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -10,12 +10,12 @@ def findPairSum(expenses, target):
         seen.add(e)
 
 
-def part1(data):
+def part_a(data):
     n1, n2 = findPairSum(getExpenses(data), 2020)
     return n1 * n2
 
 
-def part2(data):
+def part_b(data):
     expenses = getExpenses(data)
     for i, e1 in enumerate(expenses):
         target = 2020 - e1

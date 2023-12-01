@@ -7,14 +7,14 @@ data = """
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 5 * 59
+def testPartA():
+    assert aoc.part_a(data) == 5 * 59
 
 
-def testPart2():
-    assert aoc.part2("\n17,x,13,19") == 3417
-    assert aoc.part2("\n67,7,59,61") == 754018
-    assert aoc.part2("\n67,x,7,59,61") == 779210
-    assert aoc.part2("\n67,7,x,59,61") == 1261476
-    assert aoc.part2("\n1789,37,47,1889") == 1202161486
-    assert aoc.part2("\n7,13,x,x,59,x,31,19") == 1068781
+def testPartB():
+    assert aoc.part_b("\n17,x,13,19") == 3417
+    assert aoc.part_b("\n67,7,59,61") == 754018
+    assert aoc.part_b("\n67,x,7,59,61") == 779210
+    assert aoc.part_b("\n67,7,x,59,61") == 1261476
+    assert aoc.part_b("\n1789,37,47,1889") == 1202161486
+    assert aoc.part_b("\n7,13,x,x,59,x,31,19") == 1068781

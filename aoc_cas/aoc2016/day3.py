@@ -19,14 +19,14 @@ def checkLengths(n1, n2, n3):
     return n1 + n2 > n3
 
 
-def part1(data):
+def part_a(data):
     valid = 0
     for nums in parseDataRow(data):
         valid += checkLengths(*sorted(nums))
     return valid
 
 
-def part2(data):
+def part_b(data):
     valid = 0
     for nums in parseDataColumn(data):
         valid += checkLengths(*sorted(nums))
@@ -38,5 +38,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2016, day=3)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -28,14 +28,14 @@ def executeProgram(program):
     return acc, returnCode
 
 
-def part1(data):
+def part_a(data):
     program = getProgram(data)
     acc, returnCode = executeProgram(program)
     assert returnCode == ERROR
     return acc
 
 
-def part2(data):
+def part_b(data):
     program = getProgram(data)
 
     def patchProgram(program):

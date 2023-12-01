@@ -22,7 +22,7 @@ def getParts(line):
     return outside, inside
 
 
-def part1(data):
+def part_a(data):
     tlsCount = 0
     for line in data.splitlines():
         outside, inside = getParts(line)
@@ -31,7 +31,7 @@ def part1(data):
     return tlsCount
 
 
-def part2(data):
+def part_b(data):
     sslCount = 0
     for line in data.splitlines():
         outside, inside = getParts(line)
@@ -47,5 +47,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2016, day=7)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

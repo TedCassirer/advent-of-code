@@ -40,7 +40,7 @@ def getOrders():
 
 
 @timeIt
-def part1():
+def part_a():
     result = []
     nodes = getOrders()
     # Get first node
@@ -55,7 +55,7 @@ def part1():
 
 
 @timeIt
-def part2():
+def part_b():
     nodes = getOrders()
     workers = 5
     work = []
@@ -80,5 +80,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("Part A:", part_a())
+    print("Part B:", part_b())

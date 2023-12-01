@@ -20,7 +20,7 @@ def getBaggyGraph(data):
     return dict(contains)
 
 
-def part1(data):
+def part_a(data):
     baggyGraph = getBaggyGraph(data)
 
     @lru_cache(None)
@@ -30,7 +30,7 @@ def part1(data):
     return sum(containsBag(bag) for bag in baggyGraph)
 
 
-def part2(data):
+def part_b(data):
     baggyGraph = getBaggyGraph(data)
 
     def totalBagCount(bag):

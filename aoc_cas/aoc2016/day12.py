@@ -37,12 +37,12 @@ class Computer:
         return self.memory["a"]
 
 
-def part1(data):
+def part_a(data):
     comp = Computer()
     return comp.run(data.splitlines())
 
 
-def part2(data):
+def part_b(data):
     comp = Computer()
     comp.memory["c"] = 1
     return comp.run(data.splitlines())
@@ -53,5 +53,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2016, day=12)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

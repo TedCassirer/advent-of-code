@@ -10,14 +10,14 @@ def countGame(number):
     return f"{out}{streak}{n2}"
 
 
-def part1(data):
+def part_a(data):
     number = data
     for _ in range(40):
         number = countGame(number)
     return len(number)
 
 
-def part2(data):
+def part_b(data):
     number = data
     for _ in range(50):
         number = countGame(number)
@@ -28,5 +28,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=10)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

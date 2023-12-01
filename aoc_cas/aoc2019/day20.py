@@ -109,11 +109,11 @@ def bff(start, goal):
             queue.append((steps + 1, recLevel + rl, n2))
 
 
-def part1(data):
+def part_a(data):
     start, goal = buildGraph(data)
     return bff(start, goal)
 
 
-def part2(data):
+def part_b(data):
     start, goal = buildGraph(data, recursive=True)
     return bff(start, goal)

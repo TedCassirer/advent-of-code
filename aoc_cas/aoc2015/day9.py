@@ -25,12 +25,12 @@ def search(start, graph, longest=False):
                 heapq.heappush(queue, (sign * (currDist + dist), nextCity, visited | {nextCity}))
 
 
-def part1(data):
+def part_a(data):
     graph = buildGraph(data)
     return min(search(start, graph) for start in graph.keys())
 
 
-def part2(data):
+def part_b(data):
     graph = buildGraph(data)
     return max(search(start, graph, longest=True) for start in graph.keys())
 
@@ -39,5 +39,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=9)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

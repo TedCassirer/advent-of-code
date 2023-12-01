@@ -1,7 +1,7 @@
 from aoc_cas.aoc2020 import day6 as aoc
 
 
-def testPart1():
+def testPartA():
     data = """
 abc
 
@@ -19,10 +19,10 @@ a
 
 b
 """.strip()
-    assert aoc.part1(data) == 11
+    assert aoc.part_a(data) == 11
 
 
-def testPart2():
+def testPartB():
     data = """
 abc
 
@@ -40,4 +40,4 @@ a
 
 b
 """.strip()
-    assert aoc.part2(data) == 6
+    assert aoc.part_b(data) == 6

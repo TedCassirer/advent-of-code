@@ -10,7 +10,7 @@ def ascii_input():
         yield ord("\n")
 
 
-def part1(data):
+def part_a(data):
     program = read_program(data)
     vm = IntCodeComputerVM(program)
     s = []
@@ -46,7 +46,7 @@ def part1(data):
     return sum(y * x for y, x in intersections)
 
 
-def part2(data):
+def part_b(data):
     """
     Manual solution
 

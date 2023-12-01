@@ -2,7 +2,7 @@ from operator import add, mul
 import math
 
 
-def evaluate(expr, part2=False):
+def evaluate(expr, part_b=False):
     res = 0
     parts = []
     op = add
@@ -13,11 +13,11 @@ def evaluate(expr, part2=False):
             op = add
         elif token == "*":
             op = mul
-            if part2:
+            if part_b:
                 parts.append(res)
                 res = 1
         elif token == "(":
-            res = op(res, evaluate(expr, part2))
+            res = op(res, evaluate(expr, part_b))
         elif token == ")":
             break
         else:
@@ -26,9 +26,9 @@ def evaluate(expr, part2=False):
     return math.prod(parts)
 
 
-def part1(data):
+def part_a(data):
     return sum(evaluate(iter(e.replace(" ", ""))) for e in data.splitlines())
 
 
-def part2(data):
-    return sum(evaluate(iter(e.replace(" ", "")), part2=True) for e in data.splitlines())
+def part_b(data):
+    return sum(evaluate(iter(e.replace(" ", "")), part_b=True) for e in data.splitlines())

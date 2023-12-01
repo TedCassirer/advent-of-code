@@ -10,9 +10,9 @@ forward 2
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 150
+def testPartA():
+    assert aoc.part_a(testData) == 150
 
 
-def testPart2():
-    assert aoc.part2(testData) == 900
+def testPartB():
+    assert aoc.part_b(testData) == 900

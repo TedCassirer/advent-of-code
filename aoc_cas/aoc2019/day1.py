@@ -6,11 +6,11 @@ def fuelbois(n):
     return (n // 3) - 2
 
 
-def part1(data):
+def part_a(data):
     return sum(map(fuelbois, getFuel(data)))
 
 
-def part2(data):
+def part_b(data):
     return sum(map(doTheThing, getFuel(data)))
 
 

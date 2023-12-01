@@ -39,13 +39,13 @@ def trackTheThing(pos, deckSize, instructions):
     return pos
 
 
-def part1(data, decksize=10007):
+def part_a(data, decksize=10007):
     deck = list(range(decksize))
     deck = doTheThing(deck, data.splitlines())
     return deck.index(2019)
 
 
-def part2(data):
+def part_b(data):
     deckSize = 119315717514047
     iterations = 101741582076661
     startPos = 2020
@@ -60,5 +60,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2019, day=22)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

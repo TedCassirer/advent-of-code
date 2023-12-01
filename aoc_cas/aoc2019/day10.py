@@ -43,13 +43,13 @@ def get_visible_asteroids(asteroids):
     return all_visible
 
 
-def part1(data):
+def part_a(data):
     asteroids = set(get_asteroids(data))
     visible_asteroids = get_visible_asteroids(asteroids)
     return max(map(len, visible_asteroids.values()))
 
 
-def part2(data):
+def part_b(data):
     def transform(dx, dy):
         return (radians(dx, dy) + pi / 2) % (2 * pi)
 

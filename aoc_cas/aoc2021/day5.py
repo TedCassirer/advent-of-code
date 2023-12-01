@@ -27,7 +27,7 @@ def getLines(data, includeDiagonals=False):
     return out
 
 
-def part1(data):
+def part_a(data):
     lines = getLines(data)
     pointCount = Counter()
     for points in lines:
@@ -35,7 +35,7 @@ def part1(data):
     return sum(c >= 2 for p, c in pointCount.items())
 
 
-def part2(data):
+def part_b(data):
     lines = getLines(data, includeDiagonals=True)
     pointCount = Counter()
     for points in lines:
@@ -48,5 +48,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=5)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

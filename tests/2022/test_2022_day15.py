@@ -18,14 +18,14 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData, row=10) == 26
+def testPartA():
+    assert aoc.part_a(testData, row=10) == 26
 
 
-def testPart2():
-    assert aoc.part2(testData, searchSpace=20) == 56000011
+def testPartB():
+    assert aoc.part_b(testData, searchSpace=20) == 56000011
 
 
 if __name__ == "__main__":
-    testPart1()
-    testPart2()
+    testPartA()
+    testPartB()

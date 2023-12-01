@@ -60,7 +60,7 @@ def get_moons(data):
     return moons
 
 
-def part1(data):
+def part_a(data):
     moons = get_moons(data)
     for tick in range(1000):
         for m1 in moons:
@@ -72,7 +72,7 @@ def part1(data):
     return sum(moon.energy() for moon in moons)
 
 
-def part2(data):
+def part_b(data):
     periods = []
     for hash_fun in [Moon.x_hash, Moon.y_hash, Moon.z_hash]:
         moons = get_moons(data)

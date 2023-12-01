@@ -9,13 +9,13 @@ def priority(item):
         return ord(item) - ord("A") + 27
 
 
-def part1(data):
+def part_a(data):
     commonItems = (commonItem(line[: len(line) // 2], line[len(line) // 2 :]) for line in data.splitlines())
     priorities = (priority(item) for item in commonItems)
     return sum(priorities)
 
 
-def part2(data):
+def part_b(data):
     lines = data.splitlines()
     _sum = 0
     for i in range(0, len(lines), 3):
@@ -29,5 +29,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=3)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

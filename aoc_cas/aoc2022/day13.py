@@ -33,7 +33,7 @@ def parsePackets(packets):
         yield p1, p2
 
 
-def part1(data):
+def part_a(data):
     _sum = 0
     for i, (p1, p2) in enumerate(parsePackets(data)):
         if compare(p1, p2) <= 0:
@@ -41,7 +41,7 @@ def part1(data):
     return _sum
 
 
-def part2(data):
+def part_b(data):
     packets = [packet for packetPair in parsePackets(data) for packet in packetPair]
     dividerPacket1 = [[2]]
     dividerPacket2 = [[6]]
@@ -59,5 +59,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=13)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

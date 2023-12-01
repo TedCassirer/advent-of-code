@@ -14,14 +14,14 @@ Valve JJ has flow rate=21; tunnel leads to valve II
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 1651
+def testPartA():
+    assert aoc.part_a(testData) == 1651
 
 
-def testPart2():
-    assert aoc.part2(testData) == 1707
+def testPartB():
+    assert aoc.part_b(testData) == 1707
 
 
 if __name__ == "__main__":
-    testPart1()
-    testPart2()
+    testPartA()
+    testPartB()

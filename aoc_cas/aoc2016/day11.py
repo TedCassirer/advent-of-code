@@ -159,12 +159,12 @@ def search(start):
             heapq.heappush(queue, nxt)
 
 
-def part1(data):
+def part_a(data):
     state = getState(data)
     return search(state)
 
 
-def part2(data):
+def part_b(data):
     return
     extraStuff = {"elerium", "dilithium"}
     state = getState(data)
@@ -187,5 +187,5 @@ if __name__ == "__main__":
     # The third floor contains a lithium generator.
     # The fourth floor contains nothing relevant.
     # """.strip()
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

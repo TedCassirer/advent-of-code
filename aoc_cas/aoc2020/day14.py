@@ -40,7 +40,7 @@ def createAddressDecoder(maskString):
     return decode
 
 
-def part1(data):
+def part_a(data):
     memory = defaultdict(int)
     for line in data.splitlines():
         if line.startswith("mask"):
@@ -53,7 +53,7 @@ def part1(data):
     return sum(memory.values())
 
 
-def part2(data):
+def part_b(data):
     memory = defaultdict(int)
     for line in data.splitlines():
         if line.startswith("mask"):

@@ -30,12 +30,12 @@ def search(grid):
                 heapq.heappush(queue, (cost + grid[ny][nx], ny, nx))
 
 
-def part1(data):
+def part_a(data):
     grid = [[*map(int, row)] for row in data.splitlines()]
     return search(grid)
 
 
-def part2(data):
+def part_b(data):
     grid = [[*map(int, row)] for row in data.splitlines()]
     return search(extendGrid(grid))
 
@@ -45,5 +45,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=15)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

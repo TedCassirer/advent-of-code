@@ -45,11 +45,11 @@ def verifyFields(passport):
     return all(passportFields[f](v) for f, v in passport.items())
 
 
-def part1(data):
+def part_a(data):
     passports = getPassports(data)
     return sum(containsRequiredFields(p) for p in passports)
 
 
-def part2(data):
+def part_b(data):
     passports = getPassports(data)
     return sum(containsRequiredFields(p) and verifyFields(p) for p in passports)

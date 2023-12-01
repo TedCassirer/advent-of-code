@@ -27,9 +27,9 @@ $ ls
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 95437
+def testPartA():
+    assert aoc.part_a(testData) == 95437
 
 
-def testPart2():
-    assert aoc.part2(testData) == 24933642
+def testPartB():
+    assert aoc.part_b(testData) == 24933642

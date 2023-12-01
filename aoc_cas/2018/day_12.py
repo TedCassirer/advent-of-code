@@ -24,7 +24,7 @@ def propagate(state, propagation):
 
 
 @timeIt
-def part1():
+def part_a():
     padding = 25
     state, propagationSet = buildPropagationSet(padding)
     print(0, state)
@@ -35,7 +35,7 @@ def part1():
 
 
 @timeIt
-def part2():
+def part_b():
     padding = 2000
     state, propagationSet = buildPropagationSet(padding)
     print(0, state)
@@ -48,5 +48,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("Part A:", part_a())
+    print("Part B:", part_b())

@@ -33,7 +33,7 @@ def search(heightMap, start, connected, isEnd):
             queue.append((steps + 1, (y, x)))
 
 
-def part1(data):
+def part_a(data):
     heightMap, start, end = parseHeightMap(data)
 
     def connected(heightMap, y, x):
@@ -50,7 +50,7 @@ def part1(data):
     return search(heightMap, start, connected, end.__eq__)
 
 
-def part2(data):
+def part_b(data):
     heightMap, start, end = parseHeightMap(data)
 
     def connected(heightMap, y, x):
@@ -72,5 +72,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=12)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

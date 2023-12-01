@@ -1,7 +1,7 @@
 from aoc_cas.aoc2019 import day20 as aoc
 
 
-def testPart1():
+def testPartA():
     data = """         A           
          A           
   #######.#########  
@@ -21,7 +21,7 @@ FG..#########.....#
   ###########.#####  
              Z       
              Z       """
-    assert aoc.part1(data) == 23
+    assert aoc.part_a(data) == 23
 
     data = """                   A               
                    A               
@@ -60,10 +60,10 @@ YN......#               VT..#....QG
   #########.###.###.#############  
            B   J   C               
            U   P   P               """
-    assert aoc.part1(data) == 58
+    assert aoc.part_a(data) == 58
 
 
-def testPart2():
+def testPartB():
     data = """             Z L X W       C                 
              Z P Q B       K                 
   ###########.#.#.#.#######.###############  
@@ -101,4 +101,4 @@ RE....#.#                           #......RF
   #############.#.#.###.###################  
                A O F   N                     
                A A D   M                     """
-    assert aoc.part2(data) == 396
+    assert aoc.part_b(data) == 396

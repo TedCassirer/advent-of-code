@@ -52,7 +52,7 @@ def parse(data):
     return Grid(data.split("\n"))
 
 
-def part1(data):
+def part_a(data):
     grid = parse(data)
     seen = {grid.biodiversity()}
     for _ in range(100):
@@ -63,5 +63,5 @@ def part1(data):
         seen.add(points)
 
 
-def part2(data):
+def part_b(data):
     pass

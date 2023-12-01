@@ -22,7 +22,7 @@ def direction(pos1, pos2):
     return (dirY, dirX)
 
 
-def part1(data):
+def part_a(data):
     rope = [(0, 0) for _ in range(2)]
     visited = {rope[-1]}
     for dir, k in parseMoves(data):
@@ -36,7 +36,7 @@ def part1(data):
     return len(visited)
 
 
-def part2(data):
+def part_b(data):
     rope = [(0, 0) for _ in range(10)]
     visited = {rope[-1]}
     for dir, k in parseMoves(data):
@@ -55,5 +55,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=9)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -10,9 +10,9 @@ testData1 = """
 """
 
 
-def testPart1():
-    assert aoc.part1(testData1) == 514579
+def testPartA():
+    assert aoc.part_a(testData1) == 514579
 
 
-def testPart2():
-    assert aoc.part2(testData1) == 241861950
+def testPartB():
+    assert aoc.part_b(testData1) == 241861950

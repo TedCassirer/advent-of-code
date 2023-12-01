@@ -96,12 +96,12 @@ def evaluate(packet):
     return OPERATORS[packet.typeId](*packet.value)
 
 
-def part1(data):
+def part_a(data):
     packet, _ = parse(toBinary(data))
     return sum(getPacketVersions(packet))
 
 
-def part2(data):
+def part_b(data):
     packet, _ = parse(toBinary(data))
     return evaluate(packet)
 
@@ -111,5 +111,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=16)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

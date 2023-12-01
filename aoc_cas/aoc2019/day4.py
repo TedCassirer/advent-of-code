@@ -34,7 +34,7 @@ def get_numbers_matching_predicates(data, *predicates):
     return list(matching_numbers)
 
 
-def part1(data):
+def part_a(data):
     matching_numbers = get_numbers_matching_predicates(
         data,
         is_sorted,
@@ -43,7 +43,7 @@ def part1(data):
     return len(matching_numbers)
 
 
-def part2(data):
+def part_b(data):
     matching_numbers = get_numbers_matching_predicates(
         data,
         is_sorted,

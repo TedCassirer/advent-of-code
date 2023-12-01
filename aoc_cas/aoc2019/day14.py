@@ -47,13 +47,13 @@ def get_ores_required_for(recipes, required):
     return ores_required
 
 
-def part1(data):
+def part_a(data):
     recipes = get_input(data)
     required = Counter({"FUEL": 1})
     return get_ores_required_for(recipes, required)
 
 
-def part2(data):
+def part_b(data):
     target = 1000000000000
     recipes = get_input(data)
     lo, hi = 0, target // 1024

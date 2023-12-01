@@ -15,13 +15,13 @@ def fill(containers, eggnog):
     return out
 
 
-def part1(data):
+def part_a(data):
     containers = tuple(sorted([int(c) for c in data.splitlines()])[::-1])
     solutions = fill(containers, 150)
     return len(solutions)
 
 
-def part2(data):
+def part_b(data):
     containers = tuple(sorted([int(c) for c in data.splitlines()])[::-1])
     solutions = fill(containers, 150)
     minContainers = min(map(len, solutions))
@@ -32,5 +32,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=17)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -28,8 +28,8 @@ def test_examples(input_file) -> None:
         module_name = f"aoc_cas.aoc{year}.day{day}"
         mod = importlib.import_module(module_name)
         if expected_answer_a != "-":
-            actual_answer_a = str(mod.part1(input_data))
+            actual_answer_a = str(mod.part_a(input_data))
             assert actual_answer_a == expected_answer_a, f"{actual_answer_a=} {expected_answer_a=}"
         if expected_answer_b != "-":
-            actual_answer_b = str(mod.part2(input_data))
+            actual_answer_b = str(mod.part_b(input_data))
             assert actual_answer_b == expected_answer_b, f"{actual_answer_b=} {expected_answer_b=}"

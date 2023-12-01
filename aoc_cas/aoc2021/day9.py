@@ -31,12 +31,12 @@ def bfs(grid, y, x):
     return basin
 
 
-def part1(data):
+def part_a(data):
     grid = getGrid(data)
     return sum(1 + grid[y][x] for y, x in lowPoints(grid))
 
 
-def part2(data):
+def part_b(data):
     grid = getGrid(data)
     M, N = len(grid), len(grid[0])
     basins = []
@@ -57,5 +57,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=9)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

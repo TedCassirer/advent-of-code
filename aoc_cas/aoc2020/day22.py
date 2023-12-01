@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def part1(data):
+def part_a(data):
     player1, player2 = data.split("\n\n")
     player1 = deque(int(n) for n in player1.splitlines()[1:])
     player2 = deque(int(n) for n in player2.splitlines()[1:])
@@ -17,7 +17,7 @@ def part1(data):
     return sum((i + 1) * n for i, n in enumerate(reversed(winner)))
 
 
-def part2(data):
+def part_b(data):
     player1, player2 = data.split("\n\n")
     player1 = tuple(int(n) for n in player1.splitlines()[1:])
     player2 = tuple(int(n) for n in player2.splitlines()[1:])

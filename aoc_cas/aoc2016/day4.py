@@ -19,7 +19,7 @@ def decryptLetter(c, sectorId):
     return chr(ord("a") + (ord(c) - ord("a") + sectorId) % 26)
 
 
-def part1(data):
+def part_a(data):
     roomData = map(getRoomData, data.splitlines())
     validIdSum = 0
     for name, sectorId, checkSum in roomData:
@@ -28,7 +28,7 @@ def part1(data):
     return validIdSum
 
 
-def part2(data):
+def part_b(data):
     roomData = map(getRoomData, data.splitlines())
     for name, sectorId, checkSum in roomData:
         decryptedName = "".join((decryptLetter(c, sectorId) for c in "-".join(name)))
@@ -40,5 +40,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2016, day=4)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

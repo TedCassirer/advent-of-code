@@ -74,12 +74,12 @@ def run_mr_roboto(robo_brain, print_on_move=False):
     return grid
 
 
-def part1(data):
+def part_a(data):
     robo_brain = IntCodeComputerVM(read_program(data), 0)
     return len(run_mr_roboto(robo_brain))
 
 
-def part2(data):
+def part_b(data):
     robo_brain = IntCodeComputerVM(read_program(data), 1)
     image = encode_image(run_mr_roboto(robo_brain))
     print(image)
@@ -90,4 +90,4 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2019, day=11)
-    print(part1(data))
+    print(part_a(data))

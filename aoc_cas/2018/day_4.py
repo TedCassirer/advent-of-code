@@ -41,7 +41,7 @@ def getSleepSchedule():
 
 
 @timeIt
-def part1():
+def part_a():
     sleepSchedule = getSleepSchedule()
     mostSleepyGuard, timesAsleep = max(sleepSchedule.items(), key=lambda sleep: sum(sleep[1]))
     sleepyMinute = timesAsleep.index(max(timesAsleep))
@@ -49,7 +49,7 @@ def part1():
 
 
 @timeIt
-def part2():
+def part_b():
     sleepSchedule = getSleepSchedule()
     mostSleepyGuard, timesAsleep = max(sleepSchedule.items(), key=lambda sleep: max(sleep[1]))
     sleepyMinute = timesAsleep.index(max(timesAsleep))
@@ -57,5 +57,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("Part A:", part_a())
+    print("Part B:", part_b())

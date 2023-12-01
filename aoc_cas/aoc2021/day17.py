@@ -29,7 +29,7 @@ def hit(y, x, y1, x1, y2, x2):
     return y1 <= y <= y2 and x1 <= x <= x2
 
 
-def part1(data):
+def part_a(data):
     square = getSquare(data)
     y1, x1, y2, x2 = square
     minVx = ceil(-1 / 2 + sqrt(1 / 4 + 2 * x1))
@@ -48,7 +48,7 @@ def part1(data):
     return peakestPeak
 
 
-def part2(data):
+def part_b(data):
     square = getSquare(data)
     y1, x1, y2, x2 = square
     minVx = ceil(-1 / 2 + sqrt(1 / 4 + 2 * x1))
@@ -69,5 +69,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=17)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

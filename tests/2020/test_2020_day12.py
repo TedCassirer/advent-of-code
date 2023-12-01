@@ -10,9 +10,9 @@ F11
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 25
+def testPartA():
+    assert aoc.part_a(data) == 25
 
 
-def testPart2():
-    assert aoc.part2(data) == 286
+def testPartB():
+    assert aoc.part_b(data) == 286

@@ -1,7 +1,7 @@
 CLOSING = {"{": "}", "(": ")", "[": "]", "<": ">"}
 
 
-def part1(data):
+def part_a(data):
     SCORE = {")": 3, "]": 57, "}": 1197, ">": 25137}
     score = 0
     for line in data.splitlines():
@@ -15,7 +15,7 @@ def part1(data):
     return score
 
 
-def part2(data):
+def part_b(data):
     SCORE = {")": 1, "]": 2, "}": 3, ">": 4}
     scores = []
     for line in data.splitlines():
@@ -42,5 +42,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=10)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

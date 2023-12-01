@@ -1,4 +1,4 @@
-def part1(data):
+def part_a(data):
     lines = data.splitlines()
     ones = [sum(map(int, part)) for part in zip(*lines)]
     half = len(lines) // 2
@@ -14,7 +14,7 @@ def part1(data):
     return gamma * epsilon
 
 
-def part2(data):
+def part_b(data):
     lines = data.splitlines()
     numbers = [int(n, 2) for n in lines]
     o2 = numbers
@@ -40,5 +40,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=3)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -31,9 +31,9 @@ Monkey 3:
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 10605
+def testPartA():
+    assert aoc.part_a(testData) == 10605
 
 
-def testPart2():
-    assert aoc.part2(testData) == 2713310158
+def testPartB():
+    assert aoc.part_b(testData) == 2713310158

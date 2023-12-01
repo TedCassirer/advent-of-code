@@ -26,7 +26,7 @@ line-length = 120
 aoccas = "aoc_cas.cli:main"
 
 [tool.poetry.plugins."adventofcode.user"]
-aoccas = "aoc_cas:plugin"
+cas = "aoc_cas:plugin"
 
 [tool.pytest.ini_options]
 testpaths = "tests/"

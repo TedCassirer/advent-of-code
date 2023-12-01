@@ -6,7 +6,7 @@ def read_file(data):
     return [int(n) for n in data.split(",")]
 
 
-def part1(data):
+def part_a(data):
     program = read_file(data)
     phase_setting_sequences = permutations((0, 1, 2, 3, 4))
     highest_output = 0
@@ -23,7 +23,7 @@ def part1(data):
     return highest_output
 
 
-def part2(data):
+def part_b(data):
     program = read_file(data)
     phase_setting_sequences = permutations((5, 6, 7, 8, 9))
     highest_output = 0

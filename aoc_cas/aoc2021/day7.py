@@ -24,7 +24,7 @@ def binarySearch(f, lo, hi):
     return hi
 
 
-def part1(data):
+def part_a(data):
     positions = [*map(int, data.split(","))]
     fuelCost = lambda x: sum(abs(p - x) for p in positions)
 
@@ -33,7 +33,7 @@ def part1(data):
     return fuelCost(optimalPosition)
 
 
-def part2(data):
+def part_b(data):
     def fuelCostFunction(position):
         def f(x):
             d = abs(position - x)
@@ -55,5 +55,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=7)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

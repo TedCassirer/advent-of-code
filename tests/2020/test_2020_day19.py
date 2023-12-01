@@ -66,10 +66,10 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data1) == 2
-    assert aoc.part1(data2) == 3
+def testPartA():
+    assert aoc.part_a(data1) == 2
+    assert aoc.part_a(data2) == 3
 
 
-def testPart2():
-    assert aoc.part2(data2) == 12
+def testPartB():
+    assert aoc.part_b(data2) == 12

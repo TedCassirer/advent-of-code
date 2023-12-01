@@ -26,14 +26,14 @@ def banned(string):
     return "i" not in string and "o" not in string and "l" not in string
 
 
-def part1(data):
+def part_a(data):
     for s in increment(data):
         if banned(s) and twoPairs(s) and increasing(s):
             return "".join(s)
 
 
-def part2(data):
-    return part1(part1(data))
+def part_b(data):
+    return part_a(part_a(data))
 
 
 if __name__ == "__main__":
@@ -41,5 +41,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=11)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

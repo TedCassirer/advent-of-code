@@ -22,7 +22,7 @@ def validate(rules, message):
     return len(message) in inner(message, rules[0])
 
 
-def part1(data):
+def part_a(data):
     rulesData, messages = data.split("\n\n")
     rules = {}
     for rule in rulesData.splitlines():
@@ -32,7 +32,7 @@ def part1(data):
     return len(validMessages)
 
 
-def part2(data):
+def part_b(data):
     rulesData, messages = data.split("\n\n")
     rules = {}
     for rule in rulesData.splitlines():
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2020, day=19)
-    print(part2(data))
+    print(part_b(data))

@@ -1,7 +1,7 @@
 from aoc_cas.aoc2020 import day16 as aoc
 
 
-def testPart1():
+def testPartA():
     data = """
 class: 1-3 or 5-7
 row: 6-11 or 33-44
@@ -16,10 +16,10 @@ nearby tickets:
 55,2,20
 38,6,12
 """.strip()
-    assert aoc.part1(data) == 71
+    assert aoc.part_a(data) == 71
 
 
-def testPart2():
+def testPartB():
     data = """
 departure something: 0-1 or 4-19
 row: 0-5 or 8-19
@@ -33,4 +33,4 @@ nearby tickets:
 15,1,5
 5,14,9
 """.strip()
-    assert aoc.part2(data) == 12 * 13
+    assert aoc.part_b(data) == 12 * 13

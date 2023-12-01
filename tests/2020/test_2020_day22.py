@@ -17,9 +17,9 @@ Player 2:
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 306
+def testPartA():
+    assert aoc.part_a(data) == 306
 
 
-def testPart2():
-    assert aoc.part2(data) == 291
+def testPartB():
+    assert aoc.part_b(data) == 291

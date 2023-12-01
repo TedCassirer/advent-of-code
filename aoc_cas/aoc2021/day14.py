@@ -29,7 +29,7 @@ def insertPairs(polymer, charCount, rules):
     return polymerOut, charCount
 
 
-def part1(data):
+def part_a(data):
     polymer, charCount = getPolymer(data)
     rules = getRules(data)
     for _ in range(10):
@@ -37,7 +37,7 @@ def part1(data):
     return max(charCount.values()) - min(charCount.values())
 
 
-def part2(data):
+def part_b(data):
     polymer, charCount = getPolymer(data)
     rules = getRules(data)
     for _ in range(40):
@@ -50,5 +50,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=14)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

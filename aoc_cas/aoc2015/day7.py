@@ -47,7 +47,7 @@ def parseLine(line):
     return Value(assignedValue, signal)
 
 
-def part1(data):
+def part_a(data):
     values = dict()
     for line in data.splitlines():
         value = parseLine(line.strip())
@@ -55,7 +55,7 @@ def part1(data):
     return values["a"].get(values)
 
 
-def part2(data):
+def part_b(data):
     values = dict()
     for line in data.splitlines():
         value = parseLine(line.strip())
@@ -73,5 +73,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=7)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

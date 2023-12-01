@@ -3,7 +3,7 @@ from utils import timeIt, readData
 
 
 @timeIt
-def part1():
+def part_a():
     letterCounts = map(dict.values, map(Counter, readData("2018/data/day_2")))
 
     threeLetters = 0
@@ -17,7 +17,7 @@ def part1():
 
 
 @timeIt
-def part2():
+def part_b():
     def maskLetter(word, i):
         return word[:i] + word[i + 1 :]
 
@@ -34,5 +34,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("Part A:", part_a())
+    print("Part B:", part_b())

@@ -46,7 +46,7 @@ def getPacks(numbers, N):
     return candidates
 
 
-def part1(data):
+def part_a(data):
     numbers = getNumbers(data)
     numbers = sorted(numbers, key=lambda n: -n)
     group1s = getPacks(numbers, 3)
@@ -54,7 +54,7 @@ def part1(data):
     return min(reduce(lambda a, b: a * b, group) for group in group1s)
 
 
-def part2(data):
+def part_b(data):
     numbers = getNumbers(data)
     numbers = sorted(numbers, key=lambda n: -n)
     group1s = getPacks(numbers, 4)
@@ -67,5 +67,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=24)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

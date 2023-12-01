@@ -57,13 +57,13 @@ def dropSand(grid, row, col, floor=-1):
     return sand, False
 
 
-def part1(data):
+def part_a(data):
     grid, minY, minX, maxY, maxX = buildGrid(data)
     sand, _ = dropSand(grid, 0, 500 - minX)
     return sand
 
 
-def part2(data):
+def part_b(data):
     grid, minY, minX, maxY, maxX = buildGrid(data)
 
     floorLevel = maxY + 2
@@ -76,5 +76,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=14)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

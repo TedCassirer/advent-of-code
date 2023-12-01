@@ -4,10 +4,10 @@ import pytest
 data = "389125467"
 
 
-def testPart1():
-    assert aoc.part1(data) == 67384529
+def testPartA():
+    assert aoc.part_a(data) == 67384529
 
 
 @pytest.mark.skip(reason="Too slow to run every time")
-def testPart2():
-    assert aoc.part2(data) == 149245887792
+def testPartB():
+    assert aoc.part_b(data) == 149245887792

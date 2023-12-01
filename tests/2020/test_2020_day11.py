@@ -15,9 +15,9 @@ L.LLLLL.LL
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(data) == 37
+def testPartA():
+    assert aoc.part_a(data) == 37
 
 
-def testPart2():
-    assert aoc.part2(data) == 26
+def testPartB():
+    assert aoc.part_b(data) == 26

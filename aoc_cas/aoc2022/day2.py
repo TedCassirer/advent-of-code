@@ -1,4 +1,4 @@
-def part1(data):
+def part_a(data):
     resultScore = {
         "A": {"X": 1 + 3, "Y": 2 + 6, "Z": 3 + 0},
         "B": {"X": 1 + 0, "Y": 2 + 3, "Z": 3 + 6},
@@ -11,7 +11,7 @@ def part1(data):
     return score
 
 
-def part2(data):
+def part_b(data):
     resultScore = {
         "X": {"A": 0 + 3, "B": 0 + 1, "C": 0 + 2},
         "Y": {"A": 1 + 3, "B": 2 + 3, "C": 3 + 3},
@@ -29,5 +29,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=2)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

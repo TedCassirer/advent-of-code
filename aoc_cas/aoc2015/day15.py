@@ -19,7 +19,7 @@ def parse(line):
     return np.array([int(w.split(" ")[-1]) for w in line.split(", ")])
 
 
-def part1(data):
+def part_a(data):
     ingredients = np.array([parse(line) for line in data.splitlines()]).T
     recipes = np.array(amounts(ingredients.shape[1], 100)).T
     cakes = np.matmul(ingredients, recipes)
@@ -28,7 +28,7 @@ def part1(data):
     return max(np.prod(cakes, 0))
 
 
-def part2(data):
+def part_b(data):
     ingredients = np.array([parse(line) for line in data.splitlines()]).T
     recipes = np.array(amounts(ingredients.shape[1], 100)).T
     cakes = np.matmul(ingredients, recipes)
@@ -41,5 +41,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=15)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

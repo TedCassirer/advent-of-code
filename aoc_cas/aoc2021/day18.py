@@ -121,13 +121,13 @@ def parse(nodeData):
         return Node(left=parse(nodeData[0]), right=parse(nodeData[1]))
 
 
-def part1(data):
+def part_a(data):
     nodes = map(parse, map(eval, data.splitlines()))
     sumNode = reduce(lambda n1, n2: (n1 + n2).reduce(), nodes)
     return sumNode.magnitude()
 
 
-def part2(data):
+def part_b(data):
     nodes = [parse(eval(line)) for line in data.splitlines()]
     return max((n1 + n2).reduce().magnitude() for n1, n2 in permutations(nodes, 2))
 
@@ -137,5 +137,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2021, day=18)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

@@ -25,11 +25,11 @@ data = """
 """.strip()
 
 
-def testPart1():
+def testPartA():
     numbers = [int(n) for n in data.splitlines()]
     assert numbers[aoc.findWeakness(numbers, 5)] == 127
 
 
-def testPart2():
+def testPartB():
     numbers = [int(n) for n in data.splitlines()]
     assert aoc.findEncryptionWeakness(numbers, 5) == 62

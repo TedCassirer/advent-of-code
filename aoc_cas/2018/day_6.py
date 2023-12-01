@@ -64,7 +64,7 @@ class NodeGroup:
 
 
 @timeIt
-def part1():
+def part_a():
     data = readData("2018/data/day_6")
     X, Y = 0, 0
     for id, row in enumerate(data):
@@ -108,7 +108,7 @@ def bfs(start, nodes, maxRadius):
 
 
 @timeIt
-def part2():
+def part_b():
     RADIUS = 10000
     data = readData("2018/data/day_6")
     nodes = []
@@ -123,5 +123,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    # print('Part 1:', part1())
-    print("Part 2:", part2())
+    # print('Part A:', part_a())
+    print("Part B:", part_b())

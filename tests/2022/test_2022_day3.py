@@ -10,9 +10,9 @@ CrZsJsPPZsGzwwsLwLmpwMDw
 """.strip()
 
 
-def testPart1():
-    assert aoc.part1(testData) == 157
+def testPartA():
+    assert aoc.part_a(testData) == 157
 
 
-def testPart2():
-    assert aoc.part2(testData) == 70
+def testPartB():
+    assert aoc.part_b(testData) == 70

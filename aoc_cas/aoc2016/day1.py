@@ -17,7 +17,7 @@ def getCoords(y, x, dy, dx):
         yield (y, xx)
 
 
-def part1(data):
+def part_a(data):
     y, x = 0, 0
     for dy, dx in getDirs(data):
         y += dy
@@ -25,7 +25,7 @@ def part1(data):
     return abs(y) + abs(x)
 
 
-def part2(data):
+def part_b(data):
     y, x = 0, 0
     visited = set()
     for dy, dx in getDirs(data):
@@ -41,5 +41,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2016, day=1)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

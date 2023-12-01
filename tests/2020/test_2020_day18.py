@@ -1,7 +1,7 @@
 from aoc_cas.aoc2020 import day18 as aoc
 
 
-def testPart1():
+def testPartA():
     data = (
         ("1 + 2 * 3 + 4 * 5 + 6", 71),
         ("1 + (2 * 3) + (4 * (5 + 6))", 51),
@@ -11,10 +11,10 @@ def testPart1():
         ("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2", 13632),
     )
     for e, v in data:
-        assert aoc.part1(e) == v
+        assert aoc.part_a(e) == v
 
 
-def testPart2():
+def testPartB():
     data = (
         ("1 + 2 * 3 + 4 * 5 + 6", 231),
         ("1 + (2 * 3) + (4 * (5 + 6))", 51),
@@ -24,4 +24,4 @@ def testPart2():
         ("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2", 23340),
     )
     for e, v in data:
-        assert aoc.part2(e) == v
+        assert aoc.part_b(e) == v

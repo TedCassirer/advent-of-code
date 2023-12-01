@@ -11,7 +11,7 @@ def parseLine(line):
     return action, lights
 
 
-def part1(data):
+def part_a(data):
     lights = [[0] * 1000 for _ in range(1000)]
     for action, affectedLights in map(parseLine, data.splitlines()):
         if action == "turn on":
@@ -25,7 +25,7 @@ def part1(data):
     return sum((sum(row) for row in lights))
 
 
-def part2(data):
+def part_b(data):
     lights = [[0] * 1000 for _ in range(1000)]
     for action, affectedLights in map(parseLine, data.splitlines()):
         if action == "turn on":
@@ -43,5 +43,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=6)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

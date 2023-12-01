@@ -50,13 +50,13 @@ def get_input(data):
     yield from (s.strip().split(")") for s in data.split("\n"))
 
 
-def part1(data):
+def part_a(data):
     node_name_pairs = get_input(data)
     grand_daddy = create_tree(node_name_pairs)
     return count_kid_relations(grand_daddy)
 
 
-def part2(data):
+def part_b(data):
     node_name_pairs = get_input(data)
     grand_daddy = create_tree(node_name_pairs)
     you_path = find_path_to_node(grand_daddy, "YOU")

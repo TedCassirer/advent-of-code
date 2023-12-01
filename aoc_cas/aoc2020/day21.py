@@ -21,7 +21,7 @@ def findAllergens(food):
     return couldContainAllergen
 
 
-def part1(data):
+def part_a(data):
     food = parseData(data)
     couldContainAllergen = findAllergens(food)
     containsAllergens = set.union(*couldContainAllergen.values())
@@ -31,7 +31,7 @@ def part1(data):
     return sum(ingredients.count(i) for i in allergenFree)
 
 
-def part2(data):
+def part_b(data):
     food = parseData(data)
     couldContainAllergen = findAllergens(food)
 

@@ -1,7 +1,7 @@
 from aoc_cas.aoc2020 import day7 as aoc
 
 
-def testPart1():
+def testPartA():
     data = """
 light red bags contain 1 bright white bag, 2 muted yellow bags.
 dark orange bags contain 3 bright white bags, 4 muted yellow bags.
@@ -13,10 +13,10 @@ vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.
 faded blue bags contain no other bags.
 dotted black bags contain no other bags.
 """.strip()
-    assert aoc.part1(data) == 4
+    assert aoc.part_a(data) == 4
 
 
-def testPart2():
+def testPartB():
     data = """light red bags contain 1 bright white bag, 2 muted yellow bags.
 dark orange bags contain 3 bright white bags, 4 muted yellow bags.
 bright white bags contain 1 shiny gold bag.
@@ -27,7 +27,7 @@ vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.
 faded blue bags contain no other bags.
 dotted black bags contain no other bags.
 """
-    assert aoc.part2(data) == 32
+    assert aoc.part_b(data) == 32
 
     data = """shiny gold bags contain 2 dark red bags.
 dark red bags contain 2 dark orange bags.
@@ -37,4 +37,4 @@ dark green bags contain 2 dark blue bags.
 dark blue bags contain 2 dark violet bags.
 dark violet bags contain no other bags.
 """
-    assert aoc.part2(data) == 126
+    assert aoc.part_b(data) == 126

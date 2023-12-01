@@ -128,7 +128,7 @@ def getBoss(data):
     return Boss(hp, damage, 0)
 
 
-def part1(data):
+def part_a(data):
     player = Player(50, 500, 0, 0, 0, False)
     boss = getBoss(data)
     game = Game(player, boss, True)
@@ -144,7 +144,7 @@ def part1(data):
     return "Hepp"
 
 
-def part2(data):
+def part_b(data):
     player = Player(50, 500, 0, 0, 0, True)
     boss = getBoss(data)
     game = Game(player, boss, True)
@@ -164,5 +164,5 @@ if __name__ == "__main__":
     from aocd import get_data
 
     data = get_data(year=2015, day=22)
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

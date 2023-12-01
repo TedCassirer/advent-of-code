@@ -1,11 +1,11 @@
-def part1(data):
+def part_a(data):
     for i in range(4, len(data)):
         if len(set(data[i - 4 : i])) == 4:
             return i
     raise ValueError(":(")
 
 
-def part2(data):
+def part_b(data):
     for i in range(14, len(data)):
         if len(set(data[i - 14 : i])) == 14:
             return i
@@ -17,5 +17,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=6)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

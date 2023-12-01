@@ -16,14 +16,14 @@ def do_the_thing(numbers):
     raise Exception()
 
 
-def part1(data):
+def part_a(data):
     numbers = get_input(data)
     numbers[1] = 12
     numbers[2] = 2
     return do_the_thing(numbers)[0]
 
 
-def part2(data):
+def part_b(data):
     target = 19690720
     numbers = get_input(data)
     for n1 in range(0, 100):

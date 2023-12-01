@@ -26,14 +26,14 @@ def createInitialState(data, dimensions):
     return activeCubes
 
 
-def part1(data):
+def part_a(data):
     activeCubes = createInitialState(data, 3)
     for i in range(6):
         activeCubes = gameOfCube(activeCubes)
     return len(activeCubes)
 
 
-def part2(data):
+def part_b(data):
     activeCubes = createInitialState(data, 4)
     for i in range(6):
         activeCubes = gameOfCube(activeCubes)

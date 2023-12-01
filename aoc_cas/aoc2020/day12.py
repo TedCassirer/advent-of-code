@@ -35,7 +35,7 @@ class Coordinate:
         return abs(other.x - self.x) + abs(other.y - self.y)
 
 
-def part1(data):
+def part_a(data):
     actions = ((line[0], int(line[1:])) for line in data.splitlines())
 
     shippyBoi = Coordinate(x=0, y=0)
@@ -62,7 +62,7 @@ def part1(data):
     return shippyBoi.manhattanDistance(Coordinate(0, 0))
 
 
-def part2(data):
+def part_b(data):
     actions = ((line[0], int(line[1:])) for line in data.splitlines())
 
     shippyBoi = Coordinate(x=0, y=0)

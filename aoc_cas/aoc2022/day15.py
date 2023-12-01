@@ -13,7 +13,7 @@ def manhattanDistance(p1, p2):
     return abs(p2[0] - p1[0]) + abs(p2[1] - p1[1])
 
 
-def part1(data, row=2000000):
+def part_a(data, row=2000000):
     noBeacon = set()
     onRow = set()
     for sensor, beacon in parseSensorsAndBeacons(data):
@@ -30,7 +30,7 @@ def part1(data, row=2000000):
     return len(noBeacon) - len(onRow)
 
 
-def part2(data, searchSpace=4000000):
+def part_b(data, searchSpace=4000000):
     rows = [[(-1, -1), (searchSpace + 1, searchSpace + 1)] for _ in range(searchSpace + 1)]
     for sensor, beacon in parseSensorsAndBeacons(data):
         dist = manhattanDistance(sensor, beacon)
@@ -58,5 +58,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2022, day=15)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))

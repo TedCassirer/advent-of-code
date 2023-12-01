@@ -55,7 +55,7 @@ def printPoints(points):
 
 
 @timeIt
-def part1():
+def part_a():
     points = list(getPoints())
     prevWindowArea = 1 << 63
     windowArea = getWindowArea(points)
@@ -80,7 +80,7 @@ def part1():
 
 
 @timeIt
-def part2():
+def part_b():
     time = 0
     points = list(getPoints())
     prevWindowArea = 1 << 63
@@ -112,5 +112,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    print("Part 1:", part1())
-    print("Part 2:", part2())
+    print("Part A:", part_a())
+    print("Part B:", part_b())

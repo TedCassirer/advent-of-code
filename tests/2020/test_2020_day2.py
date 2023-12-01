@@ -7,9 +7,9 @@ testData = """
 """
 
 
-def testPart1():
-    assert aoc.part1(testData) == 2
+def testPartA():
+    assert aoc.part_a(testData) == 2
 
 
-def testPart2():
-    assert aoc.part2(testData) == 1
+def testPartB():
+    assert aoc.part_b(testData) == 1

@@ -1,4 +1,4 @@
-def part1(data):
+def part_a(data):
     out = 0
     for line in data.splitlines():
         a, b, c = map(int, line.split("x"))
@@ -7,7 +7,7 @@ def part1(data):
     return out
 
 
-def part2(data):
+def part_b(data):
     out = 0
     for line in data.splitlines():
         s1, s2, s3 = sorted([int(c) for c in line.split("x")])
@@ -20,5 +20,5 @@ if __name__ == "__main__":
 
     data = get_data(year=2015, day=2)
 
-    print(part1(data))
-    print(part2(data))
+    print(part_a(data))
+    print(part_b(data))
