@@ -23,7 +23,7 @@ build-backend = "poetry.core.masonry.api"
 line-length = 120
 
 [tool.poetry.scripts]
-aoccas = "aoc_cas.cli:run_one"
+aoccas = "aoc_cas.cli:main"
 
 [tool.poetry.plugins."adventofcode.user"]
 aoccas = "aoc_cas:plugin"

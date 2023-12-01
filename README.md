@@ -25,7 +25,12 @@ poetry run pytest
 
 ## Run
 ```sh
-poetry run aoccas -y 2021 -d 5 --submit
+poetry run aoccas solve -y 2023 -d 1 --submit
+```
+
+## Initialize new challenge file
+```shell
+poetry run aoccas init-challenge -y 2023 -d 1
 ```
 
 To submit the results you can add the `-s` flag
@@ -38,5 +43,5 @@ Instructions: [How to find the session id](https://github.com/wimglenn/advent-of
 To run it using the aocd plugin you can run:
 
 ```sh
-poetry run aoc -y 2021 -d 1
+poetry run aoc -y 2023 -d 1
 ```

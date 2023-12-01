@@ -1,0 +1,14 @@
+def part1(data: str) -> int:
+    pass
+
+
+def part2(data: str) -> int:
+    pass
+
+
+if __name__ == "__main__":
+    from aocd import get_data
+
+    data = get_data(year={}, day={})
+    print(part1(data))
+    print(part2(data))

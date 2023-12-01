@@ -8,29 +8,19 @@ here = pathlib.Path(__file__).parent.resolve()
 input_files = sorted(here.glob("fixtures/20*/*.txt"))
 
 
-def path2id(input_file):
+def path2id(input_file) -> str:
     *pre, year, fname = input_file.parts
     return f"{year} - {fname[:-4]}"
 
 
-def remove_trailing_comments(lines):
-    while lines and (not lines[-1].strip() or lines[-1].startswith("#")):
-        lines.pop()
-    if len(lines):
-        lines[-1] = lines[-1].split("#")[0].strip()
-    if len(lines) > 1:
-        lines[-2] = lines[-2].split("#")[0].strip()
-
-
 @pytest.mark.parametrize("input_file", input_files, ids=path2id)
-def test_examples(input_file):
+def test_examples(input_file) -> None:
     *pre, year, fname = input_file.parts
     year = int(year)
     day = int(fname[:-4])
     groups = input_file.read_text(encoding="utf-8").split("\n===\n")
     for group in groups:
         lines = group.splitlines()
-        remove_trailing_comments(lines)
         if len(lines) < 3:
             pytest.fail(f"test data {input_file} is malformed")
         *lines, expected_answer_a, expected_answer_b = lines

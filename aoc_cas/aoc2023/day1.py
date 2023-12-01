@@ -1,4 +1,4 @@
-def part1(data):
+def part1(data) -> int:
     result = 0
     for line in data.splitlines():
         digits = [int(char) for char in line if char.isdigit()]
@@ -6,7 +6,7 @@ def part1(data):
     return result
 
 
-def part2(data):
+def part2(data) -> int:
     digits = {
         "1": 1,
         "2": 2,
