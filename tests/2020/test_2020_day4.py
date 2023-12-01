@@ -1,4 +1,4 @@
-import aoc2020.day4 as aoc
+import aoc_cas.aoc2020.day4 as aoc
 
 testData = """
     ecl:gry pid:860033327 eyr:2020 hcl:#fffffd

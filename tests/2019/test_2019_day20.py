@@ -1,4 +1,4 @@
-from aoc2019 import day20 as aoc
+from aoc_cas.aoc2019 import day20 as aoc
 
 
 def testPart1():

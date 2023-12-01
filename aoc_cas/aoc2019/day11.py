@@ -1,4 +1,4 @@
-from aoc2019.IntCodeComputer import IntCodeComputerVM
+from aoc_cas.aoc2019.IntCodeComputer import IntCodeComputerVM
 from collections import defaultdict
 
 BLACK = 0

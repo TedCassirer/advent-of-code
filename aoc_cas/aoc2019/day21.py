@@ -1,4 +1,4 @@
-from aoc2019.IntCodeComputer import IntCodeComputerVM, read_program
+from aoc_cas.aoc2019.IntCodeComputer import IntCodeComputerVM, read_program
 
 
 def instructions(*inputs):

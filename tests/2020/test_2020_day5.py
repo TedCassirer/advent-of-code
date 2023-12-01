@@ -1,4 +1,4 @@
-import aoc2020.day5 as aoc
+import aoc_cas.aoc2020.day5 as aoc
 
 
 def testSeatId():

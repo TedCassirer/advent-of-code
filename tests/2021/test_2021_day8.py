@@ -1,4 +1,4 @@
-import aoc2021.day8 as aoc
+import aoc_cas.aoc2021.day8 as aoc
 
 testData = """
 be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe

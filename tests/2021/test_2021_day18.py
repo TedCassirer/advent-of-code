@@ -1,4 +1,4 @@
-import aoc2021.day18 as aoc
+import aoc_cas.aoc2021.day18 as aoc
 
 data = """
 [[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]

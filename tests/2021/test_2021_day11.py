@@ -1,4 +1,4 @@
-import aoc2021.day11 as aoc
+import aoc_cas.aoc2021.day11 as aoc
 
 testData = """
 5483143223

@@ -1,14 +1,13 @@
 def part1(data):
-    def get_edge_sum(line):
+    result = 0
+    for line in data.splitlines():
         digits = [int(char) for char in line if char.isdigit()]
-        res = digits[0] * 10 + digits[-1]
-        return res
-
-    return sum(map(get_edge_sum, data.splitlines()))
+        result += digits[0] * 10 + digits[-1]
+    return result
 
 
 def part2(data):
-    spelled_out = {
+    digits = {
         "1": 1,
         "2": 2,
         "3": 3,
@@ -30,9 +29,9 @@ def part2(data):
     }
     result = 0
     for line in data.splitlines():
-        left_digit = min(((line + k).find(k), v) for k, v in spelled_out.items())[1]
-        right_digit = max((line.rfind(k), v) for k, v in spelled_out.items())[1]
-        result += 10 * left_digit + right_digit
+        left_digit = min(digits.keys(), key=lambda k: (line + k).find(k))
+        right_digit = max(digits.keys(), key=lambda k: line.rfind(k))
+        result += 10 * digits[left_digit] + digits[right_digit]
     return result
 
 

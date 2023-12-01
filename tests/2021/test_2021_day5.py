@@ -1,4 +1,4 @@
-import aoc2021.day5 as aoc
+import aoc_cas.aoc2021.day5 as aoc
 
 testData = """
 0,9 -> 5,9

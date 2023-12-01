@@ -1,6 +1,6 @@
 def parseData(data):
     stackData, instructionData = data.split("\n\n")
-    numStacks = (data.index("\n") + 1) // 4
+    numStacks = int(stackData.split("   ")[-1])
     stacks = [[] for _ in range(numStacks)]
     instructions = []
 

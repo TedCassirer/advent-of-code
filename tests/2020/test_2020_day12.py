@@ -1,4 +1,4 @@
-from aoc2020 import day12 as aoc
+from aoc_cas.aoc2020 import day12 as aoc
 
 
 data = """

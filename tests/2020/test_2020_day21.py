@@ -1,4 +1,4 @@
-from aoc2020 import day21 as aoc
+from aoc_cas.aoc2020 import day21 as aoc
 
 data = """
 mxmxvkd kfcds sqjhc nhms (contains dairy, fish)

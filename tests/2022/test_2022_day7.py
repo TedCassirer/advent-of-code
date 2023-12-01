@@ -1,4 +1,4 @@
-import aoc2022.day7 as aoc
+import aoc_cas.aoc2022.day7 as aoc
 
 testData = """
 $ cd /

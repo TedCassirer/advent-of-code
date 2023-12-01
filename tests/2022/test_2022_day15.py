@@ -1,4 +1,4 @@
-import aoc2022.day15 as aoc
+import aoc_cas.aoc2022.day15 as aoc
 
 testData = """
 Sensor at x=2, y=18: closest beacon is at x=-2, y=15

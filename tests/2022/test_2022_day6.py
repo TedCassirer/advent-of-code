@@ -1,4 +1,4 @@
-import aoc2022.day6 as aoc
+import aoc_cas.aoc2022.day6 as aoc
 
 
 def testPart1():

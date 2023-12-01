@@ -1,4 +1,4 @@
-from aoc2020 import day23 as aoc
+from aoc_cas.aoc2020 import day23 as aoc
 import pytest
 
 data = "389125467"
