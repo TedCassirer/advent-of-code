@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "advent-of-code"
+version = "0.1.0"
+description = ""
+authors = ["Ted Cassirer <ted.cassirer@gmail.com>"]
+readme = "README.md"
+
+packages = [
+    {include = "aoc2015", from = "src/"},
+    {include = "aoc2016", from = "src/"},
+    {include = "aoc2019", from = "src/"},
+    {include = "aoc2020", from = "src/"},
+    {include = "aoc2021", from = "src/"},
+    {include = "aoc2022", from = "src/"},
+    {include = "scripts", from = "src/"},
+]
+
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+advent-of-code-data = "^2.0.1"
+black = "^23.11.0"
+numpy = "^1.26.2"
+pytest = "^7.4.3"
+poetry = "^1.7.1"
+click = "^8.1.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+#
+#[tool.poetry.scripts]
+#aoccas = "scripts.cli:main"
+#bsamseth = "aoc_runner:plugin"
+
+[tool.poetry.plugins."cli"]
+foo = "cli"
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
+
