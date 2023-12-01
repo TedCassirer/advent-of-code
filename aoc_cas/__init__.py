@@ -1,10 +1,6 @@
-import importlib
-
-from aocd import get_data
+from .util import load_module
 
 
-def plugin(year, day, **kwargs):
-    module_name = f"aoc_cas.aoc{year}.day{day}"
-    mod = importlib.import_module(module_name)
-    data = get_data(year=year, day=day)
+def plugin(year: int, day: int, data: str) -> tuple:
+    mod = load_module(year, day)
     return mod.part_a(data), mod.part_b(data)

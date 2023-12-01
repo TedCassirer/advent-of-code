@@ -1,8 +1,8 @@
-import importlib
 import pathlib
 
 import pytest
 
+from aoc_cas.util import load_module
 
 here = pathlib.Path(__file__).parent.resolve()
 input_files = sorted(here.glob("fixtures/20*/*.txt"))
@@ -25,8 +25,7 @@ def test_examples(input_file) -> None:
             pytest.fail(f"test data {input_file} is malformed")
         *lines, expected_answer_a, expected_answer_b = lines
         input_data = "\n".join(lines).rstrip()
-        module_name = f"aoc_cas.aoc{year}.day{day}"
-        mod = importlib.import_module(module_name)
+        mod = load_module(year, day)
         if expected_answer_a != "-":
             actual_answer_a = str(mod.part_a(input_data))
             assert actual_answer_a == expected_answer_a, f"{actual_answer_a=} {expected_answer_a=}"

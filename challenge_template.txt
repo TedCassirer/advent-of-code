@@ -1,3 +1,6 @@
+from aoc_cas.util import test_with_examples
+
+
 def part_a(data) -> int:
     pass
 
@@ -6,14 +9,4 @@ def part_b(data) -> int:
     pass
 
 if __name__ == "__main__":
-    from aocd.models import Puzzle
-
-    puzzle = Puzzle(year={}, day={})
-    for example in puzzle.examples:
-        print(f"Running with example data: \n\n{example.input_data}\n")
-        if example.answer_a is not None:
-            part_a_result = part_a(example.input_data)
-            print(f"[Part A] Actual: {part_a_result} - Expected: {example.answer_a}")
-        if example.answer_b is not None:
-            part_b_result = part_b(example.input_data)
-            print(f"[Part B] Actual: {part_b_result} - Expected: {example.answer_b}\n")
+    test_with_examples({}, {})
