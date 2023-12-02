@@ -8,7 +8,7 @@ def load_module(year: int, day: int):
     return importlib.import_module(module_name)
 
 
-def test_with_examples(year: int, day: int) -> None:
+def solve_with_examples(year: int, day: int) -> None:
     mod = load_module(year, day)
     puzzle = Puzzle(year, day)
     print(f"Testing example data")
@@ -19,6 +19,6 @@ def test_with_examples(year: int, day: int) -> None:
             correct = part_a_result == example.answer_a
             print(f"{'❌✅'[correct]} [Part A] Actual: {part_a_result} - Expected: {example.answer_a}")
         if example.answer_b is not None:
-            part_b_result = mod.part_b(example.input_data)
-            correct = part_b_result == example.answer_a
+            part_b_result = str(mod.part_b(example.input_data))
+            correct = part_b_result == example.answer_b
             print(f"{'❌✅'[correct]} [Part B] Actual: {part_b_result} - Expected: {example.answer_b}\n")

@@ -1,12 +1,11 @@
-from aoc_cas.util import test_with_examples
-
-
-def part_a(data) -> int:
+def part_a(data: str) -> int:
     pass
 
 
-def part_b(data) -> int:
+def part_b(data: str) -> int:
     pass
 
 if __name__ == "__main__":
-    test_with_examples({}, {})
+    from aoc_cas.util import solve_with_examples
+
+    solve_with_examples(year={year}, day={day})

@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from pathlib import Path
 
@@ -8,12 +7,10 @@ from aocd.utils import AOC_TZ
 
 from . import plugin
 
-log = logging.getLogger()
-
 
 @click.group()
 def main():
-    logging.basicConfig(format="%(message)s", level=logging.INFO)
+    ...
 
 
 @main.command()
@@ -22,13 +19,13 @@ def main():
 @click.option("--submit", "-s", is_flag=True)
 def solve(year: int, day: int, submit: bool) -> None:
     puzzle = Puzzle(year, day)
-    log.info(f"--- {year} Day {day}: {puzzle.title} ---")
-    part_1_result, part_2_result = plugin(year, day)
-    log.info(f"PartA: {part_1_result}")
-    log.info(f"PartB: {part_2_result}")
+    print(f"--- {year} Day {day}: {puzzle.title} ---")
+    part_a_result, part_b_result = plugin(year=year, day=day, data=puzzle.input_data)
+    print(f"PartA: {part_a_result}")
+    print(f"PartB: {part_b_result}")
     if submit:
-        puzzle.answer_a = part_1_result
-        puzzle.answer_2 = part_2_result
+        puzzle.answer_a = part_a_result
+        puzzle.answer_b = part_b_result
 
 
 @main.command()
@@ -40,9 +37,11 @@ def init_challenge(year: int, day: int) -> None:
     if not year_folder.exists():
         year_folder.mkdir()
         year_folder.joinpath("__init__.py").touch()
+        print(f"Generated a new year folder: {year_folder}")
     python_file = year_folder / f"day{day}.py"
     if not python_file.exists():
-        python_file.write_text(challenge_template.format(day, year))
+        python_file.write_text(challenge_template.format(day=day, year=year))
+        print(f"Generated a new solution file at: {python_file}")
 
     test_folder = Path.cwd() / f"tests/fixtures/{year}"
     test_folder.mkdir(exist_ok=True)

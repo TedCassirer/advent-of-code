@@ -1,6 +1,3 @@
-from aoc_cas.util import test_with_examples
-
-
 def part_a(data) -> int:
     result = 0
     for line in data.splitlines():
@@ -39,4 +36,6 @@ def part_b(data) -> int:
 
 
 if __name__ == "__main__":
-    test_with_examples(2023, 1)
+    from aoc_cas.util import solve_with_examples
+
+    solve_with_examples(2023, 1)
