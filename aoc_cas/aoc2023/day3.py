@@ -23,8 +23,7 @@ def get_symbols(data: str) -> tuple[str, tuple[int, int]]:
 
 
 def part_a(data: str) -> int:
-    symbols = list(get_symbols(data))
-    symbol_coords = set(coord for _, coord in symbols)
+    symbol_coords = set(coord for _, coord in get_symbols(data))
     result = 0
     for part_number, adjacent in get_part_numbers(data):
         if any(c in symbol_coords for c in adjacent):
@@ -38,7 +37,6 @@ def part_b(data: str) -> int:
     for part_number, adjacent in get_part_numbers(data):
         for coord in star_symbols & set(adjacent):
             adjacent_part_numbers[coord].append(part_number)
-
     return sum(math.prod(pns) for pns in adjacent_part_numbers.values() if len(pns) == 2)
 
 
