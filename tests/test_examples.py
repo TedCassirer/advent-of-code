@@ -8,13 +8,13 @@ here = pathlib.Path(__file__).parent.resolve()
 input_files = sorted(here.glob("fixtures/20*/*.txt"))
 
 
-def path2id(input_file) -> str:
-    *pre, year, fname = input_file.parts
-    return f"{year} - {fname[:-4]}"
+def path2id(input_file: pathlib.Path) -> str:
+    *pre, year, file_name = input_file.parts
+    return f"{year=} - {file_name=}"
 
 
 @pytest.mark.parametrize("input_file", input_files, ids=path2id)
-def test_examples(input_file) -> None:
+def test_examples(input_file: pathlib.Path) -> None:
     *pre, year, fname = input_file.parts
     year = int(year)
     day = int(fname[:-4])
