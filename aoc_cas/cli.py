@@ -45,4 +45,13 @@ def init_challenge(year: int, day: int) -> None:
 
     test_folder = Path.cwd() / f"tests/fixtures/{year}"
     test_folder.mkdir(exist_ok=True)
-    test_folder.joinpath(f"{day}.txt").touch()
+
+    fixtures = []
+    puzzle = Puzzle(year, day)
+    for example in puzzle.examples:
+        data = example.input_data
+        ans_a = example.answer_a if example.answer_a is not None else "-"
+        ans_b = example.answer_b if example.answer_b is not None else "-"
+        fixtures.append(f"{data}\n{ans_a}\n{ans_b}")
+    with open(test_folder.joinpath(f"{day}.txt"), "w") as fixture:
+        fixture.write("\n===\n".join(fixtures))
