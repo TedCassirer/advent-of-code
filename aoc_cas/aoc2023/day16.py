@@ -1,68 +1,39 @@
 import dataclasses
-from enum import Enum
-from functools import cache
-from typing import Self, Sequence
 
-
-class Direction(Enum):
-    UP = (-1, 0)
-    LEFT = (0, -1)
-    DOWN = (1, 0)
-    RIGHT = (0, 1)
-
-
-@dataclasses.dataclass(frozen=True)
-class Coordinate:
-    y: int
-    x: int
-
-    @cache
-    @staticmethod
-    def create(y: int, x: int) -> "Coordinate":
-        return Coordinate(y, x)
-
-    def move(self, dir: Direction, k: int = 1) -> Self:
-        return Coordinate.create(self.y + dir.value[0] * k, self.x + dir.value[1] * k)
-
+from aoc_cas.common import Direction, Coordinate, DIR_UP, DIR_RIGHT, DIR_LEFT, DIR_DOWN
 
 reflections: dict[str, dict[Direction, tuple[Direction, ...]]] = {
     "/": {
-        Direction.UP: (Direction.RIGHT,),
-        Direction.LEFT: (Direction.DOWN,),
-        Direction.DOWN: (Direction.LEFT,),
-        Direction.RIGHT: (Direction.UP,),
+        DIR_UP: (DIR_RIGHT,),
+        DIR_LEFT: (DIR_DOWN,),
+        DIR_DOWN: (DIR_LEFT,),
+        DIR_RIGHT: (DIR_UP,),
     },
     "\\": {
-        Direction.UP: (Direction.LEFT,),
-        Direction.LEFT: (Direction.UP,),
-        Direction.DOWN: (Direction.RIGHT,),
-        Direction.RIGHT: (Direction.DOWN,),
+        DIR_UP: (DIR_LEFT,),
+        DIR_LEFT: (DIR_UP,),
+        DIR_DOWN: (DIR_RIGHT,),
+        DIR_RIGHT: (DIR_DOWN,),
     },
     "|": {
-        Direction.UP: (Direction.UP,),
-        Direction.LEFT: (Direction.UP, Direction.DOWN),
-        Direction.DOWN: (Direction.DOWN,),
-        Direction.RIGHT: (Direction.UP, Direction.DOWN),
+        DIR_UP: (DIR_UP,),
+        DIR_LEFT: (DIR_UP, DIR_DOWN),
+        DIR_DOWN: (DIR_DOWN,),
+        DIR_RIGHT: (DIR_UP, DIR_DOWN),
     },
     "-": {
-        Direction.UP: (Direction.LEFT, Direction.RIGHT),
-        Direction.LEFT: (Direction.LEFT,),
-        Direction.DOWN: (Direction.LEFT, Direction.RIGHT),
-        Direction.RIGHT: (Direction.RIGHT,),
+        DIR_UP: (DIR_LEFT, DIR_RIGHT),
+        DIR_LEFT: (DIR_LEFT,),
+        DIR_DOWN: (DIR_LEFT, DIR_RIGHT),
+        DIR_RIGHT: (DIR_RIGHT,),
     },
     ".": {
-        Direction.UP: (Direction.UP,),
-        Direction.LEFT: (Direction.LEFT,),
-        Direction.DOWN: (Direction.DOWN,),
-        Direction.RIGHT: (Direction.RIGHT,),
+        DIR_UP: (DIR_UP,),
+        DIR_LEFT: (DIR_LEFT,),
+        DIR_DOWN: (DIR_DOWN,),
+        DIR_RIGHT: (DIR_RIGHT,),
     },
 }
-
-
-@dataclasses.dataclass(frozen=True)
-class Light:
-    pos: Coordinate
-    dir: Direction
 
 
 def calculate_energized_tiles(board: list[str], start_pos: Coordinate, start_dir: Direction) -> int:
@@ -87,16 +58,16 @@ def calculate_energized_tiles(board: list[str], start_pos: Coordinate, start_dir
 def part_a(data: str) -> int:
     board = data.splitlines()
 
-    return calculate_energized_tiles(board, Coordinate.create(0, 0), Direction.RIGHT)
+    return calculate_energized_tiles(board, Coordinate.create(0, 0), DIR_RIGHT)
 
 
 def part_b(data: str) -> int:
     board = data.splitlines()
     M, N = len(board), len(board[0])
-    top = max(calculate_energized_tiles(board, Coordinate.create(0, x), Direction.DOWN) for x in range(N))
-    bottom = max(calculate_energized_tiles(board, Coordinate.create(M - 1, x), Direction.UP) for x in range(N))
-    left = max(calculate_energized_tiles(board, Coordinate.create(y, 0), Direction.RIGHT) for y in range(M))
-    right = max(calculate_energized_tiles(board, Coordinate.create(y, N - 1), Direction.LEFT) for y in range(M))
+    top = max(calculate_energized_tiles(board, Coordinate.create(0, x), DIR_DOWN) for x in range(N))
+    bottom = max(calculate_energized_tiles(board, Coordinate.create(M - 1, x), DIR_UP) for x in range(N))
+    left = max(calculate_energized_tiles(board, Coordinate.create(y, 0), DIR_RIGHT) for y in range(M))
+    right = max(calculate_energized_tiles(board, Coordinate.create(y, N - 1), DIR_LEFT) for y in range(M))
 
     return max((top, bottom, left, right))
 
