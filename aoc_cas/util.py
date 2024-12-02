@@ -12,6 +12,7 @@ def solve_with_examples(year: int, day: int) -> None:
     mod = load_module(year, day)
     puzzle = Puzzle(year, day)
     print(f"Testing example data")
+    puzzle.prose0_path.unlink(missing_ok=True)
     for example in puzzle.examples:
         print(f"\n{example.input_data}\n")
         if example.answer_a is not None:
