@@ -9,17 +9,22 @@ def load_module(year: int, day: int):
 
 
 def solve_with_examples(year: int, day: int) -> None:
-    mod = load_module(year, day)
     puzzle = Puzzle(year, day)
     print(f"Testing example data")
+
     puzzle.prose0_path.unlink(missing_ok=True)
     for example in puzzle.examples:
-        print(f"\n{example.input_data}\n")
-        if example.answer_a is not None:
-            part_a_result = str(mod.part_a(example.input_data))
-            correct = part_a_result == example.answer_a
-            print(f"{'❌✅'[correct]} [Part A] Actual: {part_a_result} - Expected: {example.answer_a}")
-        if example.answer_b is not None:
-            part_b_result = str(mod.part_b(example.input_data))
-            correct = part_b_result == example.answer_b
-            print(f"{'❌✅'[correct]} [Part B] Actual: {part_b_result} - Expected: {example.answer_b}\n")
+        solve_with_data(year, day, example.input_data, answer_a=example.answer_a, answer_b=example.answer_b)
+
+
+def solve_with_data(year: int, day: int, input_data: str, *, answer_a: object, answer_b: object = None) -> None:
+    mod = load_module(year, day)
+    print(f"\n{input_data}\n")
+    if answer_a is not None:
+        part_a_result = str(mod.part_a(input_data))
+        correct = part_a_result == str(answer_a)
+        print(f"{'❌✅'[correct]} [Part A] Actual: {part_a_result} - Expected: {answer_a}")
+    if answer_b is not None:
+        part_b_result = str(mod.part_b(input_data))
+        correct = part_b_result == str(answer_b)
+        print(f"{'❌✅'[correct]} [Part B] Actual: {part_b_result} - Expected: {answer_b}\n")
