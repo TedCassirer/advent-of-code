@@ -8,7 +8,18 @@ def load_module(year: int, day: int):
     return importlib.import_module(module_name)
 
 
-def solve_with_examples(year: int, day: int) -> None:
+def solve_with_real_input_data(year: int, day: int) -> None:
+    puzzle = Puzzle(year, day)
+    mod = load_module(year, day)
+    part_a_result = str(mod.part_a(puzzle.input_data))
+    part_b_result = str(mod.part_b(puzzle.input_data))
+
+    print(f"\nReal data input\n")
+    print(f"[Part A] {part_a_result}")
+    print(f"[Part B] {part_b_result}")
+
+
+def solve_with_example_data(year: int, day: int) -> None:
     puzzle = Puzzle(year, day)
     print(f"Testing example data")
 

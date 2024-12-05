@@ -64,7 +64,7 @@ def part_b(data: str) -> int:
 
 
 if __name__ == "__main__":
-    from aoc_cas.util import solve_with_examples
+    from aoc_cas.util import solve_with_example_data
 
-    solve_with_examples(year=2023, day=13)
+    solve_with_example_data(year=2023, day=13)
 ["#.##..##." "..#.##.#." "##......#" "##......#" "..#.##.#." "..##..##." "#.#.##.#."]

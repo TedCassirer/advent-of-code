@@ -24,8 +24,10 @@ def solve(year: int, day: int, submit: bool) -> None:
     print(f"PartA: {part_a_result}")
     print(f"PartB: {part_b_result}")
     if submit:
-        puzzle.answer_a = part_a_result
-        puzzle.answer_b = part_b_result
+        if part_a_result is not None:
+            puzzle.answer_a = part_a_result
+        if part_b_result is not None:
+            puzzle.answer_b = part_b_result
 
 
 @main.command()
