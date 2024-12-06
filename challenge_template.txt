@@ -6,6 +6,6 @@ def part_b(data: str) -> int:
     pass
 
 if __name__ == "__main__":
-    from aoc_cas.util import solve_with_examples
+    from aoc_cas.util import solve_with_example_data
 
-    solve_with_examples(year={year}, day={day})
+    solve_with_example_data(year={year}, day={day})

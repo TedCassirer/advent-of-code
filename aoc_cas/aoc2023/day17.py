@@ -36,11 +36,11 @@ def a_star(graph: list[list[int]], start: Coordinate, min_moves: int, max_moves:
             return cost
         seen[coord].add(dir)
 
-        left_dir = dir.rotate(left=True)
+        left_dir = dir.turn_left()
         for est, d_cost, c in neighbours(coord, left_dir):
             heapq.heappush(queue, (est, cost + d_cost, c, left_dir))
 
-        right_dir = dir.rotate(left=False)
+        right_dir = dir.turn_right()
         for est, d_cost, c in neighbours(coord, right_dir):
             heapq.heappush(queue, (est, cost + d_cost, c, right_dir))
     raise ValueError("Unable to find a solution")

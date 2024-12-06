@@ -1,6 +1,8 @@
 import dataclasses
 from functools import cache
-from typing import Self
+import typing as t
+
+T = t.TypeVar("T")
 
 
 @dataclasses.dataclass(frozen=True)
@@ -14,13 +16,13 @@ class Direction:
     def create(dy: int, dx: int) -> "Direction":
         return Direction(dy, dx)
 
-    def rotate(self, left: bool = True) -> Self:
-        if left:
-            return Direction.create(dx=self.dy, dy=-self.dx)
-        else:
-            return Direction.create(dx=-self.dy, dy=self.dx)
+    def turn_right(self) -> t.Self:
+        return Direction.create(dx=-self.dy, dy=self.dx)
 
-    def __lt__(self, other: Self) -> bool:
+    def turn_left(self) -> t.Self:
+        return Direction.create(dx=self.dy, dy=-self.dx)
+
+    def __lt__(self, other: t.Self) -> bool:
         if self.dy == other.dy:
             return self.dx < other.dx
         return self.dy < other.dy
@@ -43,13 +45,44 @@ class Coordinate:
     def create(y: int, x: int) -> "Coordinate":
         return Coordinate(y, x)
 
-    def move(self, dir: Direction, k: int = 1) -> Self:
+    def move(self, dir: Direction, k: int = 1) -> t.Self:
         return Coordinate.create(self.y + dir.dy * k, self.x + dir.dx * k)
 
-    def md(self, other: Self) -> int:
+    def md(self, other: t.Self) -> int:
         return abs(other.x - self.x) + abs(other.y - self.y)
 
-    def __lt__(self, other: Self) -> bool:
+    def __lt__(self, other: t.Self) -> bool:
         if self.y == other.y:
             return self.x < other.x
         return self.y < other.y
+
+
+class Grid(t.Generic[T]):
+    def __init__(self, rows: t.MutableSequence[t.MutableSequence[T]]):
+        self._grid = rows
+        self.M = len(rows)
+        self.N = len(rows[0])
+
+    def __getitem__(self, c: Coordinate) -> T:
+        return self._grid[c.y][c.x]
+
+    def __setitem__(self, c: Coordinate, value: T) -> None:
+        self._grid[c.y][c.x] = value
+
+    def in_bounds(self, coord: Coordinate) -> bool:
+        return 0 <= coord.y < self.M and 0 <= coord.x < self.N
+
+    def get(self, i: Coordinate, default: T | None = None) -> T | None:
+        if self.in_bounds(i):
+            return self._grid[i.y][i.x]
+        return default
+
+    def rows(self) -> t.Sequence[t.Sequence[T]]:
+        return list(self._grid)
+
+    def find(self, val: T) -> Coordinate | None:
+        for y, row in enumerate(self._grid):
+            for x, v in enumerate(row):
+                if v == val:
+                    return Coordinate.create(y, x)
+        return None
