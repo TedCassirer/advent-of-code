@@ -19,16 +19,16 @@ def solve_with_real_input_data(year: int, day: int) -> None:
     print(f"[Part B] {part_b_result}")
 
 
-def solve_with_example_data(year: int, day: int) -> None:
+def solve_with_example_input(year: int, day: int) -> None:
     puzzle = Puzzle(year, day)
     print(f"Testing example data")
 
     puzzle.prose0_path.unlink(missing_ok=True)
     for example in puzzle.examples:
-        solve_with_data(year, day, example.input_data, answer_a=example.answer_a, answer_b=example.answer_b)
+        solve_with_input(year, day, example.input_data, answer_a=example.answer_a, answer_b=example.answer_b)
 
 
-def solve_with_data(year: int, day: int, input_data: str, *, answer_a: object, answer_b: object = None) -> None:
+def solve_with_input(year: int, day: int, input_data: str, *, answer_a: object, answer_b: object = None) -> None:
     mod = load_module(year, day)
     print(f"\n{input_data}\n")
     if answer_a is not None:

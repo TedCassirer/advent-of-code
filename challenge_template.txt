@@ -1,11 +1,11 @@
-def part_a(data: str) -> int:
+def part_a(input: str) -> int:
     pass
 
 
-def part_b(data: str) -> int:
+def part_b(input: str) -> int:
     pass
 
 if __name__ == "__main__":
-    from aoc_cas.util import solve_with_example_data
+    from aoc_cas.util import solve_with_example_input
 
-    solve_with_example_data(year={year}, day={day})
+    solve_with_example_input(year={year}, day={day})

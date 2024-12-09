@@ -1,4 +1,4 @@
-from aoc_cas.util import solve_with_data
+from aoc_cas.util import solve_with_input
 
 UP = (-1, 0)
 DOWN = (1, 0)
@@ -72,4 +72,4 @@ SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX
 """.strip()
-    solve_with_data(2024, 4, data, answer_a=18, answer_b=9)
+    solve_with_input(2024, 4, data, answer_a=18, answer_b=9)

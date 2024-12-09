@@ -36,6 +36,6 @@ def part_b(data) -> int:
 
 
 if __name__ == "__main__":
-    from aoc_cas.util import solve_with_example_data
+    from aoc_cas.util import solve_with_example_input
 
-    solve_with_example_data(2023, 1)
+    solve_with_example_input(2023, 1)

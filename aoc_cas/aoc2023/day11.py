@@ -59,6 +59,6 @@ def part_b(data: str, expansion: int = 1000000) -> int:
 
 
 if __name__ == "__main__":
-    from aoc_cas.util import solve_with_example_data
+    from aoc_cas.util import solve_with_example_input
 
-    solve_with_example_data(year=2023, day=11)
+    solve_with_example_input(year=2023, day=11)
