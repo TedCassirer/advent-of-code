@@ -25,7 +25,7 @@ def getSleepEvents():
             yield currentGuard, sleepStart, ts
             sleepStart = None
         elif event == "falls asleep":
-            assert sleepStart == None
+            assert sleepStart is None
             sleepStart = ts
         else:
             currentGuard = getGuardId(event)

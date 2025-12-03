@@ -1,5 +1,3 @@
-import dataclasses
-
 from aoc_cas.common import Direction, Coordinate, DIR_UP, DIR_RIGHT, DIR_LEFT, DIR_DOWN
 
 reflections: dict[str, dict[Direction, tuple[Direction, ...]]] = {

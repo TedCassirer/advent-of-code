@@ -37,7 +37,7 @@ def part_b(data):
 
     ingredientsWithAllergens = set.union(*couldContainAllergen.values())
     allIngredients = {i for ingredients, allergens in food for i in ingredients}
-    allergenFree = allIngredients - ingredientsWithAllergens
+    allIngredients - ingredientsWithAllergens
 
     seen = set()
     combos = []

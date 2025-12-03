@@ -1,7 +1,6 @@
 import re
 from dataclasses import dataclass
 from itertools import combinations, product
-from collections import deque
 import heapq
 from functools import lru_cache
 
@@ -135,7 +134,6 @@ class State:
 
 
 def getState(data):
-    floors = []
     chips = []
     generators = []
     for line in data.splitlines():

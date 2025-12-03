@@ -9,7 +9,6 @@ def instructions(*inputs):
 def gogoSpringyBoi(program, inputs):
     vm = IntCodeComputerVM(program)
     vm.input_provided_from(inputs)
-    s = []
     row = ""
     for r in vm.run():
         if r > 0x110000:

@@ -67,7 +67,10 @@ def search(graph, flowRates, time, toVisit):
             pl = flowRates[p2] * (time - steps - 1)
             tv = toVisit - {p2}
             est = estimate(flowRates, time - steps - 1, tv)
-            heapq.heappush(toSearch, (pressureLost - pl - est, pressureLost - pl, time - steps - 1, p2, tv))
+            heapq.heappush(
+                toSearch,
+                (pressureLost - pl - est, pressureLost - pl, time - steps - 1, p2, tv),
+            )
     return maxPressureLost
 
 

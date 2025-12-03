@@ -1,6 +1,5 @@
 from itertools import chain, product
 from utils import readData, timeIt
-from itertools import chain, product
 
 
 class Rectangle:
@@ -15,7 +14,12 @@ class Rectangle:
         return other.x1 < self.x2 and (other.y1 <= self.y1 <= other.y2 or self.y1 <= other.y1 <= self.y2)
 
     def getOverlap(self, other):
-        return Rectangle(max(self.x1, other.x1), min(self.x2, other.x2), max(self.y1, other.y1), min(self.y2, other.y2))
+        return Rectangle(
+            max(self.x1, other.x1),
+            min(self.x2, other.x2),
+            max(self.y1, other.y1),
+            min(self.y2, other.y2),
+        )
 
     def breakDown(self):
         yield from product(range(self.x1, self.x2), range(self.y1, self.y2))

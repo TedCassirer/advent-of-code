@@ -74,7 +74,6 @@ def part_a():
         NodeGroup(id, (x, y))
     NodeGroup.X = X + 1
     NodeGroup.Y = Y + 1
-    mahGroups = NodeGroup.groups
     while NodeGroup.groups:
         NodeGroup.reserveNext()
         NodeGroup.advance()

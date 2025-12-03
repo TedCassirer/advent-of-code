@@ -1,4 +1,4 @@
-from .IntCodeComputer import IntCodeComputerVM, generator_of
+from .IntCodeComputer import IntCodeComputerVM
 from itertools import permutations
 
 

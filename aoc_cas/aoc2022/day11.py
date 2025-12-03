@@ -44,7 +44,9 @@ class Monkey:
         testDiv = int(testLine[21:])
         ifTrue = int(ifTrueLine[29:])
         ifFalse = int(ifFalseLine[30:])
-        test = lambda v: ifTrue if v % testDiv == 0 else ifFalse
+
+        def test(v):
+            return ifTrue if v % testDiv == 0 else ifFalse
 
         return Monkey(id=id, operation=operation, test=test, items=items, div=testDiv)
 

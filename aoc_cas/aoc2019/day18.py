@@ -2,7 +2,7 @@ from functools import lru_cache
 import heapq
 from dataclasses import dataclass, replace
 from typing import Set, Tuple
-from collections import defaultdict, deque
+from collections import deque
 
 
 def getMaze(data):
@@ -166,7 +166,7 @@ def aStarSolve(maze, start, estimateCost, path=False):
                 continue
             seen[n2] = totalCost
             if path:
-                np = p + [n2]
+                p + [n2]
                 heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, p + [n2]))
             else:
                 heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, p))

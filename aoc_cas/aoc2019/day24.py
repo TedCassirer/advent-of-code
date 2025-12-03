@@ -1,6 +1,3 @@
-import time
-
-
 class Grid:
     def __init__(self, board):
         self.board = board

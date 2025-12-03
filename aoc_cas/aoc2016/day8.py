@@ -17,7 +17,7 @@ def doThing(line, display):
             for x in range(cols):
                 display[y][x] = "#"
     else:
-        M, N = len(display), len(display[0])
+        _M, _N = len(display), len(display[0])
         _, axis, index, _, amount = line.split(" ")
         index = int(index.split("=")[-1])
         amount = int(amount)

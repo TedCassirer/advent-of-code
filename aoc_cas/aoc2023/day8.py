@@ -16,7 +16,10 @@ def parse_instructions(data: str) -> tuple[Iterable[int], dict[str, tuple[str, s
 
 
 def steps_to_reach_goal(
-    start: str, is_goal: Callable[[str], bool], moves: Iterable[int], instructions: dict[str, tuple[str, str]]
+    start: str,
+    is_goal: Callable[[str], bool],
+    moves: Iterable[int],
+    instructions: dict[str, tuple[str, str]],
 ) -> int:
     curr = start
     steps = 0
@@ -29,13 +32,19 @@ def steps_to_reach_goal(
 
 def part_a(data: str) -> int:
     moves, instructions = parse_instructions(data)
-    is_goal = lambda p: p == "ZZZ"
+
+    def is_goal(p):
+        return p == "ZZZ"
+
     return steps_to_reach_goal("AAA", is_goal, moves, instructions)
 
 
 def part_b(data: str) -> int:
     moves, instructions = parse_instructions(data)
-    is_goal = lambda p: p.endswith("Z")
+
+    def is_goal(p):
+        return p.endswith("Z")
+
     start_positions = [pos for pos in instructions.keys() if pos.endswith("A")]
     steps = []
     for pos in start_positions:

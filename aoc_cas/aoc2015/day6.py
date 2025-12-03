@@ -15,11 +15,20 @@ def part_a(data):
     lights = [[0] * 1000 for _ in range(1000)]
     for action, affectedLights in map(parseLine, data.splitlines()):
         if action == "turn on":
-            op = lambda n: 1
+
+            def op(n):
+                return 1
+
         elif action == "turn off":
-            op = lambda n: 0
+
+            def op(n):
+                return 0
+
         else:
-            op = lambda n: n ^ 1
+
+            def op(n):
+                return n ^ 1
+
         for y, x in affectedLights:
             lights[y][x] = op(lights[y][x])
     return sum((sum(row) for row in lights))
@@ -29,11 +38,20 @@ def part_b(data):
     lights = [[0] * 1000 for _ in range(1000)]
     for action, affectedLights in map(parseLine, data.splitlines()):
         if action == "turn on":
-            op = lambda n: n + 1
+
+            def op(n):
+                return n + 1
+
         elif action == "turn off":
-            op = lambda n: max(0, n - 1)
+
+            def op(n):
+                return max(0, n - 1)
+
         else:
-            op = lambda n: n + 2
+
+            def op(n):
+                return n + 2
+
         for y, x in affectedLights:
             lights[y][x] = op(lights[y][x])
     return sum((sum(row) for row in lights))

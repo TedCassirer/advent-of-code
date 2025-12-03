@@ -1,4 +1,4 @@
-from .IntCodeComputer import IntCodeComputerVM, manual_input
+from .IntCodeComputer import IntCodeComputerVM
 from queue import deque
 from time import sleep
 
@@ -125,7 +125,7 @@ class RoboBoy:
 
     def choose_direction(self):
         while True:
-            path = self.bff_search_for_tile(self.pos, lambda tile: tile == None)
+            path = self.bff_search_for_tile(self.pos, lambda tile: tile is None)
             if not path:
                 return
             for d in path:

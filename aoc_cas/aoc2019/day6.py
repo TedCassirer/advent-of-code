@@ -39,7 +39,7 @@ def find_path_to_node(grand_dad, target):
             return set()
         for kid in dad.kids:
             path = _find_path(kid)
-            if path != None:
+            if path is not None:
                 path.add(dad.name)
                 return path
 

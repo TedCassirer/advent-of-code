@@ -29,7 +29,6 @@ def getNumbers(data):
 
 def getPacks(numbers, N):
     target = sum(numbers) // N
-    group1Length = 1 << 32
     group1s = sorted(getGroups(numbers, target), key=len)
 
     candidates = []

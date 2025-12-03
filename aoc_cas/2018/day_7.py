@@ -1,5 +1,4 @@
 from utils import readData, timeIt
-from collections import defaultdict
 import heapq
 
 

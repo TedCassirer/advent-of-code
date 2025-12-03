@@ -30,7 +30,9 @@ def part_a(data: str) -> int:
 
 
 def part_b(data: str) -> int:
-    concatenate: Operator = lambda a, b: int(f"{a}{b}")
+    def concatenate(a, b):
+        return int(f"{a}{b}")
+
     val_sum = 0
     for val, nums in _parse_input(data):
         if _can_reach_val(val, nums, [add, mul, concatenate]):

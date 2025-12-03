@@ -21,7 +21,7 @@ class Node:
             return Node(left=left, right=right)
 
     def isVal(self):
-        return self.val != None
+        return self.val is not None
 
     def magnitude(self):
         if self.isVal():

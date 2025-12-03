@@ -18,5 +18,5 @@ def part_a(data):
 
 def part_b(data):
     return sum(
-        (pwd[policy.low - 1] == policy.char) ^ (pwd[policy.high - 1] == policy.char) for policy, pwd, in parseData(data)
+        (pwd[policy.low - 1] == policy.char) ^ (pwd[policy.high - 1] == policy.char) for policy, pwd in parseData(data)
     )

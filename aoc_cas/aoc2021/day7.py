@@ -26,7 +26,9 @@ def binarySearch(f, lo, hi):
 
 def part_a(data):
     positions = [*map(int, data.split(","))]
-    fuelCost = lambda x: sum(abs(p - x) for p in positions)
+
+    def fuelCost(x):
+        return sum(abs(p - x) for p in positions)
 
     lo, hi = min(positions), max(positions)
     optimalPosition = binarySearch(deriv(fuelCost), lo, hi)
@@ -43,7 +45,9 @@ def part_b(data):
 
     positions = [*map(int, data.split(","))]
     fuelCosts = [*map(fuelCostFunction, positions)]
-    fuelCost = lambda x: int(sum(f(x) for f in fuelCosts))
+
+    def fuelCost(x):
+        return int(sum(f(x) for f in fuelCosts))
 
     lo, hi = min(positions), max(positions)
     optimalPosition = binarySearch(deriv(fuelCost), lo, hi)

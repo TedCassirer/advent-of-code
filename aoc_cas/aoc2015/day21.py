@@ -13,7 +13,11 @@ class Equipment:
         return Equipment(self.cost + other.cost, self.damage + other.damage, self.armor + other.armor)
 
     def __lt__(self, other):
-        return (self.cost, self.damage, self.armor) < (other.cost, other.damage, other.armor)
+        return (self.cost, self.damage, self.armor) < (
+            other.cost,
+            other.damage,
+            other.armor,
+        )
 
 
 Fighter = namedtuple("Fighter", ("hp", "damage", "armor"))

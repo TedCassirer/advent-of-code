@@ -26,23 +26,41 @@ def parseLine(line):
     signalString, assignedValue = line.split(" -> ")
     signalParts = signalString.split(" ")
     if len(signalParts) == 1:
-        op = lambda n: n
+
+        def op(n):
+            return n
+
         values = signalParts
     elif len(signalParts) == 2:
         assert signalParts[0] == "NOT"
-        op = lambda n: ~n
+
+        def op(n):
+            return ~n
+
         values = [signalParts[1]]
     else:
         v1, operation, v2 = signalParts
         values = [v1, v2]
         if operation == "AND":
-            op = lambda a, b: a & b
+
+            def op(a, b):
+                return a & b
+
         elif operation == "OR":
-            op = lambda a, b: a | b
+
+            def op(a, b):
+                return a | b
+
         elif operation == "RSHIFT":
-            op = lambda a, b: a >> b
+
+            def op(a, b):
+                return a >> b
+
         elif operation == "LSHIFT":
-            op = lambda a, b: a << b
+
+            def op(a, b):
+                return a << b
+
     signal = Signal(op, *values)
     return Value(assignedValue, signal)
 

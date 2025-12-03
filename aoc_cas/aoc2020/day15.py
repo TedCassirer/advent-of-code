@@ -1,6 +1,3 @@
-from itertools import islice
-
-
 def memoryGame(startingNumbers, n):
     seen = [0] * n
     for turn, nextNumber in enumerate(startingNumbers):

@@ -89,7 +89,16 @@ def eq(v1, v2):
     return evaluate(v1) == evaluate(v2)
 
 
-OPERATORS = {0: sumOp, 1: product, 2: minimum, 3: maximum, 4: literalValue, 5: gt, 6: lt, 7: eq}
+OPERATORS = {
+    0: sumOp,
+    1: product,
+    2: minimum,
+    3: maximum,
+    4: literalValue,
+    5: gt,
+    6: lt,
+    7: eq,
+}
 
 
 def evaluate(packet):

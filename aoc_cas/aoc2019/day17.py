@@ -1,4 +1,4 @@
-from .IntCodeComputer import IntCodeComputerVM, manual_input, read_program
+from .IntCodeComputer import IntCodeComputerVM, read_program
 from itertools import chain
 
 animate = False

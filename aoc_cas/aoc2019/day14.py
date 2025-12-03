@@ -41,7 +41,7 @@ def get_ores_required_for(recipes, required):
             quantity_required = quantity - from_leftover
             recipe = recipes[chem]
             batches = ceil(quantity_required / recipe.quantity)
-            leftover_quantity = recipe.quantity - quantity_required % recipe.quantity
+            recipe.quantity - quantity_required % recipe.quantity
             leftover[chem] += batches * recipe.quantity - quantity_required
             required.update({name: q * batches for name, q in recipe.required_chemicals.items()})
     return ores_required

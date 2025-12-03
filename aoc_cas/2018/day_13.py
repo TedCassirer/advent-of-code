@@ -92,7 +92,7 @@ def part_b():
     while True:
         trains = sorted(trains, key=lambda t: t.pos)
         for train in trains[:]:
-            if not train.pos in taken:
+            if train.pos not in taken:
                 continue
             taken.pop(train.pos)
             newPos = train.tick(graph)

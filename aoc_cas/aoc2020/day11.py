@@ -4,7 +4,7 @@ OCCUPIED = "#"
 
 
 def tick(grid, rule, seatsToConnected):
-    Y, X = len(grid), len(grid[0])
+    _Y, _X = len(grid), len(grid[0])
     newGrid = [row.copy() for row in grid]
     totalSeatOccupied = 0
     for coord, connected in seatsToConnected.items():

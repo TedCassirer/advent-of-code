@@ -3,9 +3,9 @@ from functools import cmp_to_key
 
 
 def compare(p1, p2):
-    if p1 == None:
+    if p1 is None:
         return -1
-    if p2 == None:
+    if p2 is None:
         return 1
     if isinstance(p1, int):
         if isinstance(p2, int):
