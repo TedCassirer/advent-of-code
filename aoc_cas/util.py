@@ -1,4 +1,5 @@
 import importlib
+from itertools import zip_longest
 
 from aocd.models import Puzzle
 
@@ -19,18 +20,20 @@ def solve_with_real_input_data(year: int, day: int) -> None:
     print(f"[Part B] {part_b_result}")
 
 
-def solve_with_example_input(year: int, day: int, *, answer_a: object = None, answer_b: object = None) -> None:
+def solve_with_example_input(
+    year: int, day: int, *, answers_a: list[object] = (), answers_b: list[object] = ()
+) -> None:
     puzzle = Puzzle(year, day)
     print("Testing example data")
 
     puzzle.prose0_path.unlink(missing_ok=True)
-    for example in puzzle.examples:
+    for example, ans_a, ans_b in zip_longest(puzzle.examples, answers_a, answers_b):
         solve_with_input(
             year,
             day,
             example.input_data,
-            answer_a=answer_a or example.answer_a,
-            answer_b=answer_b or example.answer_b,
+            answer_a=ans_a or example.answer_a,
+            answer_b=ans_b or example.answer_b,
         )
 
 

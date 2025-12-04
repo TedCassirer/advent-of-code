@@ -35,4 +35,4 @@ def part_b(input: str) -> int:
 if __name__ == "__main__":
     from aoc_cas.util import solve_with_example_input
 
-    solve_with_example_input(year=2025, day=1, answer_b=6)
+    solve_with_example_input(year=2025, day=1, answers_b=[6])
