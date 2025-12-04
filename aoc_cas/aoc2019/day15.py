@@ -171,7 +171,7 @@ def part_a(data):
         robo = IntCodeComputerVM(read_file(data))
         boy = RoboBoy(robo)
         boy.gogo_robo_boy()
-    except:
+    except Exception:
         pass
     return len(boy.bff_search_for_tile((0, 0), lambda tile: tile.type == TileType.OXYGEN_TANK))
 
@@ -181,7 +181,7 @@ def part_b(data):
         robo = IntCodeComputerVM(read_file(data))
         boy = RoboBoy(robo)
         boy.gogo_robo_boy()
-    except:
+    except Exception:
         pass
 
     return boy.spread_oxygen({boy.grid[boy.oxygen_pos]})

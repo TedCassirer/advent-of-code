@@ -96,7 +96,7 @@ def mergeTiles(grid):
     image = []
     for row in grid:
         lines = zip(*(t.stripBorders() for t in row))
-        lines = tuple(tuple(l for subline in line for l in subline) for line in lines)
+        lines = tuple(tuple(char for subline in line for char in subline) for line in lines)
         image.extend(lines)
     return image
 
@@ -141,7 +141,7 @@ def part_b(data):
     monsters = countSeaMonsters(image)
     while not (monsters := countSeaMonsters(image) or countSeaMonsters(flipMatrix(image))):
         image = rotateMatrix(image)
-    return sum(l.count("#") for l in image) - seaMonster.count("#") * monsters
+    return sum(row.count("#") for row in image) - seaMonster.count("#") * monsters
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
-echo "Black formatting"
-poetry run black . --check
+echo "Ruff formatting"
+poetry run ruff format --check .

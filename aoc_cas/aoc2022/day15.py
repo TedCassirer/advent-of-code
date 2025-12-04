@@ -45,12 +45,12 @@ def part_b(data, searchSpace=4000000):
     for y, row in enumerate(rows):
         row.sort()
         x = 0
-        for l, r in row:
-            if r <= x:
+        for left_bound, right_bound in row:
+            if right_bound <= x:
                 continue
-            if x + 1 < l:
+            if x + 1 < left_bound:
                 return (x + 1) * 4000000 + y
-            x = max(x, r)
+            x = max(x, right_bound)
 
 
 if __name__ == "__main__":

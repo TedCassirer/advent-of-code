@@ -30,7 +30,14 @@ class Monkey:
 
     @staticmethod
     def parseMonkey(monkeyStuff):
-        idLine, itemsLine, operationLine, testLine, ifTrueLine, ifFalseLine = monkeyStuff.splitlines()
+        (
+            idLine,
+            itemsLine,
+            operationLine,
+            testLine,
+            ifTrueLine,
+            ifFalseLine,
+        ) = monkeyStuff.splitlines()
 
         id = int(idLine[7:-1])
 

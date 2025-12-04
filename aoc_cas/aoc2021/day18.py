@@ -115,7 +115,7 @@ class Node:
 
 
 def parse(nodeData):
-    if type(nodeData) == int:
+    if isinstance(nodeData, int):
         return Node(val=nodeData)
     else:
         return Node(left=parse(nodeData[0]), right=parse(nodeData[1]))

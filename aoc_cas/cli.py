@@ -9,8 +9,7 @@ from . import plugin
 
 
 @click.group()
-def main():
-    ...
+def main(): ...
 
 
 @main.command()

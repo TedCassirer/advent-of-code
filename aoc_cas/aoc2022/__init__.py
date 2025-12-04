@@ -1,1 +1,1 @@
-from aocd import get_data
+"""Advent of Code 2022 solutions package."""

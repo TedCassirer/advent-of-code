@@ -37,7 +37,7 @@ def part_a(data):
     height, width = 6, 25
     fewest_blacks = min(
         get_image_data_layers(data, height, width),
-        key=lambda l: len(list(get_pixels_matching(l, BLACK))),
+        key=lambda layer: len(list(get_pixels_matching(layer, BLACK))),
     )
     whites = count_number_of(WHITE, fewest_blacks)
     transparents = count_number_of(TRANSPARENT, fewest_blacks)

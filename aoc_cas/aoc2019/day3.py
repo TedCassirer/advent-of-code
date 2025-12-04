@@ -44,7 +44,7 @@ def part_a(data):
 
 
 def part_b(data):
-    lines = [{coord: step + 1 for step, coord in enumerate(get_line(movements))} for movements in get_input(data)]
-    crossings = set.intersection(*(set(l.keys()) for l in lines))
-    steps_to_crossing = (sum(l[c] for l in lines) for c in crossings)
+    line_maps = [{coord: step + 1 for step, coord in enumerate(get_line(movements))} for movements in get_input(data)]
+    crossings = set.intersection(*(set(line_map.keys()) for line_map in line_maps))
+    steps_to_crossing = (sum(line_map[c] for line_map in line_maps) for c in crossings)
     return min(steps_to_crossing)
