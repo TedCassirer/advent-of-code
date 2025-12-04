@@ -5,8 +5,9 @@ def hasPairSum(targetSum, numbers):
     seen = set()
     for n in numbers:
         if targetSum - n in seen:
-            return n, targetSum - n
+            return True
         seen.add(n)
+    return False
 
 
 def findWeakness(numbers, preamble):
@@ -18,6 +19,7 @@ def findWeakness(numbers, preamble):
         else:
             recent.popleft()
             recent.append(n)
+    raise ValueError("No weakness found")
 
 
 def findEncryptionWeakness(numbers, preamble):

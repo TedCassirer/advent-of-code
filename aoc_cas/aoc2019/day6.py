@@ -61,4 +61,6 @@ def part_b(data):
     grand_daddy = create_tree(node_name_pairs)
     you_path = find_path_to_node(grand_daddy, "YOU")
     santa_path = find_path_to_node(grand_daddy, "SAN")
+    if you_path is None or santa_path is None:
+        raise ValueError("Unable to locate YOU or SAN in orbit map")
     return len(you_path ^ santa_path)

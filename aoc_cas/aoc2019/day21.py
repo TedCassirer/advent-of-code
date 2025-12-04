@@ -11,6 +11,8 @@ def gogoSpringyBoi(program, inputs):
     vm.input_provided_from(inputs)
     row = ""
     for r in vm.run():
+        if r is None:
+            continue
         if r > 0x110000:
             return r
         else:

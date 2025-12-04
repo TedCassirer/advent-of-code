@@ -7,7 +7,7 @@ testData1 = """
     299
     675
     1456
-"""
+""".strip()
 
 
 def testPartA():

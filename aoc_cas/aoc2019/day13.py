@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import Iterator, Optional, Tuple
+
 from .IntCodeComputer import IntCodeComputerVM
 
 EMPTY = 0
@@ -10,8 +14,9 @@ BALL = 4
 class GameState:
     def __init__(self):
         self.grid = [[EMPTY] * 100 for _ in range(100)]
-        self.paddle_pos = None
-        self.ball_pos = None
+        self.paddle_pos: Optional[Tuple[int, int]] = None
+        self.ball_pos: Optional[Tuple[int, int]] = None
+        self.score = 0
 
     def update(self, x, y, tile):
         if x == -1 and y == 0:
@@ -23,13 +28,17 @@ class GameState:
         elif tile == BALL:
             self.ball_pos = (y, x)
 
-    def get_input(self):
+    def get_input(self) -> Iterator[int]:
         while True:
-            yield (
-                0
-                if self.ball_pos[1] == self.paddle_pos[1]
-                else abs(self.ball_pos[1] - self.paddle_pos[1]) // (self.ball_pos[1] - self.paddle_pos[1])
-            )
+            if self.ball_pos is None or self.paddle_pos is None:
+                yield 0
+                continue
+            ball_x = self.ball_pos[1]
+            paddle_x = self.paddle_pos[1]
+            if ball_x == paddle_x:
+                yield 0
+            else:
+                yield abs(ball_x - paddle_x) // (ball_x - paddle_x)
 
 
 def read_program(data):

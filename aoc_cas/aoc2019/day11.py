@@ -51,7 +51,6 @@ def encode_image(grid):
             decoded_image.append("".join([symbols[s] for s in row]))
         return "\n" + "\n".join(decoded_image)
 
-    canvas
     return to_printable_image(canvas)
 
 

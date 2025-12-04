@@ -10,7 +10,10 @@ myBag = ("shiny", "gold")
 def getBaggyGraph(data):
     contains = defaultdict(dict)
     for line in data.splitlines():
-        outer, rest = bagRegex1.match(line).groups()
+        match = bagRegex1.match(line)
+        if not match:
+            raise ValueError(f"Invalid bag rule: {line}")
+        outer, rest = match.groups()
         outerBag = tuple(outer.split(" "))
         if rest.startswith("no"):
             contains[outerBag] = dict()

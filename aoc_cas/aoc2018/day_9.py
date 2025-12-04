@@ -1,18 +1,26 @@
+from __future__ import annotations
+
+from typing import Optional
+
 from utils import readData, timeIt
 
 
 class LinkedNode:
-    def __init__(self, value):
+    def __init__(self, value: int):
         self.value = value
-        self.prev = None
-        self.next = None
+        self.prev: Optional["LinkedNode"] = None
+        self.next: Optional["LinkedNode"] = None
 
     def remove(self):
+        if self.prev is None or self.next is None:
+            raise RuntimeError("Cannot remove a detached node")
         prev = self.prev
-        self.prev.next = self.next
+        prev.next = self.next
         self.next.prev = prev
 
-    def insertAfter(self, node):
+    def insertAfter(self, node: "LinkedNode"):
+        if self.next is None:
+            raise RuntimeError("Node is not linked")
         node.prev = self
         node.next = self.next
         self.next.prev = node
@@ -32,11 +40,14 @@ class GameBoard:
     def placeMarble(self, value):
         if value % 23 == 0:
             for _ in range(6):
+                assert self.currentMarble.prev is not None
                 self.currentMarble = self.currentMarble.prev
+            assert self.currentMarble.prev is not None
             score = value + self.currentMarble.prev.value
             self.currentMarble.prev.remove()
         else:
             newMarble = LinkedNode(value)
+            assert self.currentMarble.next is not None
             self.currentMarble.next.insertAfter(newMarble)
             self.currentMarble = newMarble
             score = 0
@@ -45,10 +56,12 @@ class GameBoard:
     def __repr__(self):
         current = self.head
         res = []
-        while current.next != self.head:
+        while True:
             res.append(current.value)
-            current = current.next
-        res.append(current.value)
+            next_node = current.next
+            if next_node is None or next_node == self.head:
+                break
+            current = next_node
         return str(self.currentMarble.value) + " | " + str(res)
 
 

@@ -1,3 +1,4 @@
+from __future__ import annotations
 import dataclasses
 from functools import cache
 import typing as t
@@ -13,13 +14,13 @@ class Direction:
 
     @cache
     @staticmethod
-    def create(dy: int, dx: int) -> "Direction":
+    def create(dy: int, dx: int) -> Direction:
         return Direction(dy, dx)
 
-    def turn_right(self) -> t.Self:
+    def turn_right(self) -> Direction:
         return Direction.create(dx=-self.dy, dy=self.dx)
 
-    def turn_left(self) -> t.Self:
+    def turn_left(self) -> Direction:
         return Direction.create(dx=self.dy, dy=-self.dx)
 
     def __lt__(self, other: t.Self) -> bool:
@@ -43,7 +44,7 @@ class Vector:
     def __abs__(self) -> int:
         return abs((self.y**2 + self.x**2) ** 0.5)
 
-    def __mul__(self, k: int) -> t.Self:
+    def __mul__(self, k: int) -> "Vector":
         return Vector(self.y * k, self.x * k)
 
 
@@ -55,22 +56,22 @@ class Coordinate:
 
     @cache
     @staticmethod
-    def create(y: int, x: int) -> "Coordinate":
+    def create(y: int, x: int) -> Coordinate:
         return Coordinate(y, x)
 
-    def move(self, dir: Direction, k: int = 1) -> t.Self:
+    def move(self, dir: Direction, k: int = 1) -> Coordinate:
         return Coordinate.create(self.y + dir.dy * k, self.x + dir.dx * k)
 
-    def md(self, other: t.Self) -> int:
+    def md(self, other: Coordinate) -> int:
         return abs(other.x - self.x) + abs(other.y - self.y)
 
-    def __add__(self, v: Vector) -> t.Self:
+    def __add__(self, v: Vector) -> Coordinate:
         return Coordinate.create(self.y + v.y, self.x + v.x)
 
-    def __sub__(self, other: t.Self) -> Vector:
+    def __sub__(self, other: Coordinate) -> Vector:
         return Vector(self.y - other.y, self.x - other.x)
 
-    def __lt__(self, other: t.Self) -> bool:
+    def __lt__(self, other: Coordinate) -> bool:
         if self.y == other.y:
             return self.x < other.x
         return self.y < other.y

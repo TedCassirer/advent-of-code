@@ -1,0 +1,9 @@
+{
+  "include": [
+    "aoc_cas/**/*.py",
+    "tests/**/*.py"
+  ],
+  "pythonVersion": "3.13",
+  "typeCheckingMode": "basic",
+  "reportMissingTypeStubs": false
+}

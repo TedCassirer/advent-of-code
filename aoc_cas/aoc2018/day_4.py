@@ -8,13 +8,19 @@ timeFormat = "%Y-%m-%d %H:%M"
 
 
 def parseText(text):
-    timestamp, event = parser.search(text).groups()
+    match = parser.search(text)
+    if not match:
+        raise ValueError(f"Unable to parse log line: {text}")
+    timestamp, event = match.groups()
     timestamp = datetime.strptime(timestamp, timeFormat)
     return timestamp, event
 
 
 def getGuardId(event):
-    return int(re.search(r"Guard \#(\d+) begins", event).group(1))
+    match = re.search(r"Guard \#(\d+) begins", event)
+    if not match:
+        raise ValueError(f"Unable to parse guard id from event: {event}")
+    return int(match.group(1))
 
 
 def getSleepEvents():
@@ -22,6 +28,8 @@ def getSleepEvents():
     sleepStart = None
     for ts, event in sorted(map(parseText, readData("2018/data/day_4"))):
         if event == "wakes up":
+            if sleepStart is None or currentGuard is None:
+                raise RuntimeError("Wake event without matching sleep start")
             yield currentGuard, sleepStart, ts
             sleepStart = None
         elif event == "falls asleep":

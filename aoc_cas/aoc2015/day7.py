@@ -1,3 +1,7 @@
+from operator import and_, lshift, or_, rshift
+from typing import Callable
+
+
 class Value:
     def __init__(self, token, signal):
         self.token = token
@@ -25,41 +29,27 @@ class Signal:
 def parseLine(line):
     signalString, assignedValue = line.split(" -> ")
     signalParts = signalString.split(" ")
+    op: Callable[[int], int] | Callable[[int, int], int]
     if len(signalParts) == 1:
-
-        def op(n):
-            return n
-
+        op = lambda n: n
         values = signalParts
     elif len(signalParts) == 2:
         assert signalParts[0] == "NOT"
-
-        def op(n):
-            return ~n
-
+        op = lambda n: ~n
         values = [signalParts[1]]
     else:
         v1, operation, v2 = signalParts
         values = [v1, v2]
         if operation == "AND":
-
-            def op(a, b):
-                return a & b
-
+            op = and_
         elif operation == "OR":
-
-            def op(a, b):
-                return a | b
-
+            op = or_
         elif operation == "RSHIFT":
-
-            def op(a, b):
-                return a >> b
-
+            op = rshift
         elif operation == "LSHIFT":
-
-            def op(a, b):
-                return a << b
+            op = lshift
+        else:
+            raise ValueError(f"Unknown operation: {operation}")
 
     signal = Signal(op, *values)
     return Value(assignedValue, signal)

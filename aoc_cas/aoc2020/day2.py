@@ -7,7 +7,10 @@ regex = re.compile(r"(\d+)-(\d+)\s(\w):\s(\w+)")
 
 def parseData(data):
     for line in data.strip().split("\n"):
-        low, high, c, pwd = regex.match(line).groups()
+        match = regex.match(line)
+        if not match:
+            raise ValueError(f"Invalid policy line: {line}")
+        low, high, c, pwd = match.groups()
         policy = Policy(int(low), int(high), c)
         yield policy, pwd
 

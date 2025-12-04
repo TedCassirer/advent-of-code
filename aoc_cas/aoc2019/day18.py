@@ -1,7 +1,7 @@
 from functools import lru_cache
 import heapq
 from dataclasses import dataclass, replace
-from typing import Set, Tuple
+from typing import FrozenSet, List, Tuple, cast
 from collections import deque
 
 
@@ -38,7 +38,7 @@ class Coordinate:
 class AStarNode1:
     __slots__ = "pos", "remaining"
     pos: Coordinate
-    remaining: Set[Coordinate]
+    remaining: FrozenSet[Coordinate]
 
     def getNeighbours(self, maze):
         for p2 in sorted(self.remaining):
@@ -64,8 +64,8 @@ class AStarNode1:
 @dataclass(frozen=True, eq=True, order=True)
 class AStarNode2:
     __slots__ = "positions", "remaining"
-    positions: Tuple[Coordinate]
-    remaining: Set[Coordinate]
+    positions: Tuple[Coordinate, ...]
+    remaining: FrozenSet[Coordinate]
 
     def getNeighbours(self, maze):
         for p2 in sorted(self.remaining):
@@ -77,8 +77,7 @@ class AStarNode2:
                         continue
                     newPositions = list(self.positions)
                     newPositions[i] = p2
-                    newPositions = tuple(newPositions)
-                    yield stepsToKey, AStarNode2(newPositions, self.remaining - {p2})
+                    yield stepsToKey, AStarNode2(tuple(newPositions), self.remaining - {p2})
                     break
 
     def estimateCost(self, maze):
@@ -128,9 +127,11 @@ class Maze:
         start = Maze.MazeNode(p1)
         res = aStarSolve(self, start, path=True, estimateCost=lambda n: n.pos.manhattanDistance(p2))
         if res:
-            end, steps, path = res
+            _, steps, path = cast(Tuple[object, int, List["Maze.MazeNode"]], res)
             requiredKeys = {
-                self.keyLocations[tile.lower()] for tile in (self.getTile(p.pos) for p in path) if tile.isalpha()
+                self.keyLocations[tile.lower()]
+                for tile in (self.getTile(p.pos) for p in path)
+                if tile and tile.isalpha()
             }
             return steps, requiredKeys
 
@@ -150,7 +151,8 @@ def getNeighbours(maze, node):
 
 
 def aStarSolve(maze, start, estimateCost, path=False):
-    stuff = [(0, 0, start, [])]
+    initial_path: List[Maze.MazeNode] = []
+    stuff = [(0, 0, start, initial_path)]
     seen = dict()
     while stuff:
         _, cost, n1, p = heapq.heappop(stuff)
@@ -165,11 +167,9 @@ def aStarSolve(maze, start, estimateCost, path=False):
             if n2 in seen and seen[n2] <= totalCost:
                 continue
             seen[n2] = totalCost
-            if path:
-                p + [n2]
-                heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, p + [n2]))
-            else:
-                heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, p))
+            new_path = p + [n2] if path else p
+            heapq.heappush(stuff, (totalCost + estimatedCost, totalCost, n2, new_path))
+    raise ValueError("No path found")
 
 
 def part_a(data):

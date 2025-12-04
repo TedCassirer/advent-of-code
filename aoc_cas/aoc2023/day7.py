@@ -11,7 +11,7 @@ HIGH_CARD_B: dict[str, int] = {
 }
 
 
-def hand_strength(matching_label_count: list[int, ...]) -> int:
+def hand_strength(matching_label_count: list[int]) -> int:
     match matching_label_count:
         case [5]:
             return 0
@@ -32,7 +32,7 @@ def hand_strength(matching_label_count: list[int, ...]) -> int:
 
 @dataclasses.dataclass(frozen=True)
 class Hand:
-    cards: tuple[str]
+    cards: tuple[str, ...]
     bid: int
 
     @cache

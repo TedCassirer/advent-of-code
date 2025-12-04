@@ -31,6 +31,9 @@ jobs:
     - name: Ruff lint
       run: |
         poetry run ruff check .
+    - name: Pyright type check
+      run: |
+        poetry run pyright
     - name: Test with pytest
       run: |
         poetry run pytest

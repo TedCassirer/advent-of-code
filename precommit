@@ -2,3 +2,4 @@
 set -euo pipefail
 echo "Ruff formatting"
 poetry run ruff format --check .
+poetry run pyright

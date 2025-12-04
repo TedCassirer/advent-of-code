@@ -1,13 +1,20 @@
-from utils import readData, timeIt
+from __future__ import annotations
+
 from functools import reduce
+from typing import Dict, Iterable, Iterator, Set, Tuple
+
+from utils import readData, timeIt
+
+
+Coordinate = Tuple[int, int]
 
 
 class NodeGroup:
-    nextNeighbors = dict()
-    taken = set()
-    groups = dict()
-    X = 0
-    Y = 0
+    nextNeighbors: Dict[Coordinate, int] = {}
+    taken: Set[Coordinate] = set()
+    groups: Dict[int, "NodeGroup"] = {}
+    X: int = 0
+    Y: int = 0
 
     def __init__(self, id, start):
         self.id = id
@@ -40,7 +47,7 @@ class NodeGroup:
             NodeGroup.taken.add(connection)
             NodeGroup.nextNeighbors.pop(connection)
 
-    def getConnections(self, x, y):
+    def getConnections(self, x: int, y: int) -> Iterator[Coordinate]:
         if (x - 1, y) not in self.connected and (x - 1, y) not in NodeGroup.taken:
             yield (x - 1, y)
         if (x + 1, y) not in self.connected and (x + 1, y) not in NodeGroup.taken:
@@ -79,14 +86,14 @@ def part_a():
         NodeGroup.advance()
 
 
-def getDistance(coord, nodes):
+def getDistance(coord: Coordinate, nodes: Iterable[Coordinate]) -> int:
     distance = 0
     for n in nodes:
         distance += abs(coord[0] - n[0]) + abs(coord[1] - n[1])
     return distance
 
 
-def getConnections(coord):
+def getConnections(coord: Coordinate) -> Iterator[Coordinate]:
     x, y = coord
     yield (x - 1, y)
     yield (x + 1, y)
@@ -94,8 +101,8 @@ def getConnections(coord):
     yield (x, y + 1)
 
 
-def bfs(start, nodes, maxRadius):
-    seen = set()
+def bfs(start: Coordinate, nodes: Iterable[Coordinate], maxRadius: int) -> Set[Coordinate]:
+    seen: Set[Coordinate] = set()
     stack = [start]
     while stack:
         node = stack.pop()

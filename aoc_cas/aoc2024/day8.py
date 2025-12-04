@@ -1,6 +1,5 @@
 import math
-
-from black.trans import defaultdict
+from collections import defaultdict
 
 from aoc_cas.common import Grid, Coordinate, Vector
 

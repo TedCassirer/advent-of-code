@@ -8,7 +8,10 @@ def read_file(data):
 def scanCoord(y, x, program):
     tractorBeam = IntCodeComputerVM(program)
     tractorBeam.input_provided_from(generator_of(x, y))
-    return next(tractorBeam.run())
+    output = next(tractorBeam.run())
+    if output is None:
+        raise RuntimeError("Intcode program produced no output")
+    return output
 
 
 def part_a(data):

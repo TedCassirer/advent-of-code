@@ -1,12 +1,14 @@
-from dataclasses import dataclass
-from typing import Tuple
+from __future__ import annotations
+
 from collections import defaultdict
+from dataclasses import dataclass
+from typing import Iterator, Sequence, Tuple
 
 
 @dataclass(frozen=True, eq=True)
 class Tile:
     id: int
-    data: Tuple[Tuple[str]]
+    data: Tuple[Tuple[str, ...], ...]
 
     @staticmethod
     def createFromData(tileData):
@@ -49,15 +51,15 @@ class Tile:
         return [r[1:-1] for r in self.data[1:-1]]
 
 
-def flipMatrix(matrix):
+def flipMatrix(matrix: Tuple[Tuple[str, ...], ...]) -> Tuple[Tuple[str, ...], ...]:
     return matrix[::-1]
 
 
-def rotateMatrix(matrix):
-    return tuple(zip(*matrix[::-1]))
+def rotateMatrix(matrix: Tuple[Tuple[str, ...], ...]) -> Tuple[Tuple[str, ...], ...]:
+    return tuple(tuple(row) for row in zip(*matrix[::-1]))
 
 
-def tileItUp(tiles):
+def tileItUp(tiles: Sequence[Tile]) -> Iterator[Tuple[Tuple[Tile, ...], ...]]:
     N = int(len(tiles) ** 0.5)
     assert N**2 == len(tiles)
 
@@ -66,7 +68,7 @@ def tileItUp(tiles):
     for tile in allTiles:
         borderIndex[tile.left].append(tile)
 
-    def findRows(row, blackList=frozenset()):
+    def findRows(row: Tuple[Tile, ...], blackList=frozenset()):
         if len(row) == N:
             yield row
             return
@@ -76,7 +78,7 @@ def tileItUp(tiles):
                 continue
             yield from findRows(row + (nextTile,), blackList | {nextTile.id})
 
-    def stackRows(stack, remainingRows):
+    def stackRows(stack: Tuple[Tuple[Tile, ...], ...], remainingRows):
         if len(stack) == N:
             yield stack
             return
@@ -98,7 +100,7 @@ def mergeTiles(grid):
         lines = zip(*(t.stripBorders() for t in row))
         lines = tuple(tuple(char for subline in line for char in subline) for line in lines)
         image.extend(lines)
-    return image
+    return tuple(image)
 
 
 def countSeaMonsters(image):

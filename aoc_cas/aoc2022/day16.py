@@ -10,7 +10,10 @@ def buildGraph(data):
     flowRates = dict()
     graph = dict()
     for line in data.splitlines():
-        pipe, flowRate, connected = REGEX.search(line).groups()
+        match = REGEX.search(line)
+        if not match:
+            raise ValueError(f"Unable to parse valve line: {line}")
+        pipe, flowRate, connected = match.groups()
         flowRate = int(flowRate)
         connections = connected.split(", ")
         if flowRate:

@@ -15,7 +15,7 @@ def _is_decreasing(level: list[int]) -> bool:
     return all(level[i] > level[i + 1] for i in range(len(level) - 1))
 
 
-def _max_distance(level: list[int], k: int) -> int:
+def _max_distance(level: list[int], k: int) -> bool:
     return all(abs(level[i + 1] - level[i]) <= k for i in range(len(level) - 1))
 
 

@@ -1,9 +1,12 @@
 from collections import defaultdict
 import heapq
+from typing import Dict, List, Set, Tuple
+
+Graph = Dict[str, List[Tuple[str, int]]]
 
 
-def buildGraph(data):
-    graph = defaultdict(list)
+def buildGraph(data: str) -> Graph:
+    graph: Graph = defaultdict(list)
     for line in data.splitlines():
         city1, _, city2, _, dist = line.split(" ")
         dist = int(dist)
@@ -12,8 +15,8 @@ def buildGraph(data):
     return graph
 
 
-def search(start, graph, longest=False):
-    queue = [(0, start, {start})]
+def search(start: str, graph: Graph, longest: bool = False) -> int:
+    queue: List[Tuple[int, str, Set[str]]] = [(0, start, {start})]
     sign = -1 if longest else 1
     while queue:
         currDist, current, visited = heapq.heappop(queue)
@@ -23,14 +26,15 @@ def search(start, graph, longest=False):
         for nextCity, dist in graph[current]:
             if nextCity not in visited:
                 heapq.heappush(queue, (sign * (currDist + dist), nextCity, visited | {nextCity}))
+    raise ValueError("No Hamiltonian path found")
 
 
-def part_a(data):
+def part_a(data: str) -> int:
     graph = buildGraph(data)
     return min(search(start, graph) for start in graph.keys())
 
 
-def part_b(data):
+def part_b(data: str) -> int:
     graph = buildGraph(data)
     return max(search(start, graph, longest=True) for start in graph.keys())
 

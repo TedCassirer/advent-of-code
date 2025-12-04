@@ -1,6 +1,9 @@
 import dataclasses
 from collections import defaultdict
-from typing import Self
+from typing import TypeVar
+
+
+R = TypeVar("R", bound="Round")
 
 
 @dataclasses.dataclass(frozen=True)
@@ -11,7 +14,7 @@ class Round:
     green: int = 0
 
     @classmethod
-    def from_data_line(cls, line: str) -> Self:
+    def from_data_line(cls: type[R], line: str) -> R:
         game_part, cube_part = line.split(": ")
         game_id = int(game_part.split(" ")[1])
 
@@ -21,7 +24,7 @@ class Round:
                 count, color = draw.split(" ")
                 most_seen[color] = max(most_seen[color], int(count))
 
-        return Round(game_id, **most_seen)
+        return cls(game_id, **most_seen)
 
 
 def part_a(data: str) -> int:

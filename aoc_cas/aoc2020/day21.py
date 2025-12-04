@@ -35,9 +35,8 @@ def part_b(data):
     food = parseData(data)
     couldContainAllergen = findAllergens(food)
 
-    ingredientsWithAllergens = set.union(*couldContainAllergen.values())
-    allIngredients = {i for ingredients, allergens in food for i in ingredients}
-    allIngredients - ingredientsWithAllergens
+    set.union(*couldContainAllergen.values())
+    {i for ingredients, allergens in food for i in ingredients}
 
     seen = set()
     combos = []

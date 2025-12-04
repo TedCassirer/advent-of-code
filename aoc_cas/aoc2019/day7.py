@@ -17,7 +17,10 @@ def part_a(data):
         prev_signal = 0
         for vm in vms:
             vm.input_provided_from(iter([prev_signal]))
-            prev_signal = next(vm.run())
+            output = next(vm.run())
+            if output is None:
+                raise RuntimeError("Amplifier produced no output")
+            prev_signal = output
         highest_output = max(highest_output, prev_signal)
 
     return highest_output
@@ -37,7 +40,10 @@ def part_b(data):
             try:
                 for vm, runner in zip(vms, iters):
                     vm.input_provided_from([prev_signal])
-                    prev_signal = next(runner)
+                    output = next(runner)
+                    if output is None:
+                        raise RuntimeError("Amplifier produced no output")
+                    prev_signal = output
             except StopIteration:
                 break
         output = prev_signal

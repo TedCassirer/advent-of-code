@@ -16,6 +16,8 @@ def part_a(data):
     s = []
     row = []
     for r in vm.run():
+        if r is None:
+            continue
         char = chr(r)
         if char == "\n":
             s.append(row)
@@ -71,6 +73,8 @@ def part_b(data):
     s = []
     row = []
     for r in vm.run():
+        if r is None:
+            continue
         char = chr(r)
         if char == "\n":
             s.append(row)

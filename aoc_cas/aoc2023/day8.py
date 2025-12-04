@@ -28,6 +28,7 @@ def steps_to_reach_goal(
         steps += 1
         if is_goal(curr):
             return steps
+    raise ValueError("Goal not reachable")
 
 
 def part_a(data: str) -> int:

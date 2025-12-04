@@ -1,6 +1,5 @@
 import dataclasses
 from functools import reduce
-from typing import Self
 
 from aocd import get_data
 
@@ -11,22 +10,22 @@ class Range:
     destination: int
     length: int
 
-    def __lt__(self, other: Self) -> bool:
+    def __lt__(self, other: "Range") -> bool:
         return self.source < other.source
 
     @classmethod
-    def from_line(cls, line: str) -> Self:
+    def from_line(cls, line: str) -> "Range":
         destination, source, length = line.split(" ")
         return Range(destination=int(destination), source=int(source), length=int(length))
 
-    def overlaps(self, other: Self) -> bool:
+    def overlaps(self, other: "Range") -> bool:
         if other.source <= self.destination < other.source + other.length:
             return True
         if other.source <= self.destination + self.length < other.source + other.length:
             return True
         return False
 
-    def cut(self, length: int) -> tuple[Self, Self]:
+    def cut(self, length: int) -> tuple["Range", "Range"]:
         assert length < self.length
         left = Range(source=self.source, destination=self.destination, length=length)
         right = Range(
@@ -42,12 +41,12 @@ class RangeSet:
     ranges: list[Range]
 
     @classmethod
-    def from_data(cls, group: str) -> Self:
+    def from_data(cls, group: str) -> "RangeSet":
         _, *ranges_str = group.splitlines()
         ranges: list[Range] = sorted(map(Range.from_line, ranges_str))
         return RangeSet(ranges=ranges)
 
-    def add(self, other: Self) -> Self:
+    def add(self, other: "RangeSet") -> "RangeSet":
         ranges = sorted(self.ranges, key=lambda r: r.destination)
         out: set[Range] = set()
         i1 = 0

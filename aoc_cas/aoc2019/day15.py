@@ -1,6 +1,10 @@
-from .IntCodeComputer import IntCodeComputerVM
-from queue import deque
+from __future__ import annotations
+
+from collections import deque
 from time import sleep
+from typing import Callable, Dict, Optional, Set, Tuple
+
+from .IntCodeComputer import IntCodeComputerVM
 
 animate = False
 
@@ -39,9 +43,12 @@ class TileType:
     }
 
 
+Coordinate = Tuple[int, int]
+
+
 class Tile:
-    def __init__(self, coord, type):
-        self.connections = {
+    def __init__(self, coord: Coordinate, type: int):
+        self.connections: Dict[int, Optional["Tile"]] = {
             Directions.NORTH: None,
             Directions.SOUTH: None,
             Directions.WEST: None,
@@ -58,15 +65,15 @@ class Tile:
 
 
 class RoboBoy:
-    def __init__(self, robo):
+    def __init__(self, robo: IntCodeComputerVM):
         self.robo = robo
         self.robo.input_provided_from(self.choose_direction())
-        self.pos = (0, 0)
-        self.grid = {self.pos: Tile(self.pos, TileType.EMPTY)}
-        self.oxygen_pos = None
-        self.last_dir = None
+        self.pos: Coordinate = (0, 0)
+        self.grid: Dict[Coordinate, Tile] = {self.pos: Tile(self.pos, TileType.EMPTY)}
+        self.oxygen_pos: Optional[Coordinate] = None
+        self.last_dir: Optional[int] = None
 
-    def print_grid(self, delay=0.005):
+    def print_grid(self, delay: float = 0.005):
         min_x = min(x for y, x in self.grid.keys())
         min_y = min(y for y, x in self.grid.keys())
         max_x = max(x for y, x in self.grid.keys())
@@ -95,27 +102,30 @@ class RoboBoy:
             sleep(delay)
             print("\n".join(rows))
 
-    def bff_search_for_tile(self, start, tile_matcher):
-        queue = deque(((self.grid[start], []),))
-        visited = set()
+    def bff_search_for_tile(self, start: Coordinate, tile_matcher: Callable[[Optional[Tile]], bool]):
+        queue: deque[Tuple[Optional[Tile], list[int]]] = deque(((self.grid[start], []),))
+        visited: Set[Optional[Tile]] = set()
         while queue:
             tile, path = queue.popleft()
             visited.add(tile)
             if tile_matcher(tile):
                 return path
-            if tile.type == TileType.WALL:
+            if tile is None or tile.type == TileType.WALL:
                 continue
             for dir, tile_connection in tile.connections.items():
                 if tile_connection in visited:
                     continue
                 queue.append((tile_connection, path + [dir]))
+        raise ValueError("No matching tile found")
 
-    def spread_oxygen(self, tiles, minutes=0):
+    def spread_oxygen(self, tiles: Set[Tile], minutes: int = 0):
         if not tiles:
             return minutes - 1
         next_tiles = set()
         for tile in tiles:
             for dir, tile_connection in tile.connections.items():
+                if tile_connection is None:
+                    continue
                 if tile_connection.type == TileType.WALL or tile_connection.type == TileType.OXYGEN_TANK:
                     continue
                 tile_connection.type = TileType.OXYGEN_TANK
@@ -134,6 +144,8 @@ class RoboBoy:
 
     def gogo_robo_boy(self):
         for status_code in self.robo.run():
+            if self.last_dir is None:
+                raise RuntimeError("Robot attempted to move without a direction")
             position_moved_to = MOVE[self.last_dir](self.pos)
             current_tile = self.grid[self.pos]
             if status_code == StatusCode.WALL:
@@ -162,21 +174,21 @@ class RoboBoy:
             self.print_grid()
 
 
-def read_file(data):
+def read_file(data: str) -> list[int]:
     return [int(n) for n in data.split(",")]
 
 
-def part_a(data):
+def part_a(data: str) -> int:
     try:
         robo = IntCodeComputerVM(read_file(data))
         boy = RoboBoy(robo)
         boy.gogo_robo_boy()
     except Exception:
         pass
-    return len(boy.bff_search_for_tile((0, 0), lambda tile: tile.type == TileType.OXYGEN_TANK))
+    return len(boy.bff_search_for_tile((0, 0), lambda tile: tile is not None and tile.type == TileType.OXYGEN_TANK))
 
 
-def part_b(data):
+def part_b(data: str) -> int:
     try:
         robo = IntCodeComputerVM(read_file(data))
         boy = RoboBoy(robo)
@@ -184,4 +196,6 @@ def part_b(data):
     except Exception:
         pass
 
+    if boy.oxygen_pos is None:
+        raise RuntimeError("Oxygen position unknown")
     return boy.spread_oxygen({boy.grid[boy.oxygen_pos]})

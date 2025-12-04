@@ -23,8 +23,8 @@ def estimate(e, itemsOnFloors):
 @dataclass(frozen=True)
 class State:
     elevator: int
-    chips: tuple[frozenset[str]]
-    generators: tuple[frozenset[str]]
+    chips: tuple[frozenset[str], ...]
+    generators: tuple[frozenset[str], ...]
     steps: int = 0
 
     def isValid(self):

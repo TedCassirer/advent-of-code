@@ -27,7 +27,9 @@ data = """
 
 def testPartA():
     numbers = [int(n) for n in data.splitlines()]
-    assert numbers[aoc.findWeakness(numbers, 5)] == 127
+    idx = aoc.findWeakness(numbers, 5)
+    assert idx is not None
+    assert numbers[idx] == 127
 
 
 def testPartB():

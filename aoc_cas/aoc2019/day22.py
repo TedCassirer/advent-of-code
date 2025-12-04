@@ -3,7 +3,7 @@ def cut(deck, n):
 
 
 def dealWithIncrement(deck, N):
-    newDeck = [None] * len(deck)
+    newDeck = [0] * len(deck)
     for i in range(len(deck)):
         newDeck[(i * N) % len(deck)] = deck[i]
     return newDeck

@@ -1,9 +1,10 @@
 import math
 import re
 from collections import defaultdict
+from collections.abc import Iterator
 
 
-def get_part_numbers(data: str) -> tuple[int, list[tuple[int, int]]]:
+def get_part_numbers(data: str) -> Iterator[tuple[int, list[tuple[int, int]]]]:
     pattern = re.compile(r"\d+")
     for y, row in enumerate(data.splitlines()):
         for match in pattern.finditer(row):
@@ -17,7 +18,7 @@ def get_part_numbers(data: str) -> tuple[int, list[tuple[int, int]]]:
             yield part_number, adjacent
 
 
-def get_symbols(data: str) -> tuple[str, tuple[int, int]]:
+def get_symbols(data: str) -> Iterator[tuple[str, tuple[int, int]]]:
     for y, row in enumerate(data.splitlines()):
         yield from ((c, (y, x)) for x, c in enumerate(row) if not c.isdigit() and c != ".")
 

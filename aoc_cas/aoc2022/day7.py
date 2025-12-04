@@ -4,17 +4,17 @@ from dataclasses import dataclass, field
 @dataclass
 class Directory:
     name: str
-    parent: "Directory"
+    parent: "Directory | None" = None
     files: list["File"] = field(default_factory=list)
     directories: list["Directory"] = field(default_factory=list)
 
-    def cd(self, path):
+    def cd(self, path: str) -> "Directory":
         if path == "..":
-            return self.parent
-        else:
-            for d in self.directories:
-                if d.name == path:
-                    return d
+            return self.parent if self.parent is not None else self
+        for d in self.directories:
+            if d.name == path:
+                return d
+        raise ValueError(f"Directory '{path}' not found under {self.name}")
 
     def addFile(self, size, name):
         self.files.append(File(size=size, name=name))

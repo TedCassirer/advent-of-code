@@ -16,7 +16,7 @@ spells = [
 class Player:
     hp: int
     mana: int
-    manaSpent: 0
+    manaSpent: int
     shield: int
     recharge: int
     hard: bool

@@ -27,7 +27,10 @@ class Point:
 def getPoints():
     regex = re.compile(r"^position\=<\s?(?P<x>-?\d+), \s?(?P<y>-?\d+)> velocity\=<\s?(?P<xv>-?\d+), \s?(?P<yv>-?\d+)>")
     for line in readData("2018/data/day_10"):
-        yield Point(*map(int, regex.search(line).groups()))
+        match = regex.search(line)
+        if not match:
+            raise ValueError(f"Could not parse point line: {line}")
+        yield Point(*map(int, match.groups()))
 
 
 def getWindowsize(points):

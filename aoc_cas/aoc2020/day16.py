@@ -6,7 +6,10 @@ ruleMatch = re.compile(r"(.+): (\d+-\d+) or (\d+-\d+)")
 def parseRules(rules):
     allowedNumbers = []
     for r in rules.splitlines():
-        name, r1, r2 = ruleMatch.match(r).groups()
+        match = ruleMatch.match(r)
+        if not match:
+            raise ValueError(f"Invalid rule: {r}")
+        name, r1, r2 = match.groups()
         r1a, r1b = map(int, r1.split("-"))
         r2a, r2b = map(int, r2.split("-"))
         allowedNumbers.append((name, set(range(r1a, r1b + 1)) | set(range(r2a, r2b + 1))))

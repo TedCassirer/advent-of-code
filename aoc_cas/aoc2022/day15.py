@@ -5,7 +5,10 @@ REGEX = re.compile(r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\
 
 def parseSensorsAndBeacons(data):
     for line in data.splitlines():
-        sx, sy, bx, by = map(int, REGEX.search(line).groups())
+        match = REGEX.search(line)
+        if not match:
+            raise ValueError(f"Unable to parse sensor line: {line}")
+        sx, sy, bx, by = map(int, match.groups())
         yield (sy, sx), (by, bx)
 
 

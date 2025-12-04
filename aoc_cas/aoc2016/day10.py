@@ -1,29 +1,36 @@
 from collections import defaultdict
+from typing import Callable, Optional
+
+Provider = Callable[[], int]
 
 
 class Bot:
     def __init__(self):
-        self.__provider1 = None
-        self.__provider2 = None
-        self.__hi = None
-        self.__lo = None
+        self.__provider1: Optional[Provider] = None
+        self.__provider2: Optional[Provider] = None
+        self.__hi: Optional[int] = None
+        self.__lo: Optional[int] = None
 
     def __loadValues(self):
+        if self.__provider1 is None or self.__provider2 is None:
+            raise RuntimeError("Bot missing providers")
         v1, v2 = self.__provider1(), self.__provider2()
         self.__lo, self.__hi = sorted((v1, v2))
 
-    def getHigh(self):
+    def getHigh(self) -> int:
         if self.__hi is None:
             self.__loadValues()
+        assert self.__hi is not None
         return self.__hi
 
-    def getLow(self):
+    def getLow(self) -> int:
         if self.__lo is None:
             self.__loadValues()
+        assert self.__lo is not None
         return self.__lo
 
-    def addProvider(self, provider):
-        if self.__provider1:
+    def addProvider(self, provider: Provider):
+        if self.__provider1 is not None:
             assert self.__provider2 is None
             self.__provider2 = provider
         else:
@@ -32,13 +39,15 @@ class Bot:
 
 class Output:
     def __init__(self):
-        self.__provider = None
+        self.__provider: Optional[Provider] = None
 
-    def addProvider(self, provider):
+    def addProvider(self, provider: Provider):
         assert self.__provider is None
         self.__provider = provider
 
     def get(self):
+        if self.__provider is None:
+            raise RuntimeError("Output has no provider")
         return self.__provider()
 
 
@@ -51,7 +60,7 @@ def getBots(data):
             parts = line.split(" ")
             n, bot = int(parts[1]), int(parts[5])
 
-            def giveValue(val):
+            def giveValue(val: int) -> Provider:
                 return lambda: val
 
             bots[bot].addProvider(giveValue(n))
