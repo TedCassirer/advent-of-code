@@ -1,5 +1,10 @@
-def parse_grid(input: str) -> set[tuple[int, int]]:
-    grid: set[tuple[int, int]] = set()
+from typing import Iterator
+
+Coordinate = tuple[int, int]
+
+
+def parse_grid(input: str) -> set[Coordinate]:
+    grid: set[Coordinate] = set()
 
     for y, line in enumerate(input.splitlines()):
         for x, char in enumerate(line):
@@ -8,22 +13,18 @@ def parse_grid(input: str) -> set[tuple[int, int]]:
     return grid
 
 
-def count_active_neighbors(grid: set[tuple[int, int]], row: int, col: int) -> int:
-    directions = [
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-        (0, -1),
-        (0, 1),
-        (1, -1),
-        (1, 0),
-        (1, 1),
-    ]
+def count_active_neighbors(grid: set[Coordinate], row: int, col: int) -> int:
     count = 0
-    for dy, dx in directions:
-        coord = row + dy, col + dx
+    for coord in neighbors(row, col):
         count += coord in grid
     return count
+
+
+def neighbors(row: int, col: int) -> Iterator[Coordinate]:
+    for dy in (-1, 0, 1):
+        for dx in (-1, 0, 1):
+            if dy != 0 or dx != 0:
+                yield row + dy, col + dx
 
 
 def part_a(input: str) -> int:
@@ -38,14 +39,14 @@ def part_a(input: str) -> int:
 def part_b(input: str) -> int:
     grid = parse_grid(input)
     ans = 0
-    while True:
-        for row, col in grid:
-            if count_active_neighbors(grid, row, col) < 4:
-                ans += 1
-                break
-        else:
-            return ans
-        grid.remove((row, col))
+    to_check = set(grid)
+    while to_check:
+        coord = to_check.pop()
+        if count_active_neighbors(grid, *coord) < 4:
+            ans += 1
+            grid.remove(coord)
+            to_check.update(c for c in neighbors(*coord) if c in grid)
+    return ans
 
 
 if __name__ == "__main__":
