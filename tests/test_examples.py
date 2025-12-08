@@ -24,7 +24,7 @@ def test_examples(input_file: pathlib.Path) -> None:
         if len(lines) < 3:
             pytest.fail(f"test data {input_file} is malformed")
         *lines, expected_answer_a, expected_answer_b = lines
-        input_data = "\n".join(lines).rstrip()
+        input_data = "\n".join(lines)
         mod = load_module(year, day)
         if expected_answer_a != "-":
             actual_answer_a = str(mod.part_a(input_data))
