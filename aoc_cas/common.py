@@ -65,6 +65,15 @@ class Coordinate:
     def md(self, other: Coordinate) -> int:
         return abs(other.x - self.x) + abs(other.y - self.y)
 
+    def direction_to(self, other: Coordinate) -> Direction:
+        dy = other.y - self.y
+        dx = other.x - self.x
+        if dy != 0:
+            dy = dy // abs(dy)
+        if dx != 0:
+            dx = dx // abs(dx)
+        return Direction.create(dy, dx)
+
     def __add__(self, v: Vector) -> Coordinate:
         return Coordinate.create(self.y + v.y, self.x + v.x)
 
@@ -78,7 +87,7 @@ class Coordinate:
 
 
 class Grid(t.Generic[T]):
-    def __init__(self, rows: t.MutableSequence[t.MutableSequence[T]]):
+    def __init__(self, rows: list[list[T]]):
         self._grid = rows
         self.M = len(rows)
         self.N = len(rows[0])
@@ -118,3 +127,6 @@ class Grid(t.Generic[T]):
 
     def __len__(self) -> int:
         return self.M * self.N
+
+    def __str__(self) -> str:
+        return "\n".join("".join(str(cell) for cell in row) for row in self._grid)
